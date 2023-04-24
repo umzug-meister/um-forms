@@ -63,7 +63,7 @@ export function MainCard() {
           <Box>
             <Typography>
               <strong>Flexibel, schnell und stressfrei</strong> - wählen Sie Ihr
-              Express Umzugsangebot mit individueller Stunden- und Helferzahl.{" "}
+              Express Umzugsangebot mit individueller Stunden- und Helferzahl.
               <br />
               Holen Sie sich innerhalb von Stunden unser unschlagbares Angebot.
             </Typography>
