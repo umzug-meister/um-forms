@@ -12,13 +12,13 @@ export interface AppOptions {
 
 export const uploadOrder = createAsyncThunk(
   "uploadOrder",
-  (cb: () => void, thunkApi) => {
+  (cb: (id: string | number) => void, thunkApi) => {
     const {
       app: { current },
     } = thunkApi.getState() as AppState;
 
-    return appRequest("post")(Urls.orderById(""), current).then(() => {
-      cb();
+    return appRequest("post")(Urls.orderById(""), current).then((res) => {
+      cb(res.id);
     });
   }
 );
@@ -82,7 +82,10 @@ const appSlice = createSlice({
   name: "order",
   initialState,
   reducers: {
-    setSelectedPriceId(state, action: PayloadAction<{ id: string }>) {
+    setSelectedPriceId(
+      state,
+      action: PayloadAction<{ id: string | undefined }>
+    ) {
       state.selectedPriceID = action.payload.id;
       const curPrice = state.services.find(
         (s) => s.id == action.payload.id
