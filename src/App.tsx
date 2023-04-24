@@ -5,6 +5,7 @@ import AppLoader from "./AppLoader";
 import { HeightOberserver } from "./components/HeightObserver";
 import { Inputs } from "./components/Inputs";
 import { Main } from "./components/Main";
+import { Success } from "./components/Success";
 import { store } from "./store";
 import { theme } from "./theme";
 
@@ -19,6 +20,7 @@ export function App() {
                 <Routes>
                   <Route index element={<Main />} />
                   <Route path="inputs" element={<Inputs />} />
+                  <Route path="success/:id" element={<Success />} />
                 </Routes>
               </BrowserRouter>
             </main>
