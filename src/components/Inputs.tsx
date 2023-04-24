@@ -5,11 +5,7 @@ import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, Customer } from "um-types";
 import { AppDispatch } from "../store";
-import {
-  calculateOrder,
-  setSelectedPriceId,
-  uploadOrder,
-} from "../store/appReducer";
+import { calculateOrder, uploadOrder } from "../store/appReducer";
 import OrderField from "./OrderField";
 
 export function Inputs() {
@@ -17,9 +13,9 @@ export function Inputs() {
   const dispatch = useDispatch<AppDispatch>();
 
   const onUploadRequest = useCallback(() => {
-    const cb = () => {
+    const cb = (id: number | string) => {
       setTimeout(() => {
-        navigate("/");
+        navigate(`/success/${id}`);
       }, 1000);
     };
     dispatch(calculateOrder());
@@ -33,7 +29,6 @@ export function Inputs() {
       gap={4}
       p={2}
       sx={{
-        background: "#eaeaea",
         maxWidth: "900px",
       }}
     >

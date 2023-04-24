@@ -62,8 +62,10 @@ export function MainCard() {
 
           <Box>
             <Typography>
-              <strong>Unser Express Angebot ist die perfekte Lösung</strong> für
-              alle, die schnell und unkompliziert ein Angebot benötigen.
+              <strong>Flexibel, schnell und stressfrei</strong> - wählen Sie Ihr
+              Express Umzugsangebot mit individueller Stunden- und Helferzahl.
+              <br />
+              Holen Sie sich innerhalb von Stunden unser unschlagbares Angebot.
             </Typography>
           </Box>
           <Box>
@@ -75,7 +77,7 @@ export function MainCard() {
                 <Typography>inkl. An und Abfahrtskosten in München</Typography>
               </li>
               <li>
-                <Typography>inklusive Umzugsdecken und Gurte</Typography>
+                <Typography>inkl. Umzugsdecken und Gurte</Typography>
               </li>
               <li>
                 <Typography>Versicherungsschutz bis 2.000.000€</Typography>
