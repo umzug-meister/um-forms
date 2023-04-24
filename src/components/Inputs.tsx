@@ -1,16 +1,30 @@
+import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import SendIcon from "@mui/icons-material/Send";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { useCallback, useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Address, Customer } from "um-types";
-import { AppDispatch } from "../store";
+import { Address, AppPrice, Customer, Service } from "um-types";
+import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import OrderField from "./OrderField";
 
 export function Inputs() {
   const navigate = useNavigate();
   const dispatch = useDispatch<AppDispatch>();
+
+  const services = useSelector<AppState, Service[]>((s) => s.app.services);
+  const selectedId = useSelector<AppState, string | undefined>(
+    (s) => s.app.selectedPriceID
+  );
+
+  const selectedOffer = (selectedId &&
+    services.find((s) => s.id === selectedId)) as AppPrice | undefined;
+
+  const imageSrc = useMemo(
+    () => `/assets/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
+    [selectedOffer]
+  );
 
   const onUploadRequest = useCallback(() => {
     const cb = (id: number | string) => {
@@ -21,6 +35,7 @@ export function Inputs() {
     dispatch(calculateOrder());
     dispatch(uploadOrder(cb));
   }, [dispatch]);
+
   return (
     <Box
       display="flex"
@@ -34,6 +49,20 @@ export function Inputs() {
     >
       <Box>
         <Grid container columnSpacing={3} rowSpacing={2}>
+          <Grid
+            item
+            xs={12}
+            sx={{
+              height: "70px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <Box>
+              <img src={imageSrc} height={50} />
+            </Box>
+          </Grid>
           <Grid item xs={12} sm={4}>
             <OrderField<Customer>
               path="customer"
@@ -125,7 +154,15 @@ export function Inputs() {
         </Grid>
       </Box>
 
-      <Box display="flex" m={2} justifyContent="center">
+      <Box display="flex" m={2} gap={3} justifyContent="center">
+        <Button
+          onClick={() => {
+            navigate("/");
+          }}
+          startIcon={<NavigateBeforeIcon />}
+        >
+          Zeige die Auswahl
+        </Button>
         <Button
           onClick={onUploadRequest}
           endIcon={<SendIcon />}
