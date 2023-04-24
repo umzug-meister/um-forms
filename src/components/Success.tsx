@@ -21,17 +21,20 @@ export function Success() {
       minWidth="300px"
       minHeight="300px"
       gap={3}
+      p={2}
       borderRadius="10px"
       sx={{ backgroundColor: "#d1c7be69" }}
     >
       <Box>
         <Typography variant="h2">Erfolgreich!</Typography>
       </Box>
-      <Box>
-        <Typography variant="h4">
-          Ihre Anfrage-ID lautet: <strong>{`${params.id}`}</strong>
-        </Typography>
-      </Box>
+      <Typography variant="h4">
+        Ihre Anfrage-ID lautet: <strong>{`${params.id}`}</strong>
+      </Typography>
+      <Typography>
+        Bitte diese ID bei Rückfragen bereithalten. Eine Bestätigungsmail ist
+        bereits unterwegs.
+      </Typography>
       <Box mt={6}>
         <Button onClick={onOkClick} variant="contained" color="primary">
           Alles Klar!
