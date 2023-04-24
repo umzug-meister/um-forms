@@ -1,8 +1,8 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useMemo } from "react";
-import { MainCard } from "../components/main-card/MainCard";
-import { OfferCard } from "../components/offer-card/OfferCard";
+import { MainCard } from "./MainCard";
+import { OfferCard } from "./OfferCard";
 
 export function Main() {
   const theme = useTheme();
@@ -13,8 +13,8 @@ export function Main() {
   return (
     <Grid
       container
-      rowSpacing={{ xs: 3, sm: 4, md: 5 }}
-      columnSpacing={{ sm: 2, md: 4 }}
+      rowSpacing={{ xs: 2, sm: 3, md: 4 }}
+      columnSpacing={{ sm: 2, md: 3 }}
     >
       {smallToMid ? mainCard : null}
       <OfferCard
@@ -41,7 +41,7 @@ export function Main() {
         transporter={2}
         workers={4}
         primary="#cecece"
-        secondary="#e6e2da"
+        secondary="#DDDEDF"
       />
     </Grid>
   );

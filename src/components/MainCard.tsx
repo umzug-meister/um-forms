@@ -1,4 +1,4 @@
-import { Box, Card, Typography, useMediaQuery, useTheme } from "@mui/material";
+import { Box, Typography, useMediaQuery, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid";
 
 export function MainCard() {
@@ -38,7 +38,13 @@ export function MainCard() {
           </Typography>
         </Box>
         <Box sx={{ background: "white", height: "4px" }} />
-        <Box paddingX={2} paddingY={3}>
+        <Box
+          paddingX={2}
+          paddingY={3}
+          display="flex"
+          flexDirection="column"
+          gap={3}
+        >
           <Box pl={2} sx={{ borderLeft: "4px solid #2ea3f2" }}>
             <Typography>
               <strong>Frühbucherrabatt</strong>
@@ -53,29 +59,29 @@ export function MainCard() {
               <strong style={{ color: "#2792da" }}> 10% Rabatt</strong>
             </Typography>
           </Box>
-          <br />
-          <Typography>
-            <strong style={{ color: "#008080" }}>
-              Umzüge am Samstag - ohne Zuschlag
-            </strong>
-          </Typography>
-          <br />
-          <Typography>
-            <strong>Unser Express Angebot ist die perfekte Lösung</strong> für
-            alle, die schnell und unkompliziert ein Angebot benötigen.
-          </Typography>
-          <br />
-          <ul>
-            <li>
-              <Typography>Alle Preise inklusive 19% MwSt.</Typography>
-            </li>
-            <li>
-              <Typography>inklusive Umzugsdecken und Gurte</Typography>
-            </li>
-            <li>
-              <Typography>Versicherungsschutz bis 2.000.000€</Typography>
-            </li>
-          </ul>
+
+          <Box>
+            <Typography>
+              <strong>Unser Express Angebot ist die perfekte Lösung</strong> für
+              alle, die schnell und unkompliziert ein Angebot benötigen.
+            </Typography>
+          </Box>
+          <Box>
+            <ul>
+              <li>
+                <Typography>Alle Preise inklusive 19% MwSt.</Typography>
+              </li>
+              <li>
+                <Typography>inkl. An und Abfahrtskosten in München</Typography>
+              </li>
+              <li>
+                <Typography>inklusive Umzugsdecken und Gurte</Typography>
+              </li>
+              <li>
+                <Typography>Versicherungsschutz bis 2.000.000€</Typography>
+              </li>
+            </ul>
+          </Box>
         </Box>
       </Box>
     </Grid>

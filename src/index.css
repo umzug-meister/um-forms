@@ -1,1 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Open+Sans:wght@300;400;700&display=swap");
+
+html,
+#root,
+.content {
+  margin: auto;
+  padding: 0;
+}
+
+#root {
+  max-width: 1080px;
+}
+
+input[value=""]::-webkit-datetime-edit {
+  color: transparent;
+}
+input:focus::-webkit-datetime-edit {
+  color: #000;
+}
