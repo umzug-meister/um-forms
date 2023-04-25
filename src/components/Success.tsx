@@ -9,7 +9,6 @@ export function Success() {
 
   const onOkClick = useCallback(() => {
     navigate("/");
-    window.scrollTo({ top: 0 });
   }, []);
 
   return (

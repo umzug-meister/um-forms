@@ -22,7 +22,8 @@ export function Inputs() {
     services.find((s) => s.id === selectedId)) as AppPrice | undefined;
 
   const imageSrc = useMemo(
-    () => `/assets/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
+    () =>
+      `https://umzugruckzuck.de/wp-content/uploads/2023/04/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
     [selectedOffer]
   );
 
@@ -30,7 +31,6 @@ export function Inputs() {
     const cb = (id: number | string) => {
       setTimeout(() => {
         navigate(`/success/${id}`);
-        window.scrollTo({ top: 0 });
       }, 1000);
     };
     dispatch(calculateOrder());
@@ -109,7 +109,7 @@ export function Inputs() {
           <Grid item xs={12} sm={6}>
             <Box display="flex" flexDirection="column" gap={2}>
               <Typography variant="h3">Wann?</Typography>
-              <OrderField path="date" type="date" label="Datum" />
+              <OrderField path="date" type="date" />
             </Box>
           </Grid>
         </Grid>
@@ -159,7 +159,6 @@ export function Inputs() {
         <Button
           onClick={() => {
             navigate("/");
-            window.scrollTo({ top: 0 });
           }}
           startIcon={<NavigateBeforeIcon />}
         >

@@ -1,8 +1,7 @@
-import { ThemeProvider } from "@mui/material";
+import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter, Route, Routes } from "react-router-dom";
 import AppLoader from "./AppLoader";
-import { HeightOberserver } from "./components/HeightObserver";
 import { Inputs } from "./components/Inputs";
 import { Main } from "./components/Main";
 import { Success } from "./components/Success";
@@ -14,18 +13,18 @@ export function App() {
     <>
       <Provider store={store}>
         <AppLoader>
+          <CssBaseline />
           <ThemeProvider theme={theme}>
-            <main className="content">
-              <BrowserRouter>
+            <HashRouter>
+              <div style={{ maxWidth: "1080px", margin: "auto" }}>
                 <Routes>
                   <Route index element={<Main />} />
                   <Route path="inputs" element={<Inputs />} />
                   <Route path="success/:id" element={<Success />} />
                 </Routes>
-              </BrowserRouter>
-            </main>
+              </div>
+            </HashRouter>
           </ThemeProvider>
-          <HeightOberserver />
         </AppLoader>
       </Provider>
     </>

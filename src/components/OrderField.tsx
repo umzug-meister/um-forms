@@ -118,7 +118,7 @@ export default function OrderField<T>({
       }}
       label={label}
       fullWidth
-      variant="outlined"
+      variant="standard"
     >
       {selectOptions?.map((option) => (
         <MenuItem key={option} value={option}>
