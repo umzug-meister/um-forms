@@ -90,7 +90,10 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
           >
             {showButton && (
               <Button
-                onClick={() => navigate("inputs")}
+                onClick={() => {
+                  navigate("inputs");
+                  window.scrollTo({ top: 0 });
+                }}
                 variant="contained"
                 disableElevation
               >

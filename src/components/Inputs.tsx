@@ -30,6 +30,7 @@ export function Inputs() {
     const cb = (id: number | string) => {
       setTimeout(() => {
         navigate(`/success/${id}`);
+        window.scrollTo({ top: 0 });
       }, 1000);
     };
     dispatch(calculateOrder());
@@ -158,6 +159,7 @@ export function Inputs() {
         <Button
           onClick={() => {
             navigate("/");
+            window.scrollTo({ top: 0 });
           }}
           startIcon={<NavigateBeforeIcon />}
         >
