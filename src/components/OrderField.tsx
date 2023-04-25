@@ -1,5 +1,6 @@
 import { Loader } from "@googlemaps/js-api-loader";
 import {
+  Box,
   Checkbox,
   FormControlLabel,
   FormGroup,
@@ -106,26 +107,35 @@ export default function OrderField<T>({
   }
 
   return (
-    <TextField
-      size="small"
-      error={error}
-      type={type}
-      id={id}
-      select={select}
-      value={value}
-      onChange={(ev) => {
-        handleChange(ev.target.value);
+    <Box
+      sx={{
+        "& input[type=text]": {
+          border: "none !important",
+          padding: "8.5px 14px!important",
+        },
       }}
-      label={label}
-      fullWidth
-      variant="standard"
     >
-      {selectOptions?.map((option) => (
-        <MenuItem key={option} value={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </TextField>
+      <TextField
+        size="small"
+        error={error}
+        type={type}
+        id={id}
+        select={select}
+        value={value}
+        onChange={(ev) => {
+          handleChange(ev.target.value);
+        }}
+        label={label}
+        fullWidth
+        variant="outlined"
+      >
+        {selectOptions?.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+    </Box>
   );
 }
 
