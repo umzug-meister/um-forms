@@ -161,7 +161,7 @@ export function Inputs() {
           }}
           startIcon={<NavigateBeforeIcon />}
         >
-          Zeige die Auswahl
+          Zurück
         </Button>
         <Button
           onClick={onUploadRequest}

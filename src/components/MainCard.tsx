@@ -10,7 +10,7 @@ export function MainCard() {
   return (
     <Grid item xs={12} sm={12} md={8}>
       <Box
-        sx={{ backgroundColor: "#d1c7be69", height: "100%" }}
+        sx={{ backgroundColor: "#ECE8E4", height: "100%" }}
         display="flex"
         flexDirection="column"
         width="100%"
@@ -21,20 +21,12 @@ export function MainCard() {
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
-            backgroundColor: "#d0c7b885",
+            backgroundColor: "#e7e2da",
           }}
         >
           <Typography variant={variant} sx={{ whiteSpace: "nowrap" }}>
             Schnell umziehen:
-            <i
-              style={{
-                fontWeight: 700,
-                fontStyle: "normal",
-                fontFamily: "Merriweather !important",
-              }}
-            >
-              {` Expressangebot`}
-            </i>
+            <strong>{` Expressangebot`}</strong>
           </Typography>
         </Box>
         <Box sx={{ background: "white", height: "4px" }} />
@@ -63,7 +55,8 @@ export function MainCard() {
           <Box>
             <Typography>
               <strong>Flexibel, schnell und stressfrei</strong> - wählen Sie Ihr
-              Express Umzugsangebot mit individueller Stunden- und Helferzahl.
+              <strong> Express Umzugsangebot </strong>mit individueller Stunden-
+              und Helferzahl.
               <br />
               Holen Sie sich innerhalb von Stunden unser unschlagbares Angebot.
             </Typography>
@@ -75,6 +68,9 @@ export function MainCard() {
               </li>
               <li>
                 <Typography>inkl. An und Abfahrtskosten in München</Typography>
+              </li>
+              <li>
+                <Typography>Umzüge am Samstag - ohne Zuschlag</Typography>
               </li>
               <li>
                 <Typography>inkl. Umzugsdecken und Gurte</Typography>
