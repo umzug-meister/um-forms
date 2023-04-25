@@ -13,6 +13,7 @@ import { AppPrice } from "um-types";
 import { AppDispatch, AppState } from "../store";
 import { setSelectedPriceId } from "../store/appReducer";
 import { useNavigate } from "react-router-dom";
+import { scrollToRoot } from "../main";
 
 interface Props {
   transporter: number;
@@ -93,6 +94,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
               <Button
                 onClick={() => {
                   navigate("inputs");
+                  scrollToRoot();
                 }}
                 variant="contained"
                 disableElevation

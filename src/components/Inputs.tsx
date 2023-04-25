@@ -5,6 +5,7 @@ import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Customer, Service } from "um-types";
+import { scrollToRoot } from "../main";
 import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import OrderField from "./OrderField";
@@ -31,6 +32,7 @@ export function Inputs() {
     const cb = (id: number | string) => {
       setTimeout(() => {
         navigate(`/success/${id}`);
+        scrollToRoot();
       }, 1000);
     };
     dispatch(calculateOrder());
@@ -159,6 +161,7 @@ export function Inputs() {
         <Button
           onClick={() => {
             navigate("/");
+            scrollToRoot();
           }}
           startIcon={<NavigateBeforeIcon />}
         >

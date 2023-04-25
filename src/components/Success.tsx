@@ -1,14 +1,20 @@
 import { Box, Button, Typography } from "@mui/material";
 import { useCallback } from "react";
+import { useDispatch } from "react-redux";
 import { useNavigate, useParams } from "react-router-dom";
+import { scrollToRoot } from "../main";
+import { AppDispatch } from "../store";
+import { clearState } from "../store/appReducer";
 
 export function Success() {
   const params = useParams();
-
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
   const onOkClick = useCallback(() => {
     navigate("/");
+    dispatch(clearState());
+    scrollToRoot();
   }, []);
 
   return (
