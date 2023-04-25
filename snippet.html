@@ -1,0 +1,22 @@
+<html>
+  <script>
+    function _eventListener(e) {
+      if (e.origin == "https://um-express-form.netlify.app") {
+        const iframe = document.querySelector("#child-iframe");
+        const eventData = e.data;
+        if (eventData["form-event"] == "HEIGHT_CHANGE" && iframe) {
+          const height = eventData.height + 20;
+          iframe.style.height = `${height}px`;
+          return;
+        }
+      }
+    }
+    window.addEventListener("message", _eventListener, false);
+  </script>
+
+  <iframe
+    src="https://um-express-form.netlify.app"
+    id="child-iframe"
+    width="100%"
+  />
+</html>
