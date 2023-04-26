@@ -27,6 +27,8 @@ interface Props<T> {
   as?: "default" | "checkbox";
   id?: string;
   error?: boolean;
+  placeholder?: string;
+  multiline?: boolean;
 }
 
 const options = {
@@ -45,6 +47,8 @@ export default function OrderField<T>({
   enableMaps,
   id,
   error,
+  placeholder,
+  multiline,
 }: Props<T>) {
   const value = useOrderValue(path, nestedPath);
   const dispatch = useDispatch<AppDispatch>();
@@ -125,6 +129,9 @@ export default function OrderField<T>({
         onChange={(ev) => {
           handleChange(ev.target.value);
         }}
+        multiline={multiline}
+        minRows={4}
+        placeholder={placeholder}
         label={label}
         fullWidth
         variant="outlined"
