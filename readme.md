@@ -1,3 +1,5 @@
 # UM-Express-Form
 
-[![Netlify Status](https://api.netlify.com/api/v1/badges/27c3c13c-dbbc-4202-983f-e02618208ec1/deploy-status)](https://app.netlify.com/sites/um-express-form/deploys)
+[![🔨 Build pull request](https://github.com/mee3003/um-express-form/actions/workflows/build.yml/badge.svg)](https://github.com/mee3003/um-express-form/actions/workflows/build.yml)
+
+[![🚀 Deploy um-express-form](https://github.com/mee3003/um-express-form/actions/workflows/deploy.yml/badge.svg)](https://github.com/mee3003/um-express-form/actions/workflows/deploy.yml)
