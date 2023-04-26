@@ -40,8 +40,7 @@ export function Inputs() {
     services.find((s) => s.id === selectedId)) as AppPrice | undefined;
 
   const imageSrc = useMemo(
-    () =>
-      `https://umzugruckzuck.de/wp-content/uploads/2023/04/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
+    () => `img/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
     [selectedOffer]
   );
 

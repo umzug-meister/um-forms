@@ -25,10 +25,8 @@ interface Props {
 export function OfferCard({ transporter, workers, primary, secondary }: Props) {
   const navigate = useNavigate();
   const selectedPriceID = useSelectedId();
-  //https://umzugruckzuck.de/wp-content/uploads/2023/04/2_1.png
   const imageSrc = useMemo(
-    () =>
-      `https://umzugruckzuck.de/wp-content/uploads/2023/04/${workers}_${transporter}.png`,
+    () => `img/${workers}_${transporter}.png`,
     [transporter, workers]
   );
 
