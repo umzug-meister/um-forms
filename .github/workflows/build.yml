@@ -21,4 +21,4 @@ jobs:
       - name: Build App
         run: npm run build
         env:
-          VITE_BASE_URL: ${{ secrets.BACKEND_URL }}
+          VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
