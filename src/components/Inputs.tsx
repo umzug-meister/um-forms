@@ -41,7 +41,7 @@ export function Inputs() {
 
   const imageSrc = useMemo(
     () =>
-      `${import.meta.env.VITE_RESOURCE_URL}/${selectedOffer?.workers}_${
+      `${import.meta.env.BASE_URL}${selectedOffer?.workers}_${
         selectedOffer?.t35
       }.png`,
     [selectedOffer]

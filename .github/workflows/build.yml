@@ -22,4 +22,4 @@ jobs:
         run: npm run build
         env:
           VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
-          VITE_RESOURCE_URL: "/um-forms/express"
+          BASE_URL: "/um-forms/express/"
