@@ -50,7 +50,7 @@ const initialOrder = {
   to: {
     montage: false,
   },
-  time: "08:00",
+  time: "07:00",
   prices: {},
   timeBased: {},
   leistungen: new Array<MLeistung>(),
