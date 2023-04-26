@@ -24,7 +24,6 @@ jobs:
         run: npm run build
         env:
           VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
-          BASE_URL: "/um-forms/express/"
 
       - name: Sync files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
