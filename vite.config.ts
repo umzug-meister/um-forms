@@ -2,16 +2,20 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [react()],
-  base: "/um-forms/express/",
-  build: {
-    rollupOptions: {
-      output: {
-        entryFileNames: `[name].js`,
-        chunkFileNames: `[name].js`,
-        assetFileNames: `[name].[ext]`,
+
+export default defineConfig(({ mode }) => {
+  console.log(mode);
+  return {
+    plugins: [react()],
+    base: mode === "development" ? "/" : "/um-forms/express/",
+    build: {
+      rollupOptions: {
+        output: {
+          entryFileNames: `[name].js`,
+          chunkFileNames: `[name].js`,
+          assetFileNames: `[name].[ext]`,
+        },
       },
     },
-  },
+  };
 });
