@@ -26,7 +26,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
   const navigate = useNavigate();
   const selectedPriceID = useSelectedId();
   const imageSrc = useMemo(
-    () => `img/${workers}_${transporter}.png`,
+    () => `${workers}_${transporter}.png`,
     [transporter, workers]
   );
 
