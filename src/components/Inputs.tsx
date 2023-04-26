@@ -40,7 +40,10 @@ export function Inputs() {
     services.find((s) => s.id === selectedId)) as AppPrice | undefined;
 
   const imageSrc = useMemo(
-    () => `${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
+    () =>
+      `${import.meta.env.BASE_URL}/${selectedOffer?.workers}_${
+        selectedOffer?.t35
+      }.png`,
     [selectedOffer]
   );
 
