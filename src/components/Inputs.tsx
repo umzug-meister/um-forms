@@ -5,9 +5,27 @@ import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Customer, Service } from "um-types";
+import { scrollToRoot } from "../main";
 import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import OrderField from "./OrderField";
+
+const movementObjects = [
+  "-",
+  "Wohnung",
+  "Haus",
+  "Keller",
+  "Lager",
+  "Büro",
+  "Garten",
+];
+
+const etagen = [
+  "UG",
+  "EG",
+  ...[...new Array(8).keys()].map((k) => `${k + 1}. Etage`),
+  "9+ Etage",
+];
 
 export function Inputs() {
   const navigate = useNavigate();
@@ -22,7 +40,8 @@ export function Inputs() {
     services.find((s) => s.id === selectedId)) as AppPrice | undefined;
 
   const imageSrc = useMemo(
-    () => `/assets/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
+    () =>
+      `https://umzugruckzuck.de/wp-content/uploads/2023/04/${selectedOffer?.workers}_${selectedOffer?.t35}.png`,
     [selectedOffer]
   );
 
@@ -30,7 +49,7 @@ export function Inputs() {
     const cb = (id: number | string) => {
       setTimeout(() => {
         navigate(`/success/${id}`);
-        window.scrollTo({ top: 0 });
+        scrollToRoot();
       }, 1000);
     };
     dispatch(calculateOrder());
@@ -101,15 +120,10 @@ export function Inputs() {
               label="Telefon"
             />
           </Grid>
-        </Grid>
-      </Box>
-
-      <Box>
-        <Grid container>
           <Grid item xs={12} sm={6}>
             <Box display="flex" flexDirection="column" gap={2}>
               <Typography variant="h3">Wann?</Typography>
-              <OrderField path="date" type="date" label="Datum" />
+              <OrderField path="date" type="date" />
             </Box>
           </Grid>
         </Grid>
@@ -125,6 +139,7 @@ export function Inputs() {
                 path="from"
                 nestedPath="address"
                 id="from-input-field"
+                placeholder="Straße Nr, PLZ Ort"
               />
 
               <OrderField<Address>
@@ -133,8 +148,25 @@ export function Inputs() {
                 label="Halteverbot?"
                 as="checkbox"
               />
+
+              <OrderField<Address>
+                path="from"
+                nestedPath="floor"
+                select
+                label="Etage"
+                selectOptions={etagen}
+              />
+
+              <OrderField<Address>
+                path="from"
+                nestedPath="movementObject"
+                select
+                label="Objekt"
+                selectOptions={movementObjects}
+              />
             </Box>
           </Grid>
+
           <Grid item xs={12} sm={6}>
             <Box display="flex" flexDirection="column" gap={2}>
               <Typography variant="h3">Wohin?</Typography>
@@ -143,13 +175,41 @@ export function Inputs() {
                 path="to"
                 nestedPath="address"
                 id="to-input-field"
+                placeholder="Straße Nr, PLZ Ort"
               />
+
               <OrderField<Address>
                 path="to"
                 nestedPath="parkingSlot"
                 label="Halteverbot?"
                 as="checkbox"
               />
+
+              <OrderField<Address>
+                path="to"
+                nestedPath="floor"
+                select
+                label="Etage"
+                selectOptions={etagen}
+              />
+
+              <OrderField<Address>
+                path="to"
+                nestedPath="movementObject"
+                select
+                label="Objekt"
+                selectOptions={movementObjects}
+              />
+            </Box>
+          </Grid>
+        </Grid>
+      </Box>
+      <Box>
+        <Grid container>
+          <Grid item xs={12}>
+            <Box display="flex" flexDirection="column" gap={2}>
+              <Typography variant="h3">Nachricht an uns</Typography>
+              <OrderField<Address> path="text" multiline />
             </Box>
           </Grid>
         </Grid>
@@ -159,7 +219,7 @@ export function Inputs() {
         <Button
           onClick={() => {
             navigate("/");
-            window.scrollTo({ top: 0 });
+            scrollToRoot();
           }}
           startIcon={<NavigateBeforeIcon />}
         >
@@ -170,7 +230,7 @@ export function Inputs() {
           endIcon={<SendIcon />}
           variant="contained"
         >
-          Absenden
+          Anfragen
         </Button>
       </Box>
     </Box>

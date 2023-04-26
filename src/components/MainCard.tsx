@@ -24,7 +24,10 @@ export function MainCard() {
             backgroundColor: "#e7e2da",
           }}
         >
-          <Typography variant={variant} sx={{ whiteSpace: "nowrap" }}>
+          <Typography
+            variant={variant}
+            sx={{ whiteSpace: "nowrap", color: "#13744d" }}
+          >
             Schnell umziehen:
             <strong>{` Expressangebot`}</strong>
           </Typography>

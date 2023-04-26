@@ -13,6 +13,7 @@ import { AppPrice } from "um-types";
 import { AppDispatch, AppState } from "../store";
 import { setSelectedPriceId } from "../store/appReducer";
 import { useNavigate } from "react-router-dom";
+import { scrollToRoot } from "../main";
 
 interface Props {
   transporter: number;
@@ -24,9 +25,10 @@ interface Props {
 export function OfferCard({ transporter, workers, primary, secondary }: Props) {
   const navigate = useNavigate();
   const selectedPriceID = useSelectedId();
-
+  //https://umzugruckzuck.de/wp-content/uploads/2023/04/2_1.png
   const imageSrc = useMemo(
-    () => `/assets/${workers}_${transporter}.png`,
+    () =>
+      `https://umzugruckzuck.de/wp-content/uploads/2023/04/${workers}_${transporter}.png`,
     [transporter, workers]
   );
 
@@ -92,7 +94,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
               <Button
                 onClick={() => {
                   navigate("inputs");
-                  window.scrollTo({ top: 0 });
+                  scrollToRoot();
                 }}
                 variant="contained"
                 disableElevation

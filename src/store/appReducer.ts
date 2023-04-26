@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppPrice, MLeistung, Order, Service } from "um-types";
+import { AppPrice, Customer, MLeistung, Order, Service } from "um-types";
 import { appRequest } from "../api";
 import { Urls } from "../api/Urls";
 
 import { set } from "lodash";
 import { AppState } from ".";
+import { selectClasses } from "@mui/material";
 
 export interface AppOptions {
   [name: string]: any;
@@ -38,25 +39,27 @@ interface AppSlice {
   selectedPriceID: string | undefined;
 }
 
+const initialOrder = {
+  src: "express",
+  customer: {
+    telNumber: "",
+  },
+  from: {
+    demontage: false,
+  },
+  to: {
+    montage: false,
+  },
+  time: "08:00",
+  prices: {},
+  timeBased: {},
+  leistungen: new Array<MLeistung>(),
+  images: new Array<string>(),
+} as Order;
+
 const initialState: AppSlice = {
   selectedPriceID: undefined,
-  current: {
-    src: "express",
-    customer: {
-      telNumber: "",
-    },
-    from: {
-      demontage: false,
-    },
-    to: {
-      montage: false,
-    },
-    time: "08:00",
-    prices: {},
-    timeBased: {},
-    leistungen: new Array<MLeistung>(),
-    images: new Array<string>(),
-  } as Order,
+  current: initialOrder,
   options: {},
   services: new Array<Service>(),
 };
@@ -136,6 +139,10 @@ const appSlice = createSlice({
 
       state.current = next;
     },
+    clearState(state) {
+      state.current = initialOrder;
+      state.selectedPriceID = undefined;
+    },
   },
   extraReducers(builder) {
     builder
@@ -150,7 +157,11 @@ const appSlice = createSlice({
 
 const appReducer = appSlice.reducer;
 
-export const { updateOrderProps, setSelectedPriceId, calculateOrder } =
-  appSlice.actions;
+export const {
+  updateOrderProps,
+  setSelectedPriceId,
+  calculateOrder,
+  clearState,
+} = appSlice.actions;
 
 export { appReducer };

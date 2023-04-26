@@ -1,5 +1,6 @@
 import { Loader } from "@googlemaps/js-api-loader";
 import {
+  Box,
   Checkbox,
   FormControlLabel,
   FormGroup,
@@ -26,6 +27,8 @@ interface Props<T> {
   as?: "default" | "checkbox";
   id?: string;
   error?: boolean;
+  placeholder?: string;
+  multiline?: boolean;
 }
 
 const options = {
@@ -44,6 +47,8 @@ export default function OrderField<T>({
   enableMaps,
   id,
   error,
+  placeholder,
+  multiline,
 }: Props<T>) {
   const value = useOrderValue(path, nestedPath);
   const dispatch = useDispatch<AppDispatch>();
@@ -106,26 +111,38 @@ export default function OrderField<T>({
   }
 
   return (
-    <TextField
-      size="small"
-      error={error}
-      type={type}
-      id={id}
-      select={select}
-      value={value}
-      onChange={(ev) => {
-        handleChange(ev.target.value);
+    <Box
+      sx={{
+        "& input[type=text]": {
+          border: "none !important",
+          padding: "8.5px 14px!important",
+        },
       }}
-      label={label}
-      fullWidth
-      variant="outlined"
     >
-      {selectOptions?.map((option) => (
-        <MenuItem key={option} value={option}>
-          {option}
-        </MenuItem>
-      ))}
-    </TextField>
+      <TextField
+        size="small"
+        error={error}
+        type={type}
+        id={id}
+        select={select}
+        value={value}
+        onChange={(ev) => {
+          handleChange(ev.target.value);
+        }}
+        multiline={multiline}
+        minRows={4}
+        placeholder={placeholder}
+        label={label}
+        fullWidth
+        variant="outlined"
+      >
+        {selectOptions?.map((option) => (
+          <MenuItem key={option} value={option}>
+            {option}
+          </MenuItem>
+        ))}
+      </TextField>
+    </Box>
   );
 }
 
