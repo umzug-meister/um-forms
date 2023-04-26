@@ -29,9 +29,9 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          protocol: ftps
+          sftp_only: true
           port: 22
           local_path: "./dist/*"
-          server-dir: "/134479_umzug___ruck_zuck/wordpress/um-forms/express"
+          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/express"
           # exclude: |
           #   index.html
