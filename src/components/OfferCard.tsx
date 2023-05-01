@@ -97,7 +97,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
                 variant="contained"
                 disableElevation
               >
-                Weiter
+                Unverbindlich anfragen
               </Button>
             )}
           </Box>
