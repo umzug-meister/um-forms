@@ -85,6 +85,13 @@ export function Inputs() {
               <img src={imageSrc} height={50} />
             </Box>
           </Grid>
+          <Grid item xs={12}>
+            <Typography>
+              Wir prüfen die Verfügbarkeit an dem gewählten Datum und melden uns
+              schnellstmöglich bei Ihnen. Die Anfrage ist{" "}
+              <strong>unverbindlich und kostenlos</strong>.
+            </Typography>
+          </Grid>
           <Grid item xs={12} sm={4}>
             <OrderField<Customer>
               path="customer"
