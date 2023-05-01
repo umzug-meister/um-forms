@@ -18,7 +18,12 @@ export const uploadOrder = createAsyncThunk(
       app: { current },
     } = thunkApi.getState() as AppState;
 
-    return appRequest("post")(Urls.orderById(""), current).then((res) => {
+    const next = {
+      ...current,
+      date: new Date(current.date).toLocaleDateString("ru"),
+    };
+
+    return appRequest("post")(Urls.orderById(""), next).then((res) => {
       cb(res.id);
     });
   }
@@ -63,23 +68,6 @@ const initialState: AppSlice = {
   options: {},
   services: new Array<Service>(),
 };
-
-export const saveOrder = createAsyncThunk(
-  "saveOrder",
-  (callback: (id: number | string) => void, thunkApi) => {
-    const state = thunkApi.getState() as AppState;
-
-    const currentOrder = state.app.current;
-
-    if (currentOrder !== null) {
-      return appRequest("post")(Urls.orderById(""), currentOrder).then(
-        (res) => {
-          callback(res.id);
-        }
-      );
-    }
-  }
-);
 
 const appSlice = createSlice({
   name: "order",
