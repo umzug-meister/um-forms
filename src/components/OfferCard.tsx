@@ -31,8 +31,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
   );
 
   const offers = useOffers(transporter, workers);
-  const { hourPrice } = offers[0];
-
+  const { hourPrice, ridingCosts } = offers[0];
   const showButton = offers.some((o) => o.id == selectedPriceID);
 
   return (
@@ -59,13 +58,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
           //white divider
           sx={{ background: "white", height: "4px" }}
         />
-        <Box
-          paddingX={2}
-          paddingY={3}
-          display="flex"
-          gap={3}
-          flexDirection="column"
-        >
+        <Box padding={1} display="flex" gap={2} flexDirection="column">
           <Box m={"auto"}>
             <Typography>
               <strong>{`${workers} Träger + ${
@@ -81,7 +74,14 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
               sx={{
                 color: "#2B2B2B",
               }}
-            >{`Jede weitere Stunde ${hourPrice} €`}</Typography>
+            >{`Jede weitere Stunde: ${hourPrice} €`}</Typography>
+          </Box>
+          <Box m={"auto"}>
+            <Typography
+              sx={{
+                color: "#2B2B2B",
+              }}
+            >{`Spritgeld & Fahrt: ab ${ridingCosts || "/"} €`}</Typography>
           </Box>
           <Box
             // button-wrapper
