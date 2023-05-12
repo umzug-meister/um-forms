@@ -1,11 +1,10 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppPrice, Customer, MLeistung, Order, Service } from "um-types";
+import { AppPrice, MLeistung, Order, Service } from "um-types";
 import { appRequest } from "../api";
 import { Urls } from "../api/Urls";
 
 import { set } from "lodash";
 import { AppState } from ".";
-import { selectClasses } from "@mui/material";
 
 export interface AppOptions {
   [name: string]: any;
@@ -82,7 +81,8 @@ const appSlice = createSlice({
         (s) => s.id == action.payload.id
       ) as AppPrice;
 
-      const { hourPrice, includedHours, sum, workers, t35, t75 } = curPrice;
+      const { hourPrice, includedHours, sum, workers, t35, ridingCosts } =
+        curPrice;
 
       const next = state.current;
       set(next, ["timeBased", "basis"], sum);
@@ -90,6 +90,7 @@ const appSlice = createSlice({
       set(next, ["timeBased", "hours"], includedHours);
       set(next, ["transporterNumber"], t35);
       set(next, ["workersNumber"], workers);
+      set(next, ["rideCosts"], ridingCosts);
       state.current = next;
     },
     calculateOrder(state) {
