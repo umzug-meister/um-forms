@@ -38,7 +38,7 @@ export function MainCard() {
           paddingY={3}
           display="flex"
           flexDirection="column"
-          gap={3}
+          gap={5}
         >
           <Box pl={2} sx={{ borderLeft: "4px solid #2ea3f2" }}>
             <Typography>
@@ -68,9 +68,6 @@ export function MainCard() {
             <ul>
               <li>
                 <Typography>Alle Preise inklusive 19% MwSt.</Typography>
-              </li>
-              <li>
-                <Typography>inkl. An und Abfahrtskosten in München</Typography>
               </li>
               <li>
                 <Typography>Umzüge am Samstag - ohne Zuschlag</Typography>
