@@ -85,12 +85,20 @@ const appSlice = createSlice({
         curPrice;
 
       const next = state.current;
+
+      next.leistungen = [
+        {
+          calculate: true,
+          desc: "An/Abfahrtskosten",
+          sum: ridingCosts,
+        },
+      ];
       set(next, ["timeBased", "basis"], sum);
       set(next, ["timeBased", "extra"], hourPrice);
       set(next, ["timeBased", "hours"], includedHours);
       set(next, ["transporterNumber"], t35);
       set(next, ["workersNumber"], workers);
-      set(next, ["rideCosts"], ridingCosts);
+
       state.current = next;
     },
     calculateOrder(state) {
