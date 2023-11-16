@@ -3,7 +3,7 @@ import ReactDOM from "react-dom/client";
 import { App } from "./App";
 import "./index.css";
 
-export const ROOT_NODE = "um-express-form-root";
+const ROOT_NODE = "um-express-form-root";
 
 export function scrollToRoot() {
   const elem = document.getElementById(ROOT_NODE);

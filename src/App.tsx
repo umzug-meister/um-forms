@@ -2,6 +2,7 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { HashRouter, Route, Routes } from "react-router-dom";
 import AppLoader from "./AppLoader";
+import { AppProgress } from "./components/AppProgress";
 import { Inputs } from "./components/Inputs";
 import { Main } from "./components/Main";
 import { Success } from "./components/Success";
@@ -17,6 +18,7 @@ export function App() {
           <ThemeProvider theme={theme}>
             <HashRouter>
               <div style={{ maxWidth: "1080px", margin: "auto" }}>
+                <AppProgress />
                 <Routes>
                   <Route index element={<Main />} />
                   <Route path="inputs" element={<Inputs />} />
