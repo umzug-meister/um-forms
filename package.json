@@ -5,7 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "tsc && vite build",
+    "start": "vite --host --config vite.full.config.ts",
+    "build": "tsc && vite build --config vite.ex.config.ts",
+    "build-full": "tsc && vite build --config vite.full.config.ts",
     "preview": "vite preview"
   },
   "dependencies": {

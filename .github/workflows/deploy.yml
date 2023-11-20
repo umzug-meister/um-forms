@@ -3,7 +3,11 @@ on:
     branches:
       - "main"
 
-name: 🚀 Deploy um-express-form
+name: 🚀 Deploy um-forms
+
+env:
+  FTP_PATH: "/134479_umzug___ruck_zuck/wordpress/um-forms"
+
 jobs:
   web-deploy:
     name: Deploy
@@ -20,12 +24,17 @@ jobs:
       - name: Install modules
         run: npm install
 
-      - name: Build app
+      - name: Build express-form
         run: npm run build
         env:
           VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
 
-      - name: Sync files
+      - name: Build full-form
+        run: npm run build-full
+        env:
+          VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
+
+      - name: Sync express form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
           server: ${{ secrets.FTP_HOST }}
@@ -33,5 +42,16 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           sftp_only: true
           port: 22
-          local_path: "./dist/*"
-          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/express"
+          local_path: "./express/*"
+          remote_path: "$FTP_PATH/express"
+
+      - name: Sync full form files
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        with:
+          server: ${{ secrets.FTP_HOST }}
+          username: ${{ secrets.FTP_USER }}
+          password: ${{ secrets.FTP_PASS }}
+          sftp_only: true
+          port: 22
+          local_path: "./form/*"
+          remote_path: "$FTP_PATH/form"
