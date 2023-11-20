@@ -6,7 +6,7 @@ import react from "@vitejs/plugin-react";
 export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
-    base: mode === "development" ? "/" : "/um-forms/full/",
+    base: mode === "development" ? "/" : "/um-forms/form/",
     build: {
       rollupOptions: {
         input: {
