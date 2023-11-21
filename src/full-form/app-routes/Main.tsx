@@ -1,55 +1,68 @@
-import { Outlet } from "react-router-dom";
-import { Box, Button, Step, StepLabel, Stepper } from "@mui/material";
+import {
+  Box,
+  Button,
+  Step,
+  StepLabel,
+  Stepper,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+
+import { ButtonProps } from "@mui/material/Button";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Outlet, useNavigate } from "react-router-dom";
+
+const routes = [
+  { label: "Kontakt", route: "/" },
+  { route: "auszug", label: "Auszug" },
+  { route: "einzug", label: "Einzug" },
+  { route: "verpackung", label: "Verpackung" },
+  { route: "absenden", label: "Fertig" },
+];
 
 export default function Main() {
-  const [curStep, setCurStep] = useState(0);
+  const theme = useTheme();
+  const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const routes = ["/", "auszug", "einzug", "extras", "absenden"];
+  const [activeStep, setActiveStep] = useState(0);
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(routes[curStep]);
-  }, [navigate, curStep]);
+    navigate(routes[activeStep].route);
+  }, [navigate, activeStep]);
 
   const next = (step: number) => {
-    setCurStep((curStep) => step + curStep);
+    setActiveStep((curStep) => step + curStep);
+  };
+
+  const nextButtonProps: ButtonProps = {
+    variant: "contained",
+    onClick: () => next(1),
+    disabled: activeStep === routes.length - 1,
+  };
+
+  const backButtonProps: ButtonProps = {
+    variant: "outlined",
+    onClick: () => next(-1),
+    disabled: activeStep === 0,
   };
 
   return (
-    <Box
-      p={1}
-      display="flex"
-      flexDirection="column"
-      gap={3}
-      alignItems="center"
-    >
-      <Stepper activeStep={curStep}>
-        {["Kontakt", "Auszug", "Einzug", "Extras", "Fertig"].map(
-          (stepLabel) => (
-            <Step key={stepLabel}>
-              <StepLabel>{stepLabel}</StepLabel>
-            </Step>
-          )
-        )}
+    <Box display="flex" flexDirection="column" gap={3} alignItems="center">
+      <Stepper activeStep={activeStep}>
+        {routes.map((route) => (
+          <Step key={route.label}>
+            <StepLabel>{narrowScreen ? null : route.label}</StepLabel>
+          </Step>
+        ))}
       </Stepper>
-      <Outlet></Outlet>
-      <Box display="flex" gap={3}>
-        <Button
-          disabled={curStep === 0}
-          variant="outlined"
-          onClick={() => next(-1)}
-        >
-          zurück
-        </Button>
-        <Button
-          disabled={curStep === routes.length - 1}
-          variant="contained"
-          onClick={() => next(1)}
-        >
-          weiter
-        </Button>
+
+      <Outlet />
+
+      <Box display="flex" gap={4}>
+        <Button {...backButtonProps}>zurück</Button>
+        <Button {...nextButtonProps}>weiter</Button>
       </Box>
     </Box>
   );

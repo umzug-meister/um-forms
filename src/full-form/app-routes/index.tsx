@@ -36,7 +36,6 @@ export function AppRoutes() {
             </LazyLoad>
           }
         />
-
         <Route
           path="einzug"
           element={
@@ -46,7 +45,7 @@ export function AppRoutes() {
           }
         />
         <Route
-          path="extras"
+          path="verpackung"
           element={
             <LazyLoad>
               <Extras />

@@ -8,7 +8,9 @@ import { Address, AppPrice, Customer, Service } from "um-types";
 import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import { scrollToRoot } from "../main";
-import OrderField from "./OrderField";
+import OrderField from "../shared/components/OrderField";
+import { CustomerData } from "../shared/components/CustomerData";
+import ContainerBox from "../shared/components/ContainerBox";
 
 const movementObjects = [
   "-",
@@ -59,16 +61,7 @@ export function Inputs() {
   }, [dispatch]);
 
   return (
-    <Box
-      display="flex"
-      m="auto"
-      flexDirection="column"
-      gap={4}
-      p={2}
-      sx={{
-        maxWidth: "900px",
-      }}
-    >
+    <ContainerBox>
       <Box>
         <Grid container columnSpacing={3} rowSpacing={2}>
           <Grid
@@ -92,46 +85,13 @@ export function Inputs() {
               <strong>unverbindlich und kostenlos</strong>.
             </Typography>
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <OrderField<Customer>
-              path="customer"
-              nestedPath="salutation"
-              select
-              label="Anrede"
-              selectOptions={["-", "Frau", "Herr"]}
-            />
+          <Grid item xs={12}>
+            <CustomerData />
           </Grid>
-          <Grid item xs={12} sm={4}>
-            <OrderField<Customer>
-              path="customer"
-              nestedPath="firstName"
-              label="Vorname"
-            />
-          </Grid>
-          <Grid item xs={12} sm={4}>
-            <OrderField<Customer>
-              path="customer"
-              nestedPath="lastName"
-              label="Nachname"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <OrderField<Customer>
-              path="customer"
-              nestedPath="email"
-              label="E-Mail"
-            />
-          </Grid>
-          <Grid item xs={12} sm={6}>
-            <OrderField<Customer>
-              path="customer"
-              nestedPath="telNumber"
-              label="Telefon"
-            />
-          </Grid>
+
           <Grid item xs={12} sm={6}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="h3">Wann?</Typography>
+              <Typography variant="h4">Wann?</Typography>
               <OrderField path="date" type="date" />
             </Box>
           </Grid>
@@ -142,7 +102,7 @@ export function Inputs() {
         <Grid container columnSpacing={3} rowSpacing={2}>
           <Grid item xs={12} sm={6}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="h3">Woher?</Typography>
+              <Typography variant="h4">Woher?</Typography>
               <OrderField<Address>
                 enableMaps
                 path="from"
@@ -178,7 +138,7 @@ export function Inputs() {
 
           <Grid item xs={12} sm={6}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="h3">Wohin?</Typography>
+              <Typography variant="h4">Wohin?</Typography>
               <OrderField<Address>
                 enableMaps
                 path="to"
@@ -217,7 +177,7 @@ export function Inputs() {
         <Grid container>
           <Grid item xs={12}>
             <Box display="flex" flexDirection="column" gap={2}>
-              <Typography variant="h3">Nachricht an uns</Typography>
+              <Typography variant="h4">Nachricht an uns</Typography>
               <OrderField<Address> path="text" multiline />
             </Box>
           </Grid>
@@ -242,6 +202,6 @@ export function Inputs() {
           Anfragen
         </Button>
       </Box>
-    </Box>
+    </ContainerBox>
   );
 }

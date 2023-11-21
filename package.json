@@ -32,7 +32,7 @@
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.2.0",
     "typescript": "^5.2.2",
-    "um-types": "^1.0.9",
+    "um-types": "^1.0.19",
     "vite": "^4.5.0"
   }
 }
