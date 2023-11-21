@@ -15,7 +15,6 @@ export default defineConfig(({ mode }) => {
         output: {
           dir: "form",
           entryFileNames: `[name].js`,
-          chunkFileNames: `[name].js`,
           assetFileNames: `[name].[ext]`,
         },
       },
