@@ -5,9 +5,9 @@ import { useCallback, useMemo } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Customer, Service } from "um-types";
-import { scrollToRoot } from "../main";
 import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
+import { scrollToRoot } from "../main";
 import OrderField from "./OrderField";
 
 const movementObjects = [

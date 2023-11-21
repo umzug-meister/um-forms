@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         output: {
-          dir: "express",
+          dir: "forms/express",
           entryFileNames: `[name].js`,
           chunkFileNames: `[name].js`,
           assetFileNames: `[name].[ext]`,

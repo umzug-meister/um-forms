@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host",
-    "start": "vite --host --config vite.full.config.ts",
+    "ex": "vite --host",
+    "full": "vite --host --config vite.full.config.ts",
     "build": "tsc && vite build --config vite.ex.config.ts",
     "build-full": "tsc && vite build --config vite.full.config.ts",
     "preview": "vite preview"

@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { AppDispatch } from "./store";
-import { loadAllOptions, loadAllServices } from "./store/appReducer";
+import { AppDispatch } from "../store";
+import { loadAllOptions, loadAllServices } from "../store/appReducer";
 
-export default function AppLoader({ children }: React.PropsWithChildren) {
+interface Props {
+  full?: boolean;
+}
+
+export default function AppLoader({
+  children,
+}: React.PropsWithChildren<Props>) {
   const [init, setInit] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();

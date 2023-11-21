@@ -5,7 +5,7 @@ export function MainCard() {
   const theme = useTheme();
   const small = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const variant = small ? "h5" : "h2";
+  const variant = small ? "h5" : "h4";
 
   return (
     <Grid item xs={12} sm={12} md={8}>

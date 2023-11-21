@@ -1,13 +1,13 @@
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { HashRouter, Route, Routes } from "react-router-dom";
-import AppLoader from "./AppLoader";
+import AppLoader from "../shared/AppLoader";
 import { AppProgress } from "./components/AppProgress";
-import { Inputs } from "./components/Inputs";
-import { Main } from "./components/Main";
-import { Success } from "./components/Success";
-import { store } from "./store";
-import { theme } from "./theme";
+import { Inputs } from "../components/Inputs";
+import { Main } from "../components/Main";
+import { Success } from "../components/Success";
+import { store } from "../store";
+import { theme } from "../shared/theme";
 
 export function App() {
   return (
