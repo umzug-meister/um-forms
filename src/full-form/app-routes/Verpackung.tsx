@@ -3,6 +3,7 @@ import {
   CardContent,
   CardHeader,
   CardMedia,
+  Grid,
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
@@ -27,11 +28,11 @@ export default function Verpackung() {
         label="Möchten Sie Verpackung bei uns kaufen?"
       />
       {order.needPackings && (
-        <>
+        <Grid container spacing={4}>
           {packings.map((packing) => (
             <PackingCard key={packing.id} packing={packing} />
           ))}
-        </>
+        </Grid>
       )}
     </ContainerBox>
   );
@@ -47,18 +48,20 @@ function PackingCard({ packing }: Readonly<Props>) {
   });
 
   return (
-    <Card variant="outlined">
-      {packing.media && <CardMedia image={packing.media} />}
-      <CardMedia></CardMedia>
-      <CardContent>
-        <Typography gutterBottom variant="h5">
-          {packing.name}
-        </Typography>
-        <Typography variant="body2">{packing.desc}</Typography>
-        <Typography gutterBottom variant="h5">
-          {formatter.format(Number(packing.price))}
-        </Typography>
-      </CardContent>
-    </Card>
+    <Grid item xs={12} sm={6}>
+      <Card sx={{ height: "100%" }}>
+        {packing.media && <CardMedia image={packing.media} />}
+        <CardMedia></CardMedia>
+        <CardContent>
+          <Typography gutterBottom variant="h5">
+            {packing.name}
+          </Typography>
+          <Typography variant="body2">{packing.desc}</Typography>
+          <Typography gutterBottom variant="h5">
+            {formatter.format(Number(packing.price))}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
   );
 }
