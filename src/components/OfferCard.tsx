@@ -14,6 +14,7 @@ import { AppDispatch, AppState } from "../store";
 import { setSelectedPriceId } from "../store/appReducer";
 import { useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../main.ex";
+import { AppButton } from "../shared/components/AppButton";
 
 interface Props {
   transporter: number;
@@ -86,10 +87,10 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
           <Box
             // button-wrapper
             m="auto"
-            sx={{ height: "36px" }}
+            sx={{ height: "46px" }}
           >
             {showButton && (
-              <Button
+              <AppButton
                 onClick={() => {
                   navigate("inputs");
                   scrollToRoot();
@@ -98,7 +99,7 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
                 disableElevation
               >
                 Unverbindlich anfragen
-              </Button>
+              </AppButton>
             )}
           </Box>
         </Box>

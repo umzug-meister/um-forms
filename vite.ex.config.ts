@@ -21,7 +21,7 @@ export default defineConfig(({ mode }) => {
       },
     },
     server: {
-      open: "/form.html",
+      open: "/ex.html",
     },
   };
 });

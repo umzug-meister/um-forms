@@ -14,6 +14,7 @@ import { useParams } from "react-router-dom";
 
 import { AppDispatch } from "../../store";
 import { clearState } from "../../store/appReducer";
+import { AppButton } from "../components/AppButton";
 
 export function Success() {
   const params = useParams();
@@ -57,14 +58,14 @@ export function Success() {
           </Typography>
         </CardContent>
         <CardActions sx={{ justifyContent: "center" }}>
-          <Button
+          <AppButton
             disableElevation
             onClick={onOkClick}
             variant="contained"
             color="primary"
           >
             Alles Klar!
-          </Button>
+          </AppButton>
         </CardActions>
       </Card>
     </Box>

@@ -1,6 +1,5 @@
 import {
   Box,
-  Button,
   Step,
   StepLabel,
   Stepper,
@@ -12,6 +11,7 @@ import { ButtonProps } from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
+import { AppButton } from "../../shared/components/AppButton";
 import { SendButton } from "../../shared/SendButton";
 
 const routes = [
@@ -67,11 +67,11 @@ export default function Main() {
       <Outlet />
 
       <Box display="flex" gap={4}>
-        <Button {...backButtonProps}>zurück</Button>
+        <AppButton {...backButtonProps}>zurück</AppButton>
         {lastStep ? (
           <SendButton scrollToRoot={scrollToRoot} src="UmzugRuckZuck" />
         ) : (
-          <Button {...nextButtonProps}>weiter</Button>
+          <AppButton {...nextButtonProps}>weiter</AppButton>
         )}
       </Box>
     </Box>
