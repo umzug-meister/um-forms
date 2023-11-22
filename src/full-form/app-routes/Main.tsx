@@ -55,7 +55,7 @@ export default function Main() {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={3} alignItems="center">
+    <Box display="flex" flexDirection="column" gap={4} alignItems="center">
       <Stepper activeStep={activeStep}>
         {routes.map((route) => (
           <Step key={route.label}>

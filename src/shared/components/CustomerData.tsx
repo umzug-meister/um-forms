@@ -4,48 +4,52 @@ import OrderField from "./OrderField";
 
 export function CustomerData() {
   return (
-    <Box display="flex" flexDirection={"column"} gap={2}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <OrderField<Customer>
-            path="customer"
-            nestedPath="salutation"
-            select
-            label="Anrede"
-            selectOptions={["-", "Frau", "Herr"]}
-          />
+    <form>
+      <Box display="flex" flexDirection={"column"} gap={2}>
+        <Grid container spacing={2}>
+          <Grid item xs={12} sm={6}>
+            <OrderField<Customer>
+              path="customer"
+              nestedPath="salutation"
+              select
+              label="Anrede"
+              selectOptions={["-", "Frau", "Herr"]}
+            />
+          </Grid>
         </Grid>
-      </Grid>
-      <Grid container spacing={2}>
-        <Grid sx={{ gridRowStart: 2 }} item xs={12} sm={6}>
-          <OrderField<Customer>
-            path="customer"
-            nestedPath="firstName"
-            label="Vorname"
-          />
+        <Grid container spacing={2}>
+          <Grid sx={{ gridRowStart: 2 }} item xs={12} sm={6}>
+            <OrderField<Customer>
+              path="customer"
+              nestedPath="firstName"
+              label="Vorname"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <OrderField<Customer>
+              path="customer"
+              nestedPath="lastName"
+              label="Nachname"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <OrderField<Customer>
+              path="customer"
+              nestedPath="email"
+              type="email"
+              label="E-Mail"
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <OrderField<Customer>
+              path="customer"
+              nestedPath="telNumber"
+              label="Telefon"
+              type="number"
+            />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={6}>
-          <OrderField<Customer>
-            path="customer"
-            nestedPath="lastName"
-            label="Nachname"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <OrderField<Customer>
-            path="customer"
-            nestedPath="email"
-            label="E-Mail"
-          />
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <OrderField<Customer>
-            path="customer"
-            nestedPath="telNumber"
-            label="Telefon"
-          />
-        </Grid>
-      </Grid>
-    </Box>
+      </Box>
+    </form>
   );
 }

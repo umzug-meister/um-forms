@@ -2,23 +2,16 @@ import { Loader } from "@googlemaps/js-api-loader";
 import {
   Box,
   Checkbox,
-  FormControl,
   FormControlLabel,
   FormGroup,
-  FormLabel,
   MenuItem,
-  Radio,
-  RadioGroup,
   TextField,
 } from "@mui/material";
-import { useCallback, useEffect, useId, useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch, AppState } from "../../store";
-import { Order } from "um-types";
-import { AppOptions, updateOrderProps } from "../../store/appReducer";
-
-type Path = keyof Order;
-type NestedPath<T> = keyof T;
+import { useCallback, useEffect, useRef } from "react";
+import { useDispatch } from "react-redux";
+import { AppDispatch } from "../../store";
+import { updateOrderProps } from "../../store/appReducer";
+import { NestedPath, Path, useOption, useOrderValue } from "../hooks";
 
 interface Props<T> {
   path: Path;
@@ -27,8 +20,8 @@ interface Props<T> {
   select?: true;
   enableMaps?: true;
   selectOptions?: string[];
-  type?: "text" | "date";
-  as?: "default" | "checkbox" | "switch";
+  type?: "text" | "date" | "email" | "number";
+  as?: "default" | "checkbox";
   id?: string;
   error?: boolean;
   placeholder?: string;
@@ -57,8 +50,6 @@ export default function OrderField<T>({
   const value = useOrderValue(path, nestedPath);
   const dispatch = useDispatch<AppDispatch>();
   const gapiKey = useOption("gapikey");
-
-  const labelId = useId();
 
   const loaderRef = useRef<Loader | null>(null);
 
@@ -97,30 +88,6 @@ export default function OrderField<T>({
       });
     }
   }, [enableMaps, gapiKey, handleChange]);
-
-  if (as === "switch") {
-    return (
-      <FormControl
-        sx={{
-          width: "100%",
-          display: "flex",
-          flexDirection: "row",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <FormLabel id={labelId}>{label}</FormLabel>
-        <RadioGroup
-          row
-          onChange={(event) => handleChange(event?.target.value === "true")}
-          value={Boolean(value)}
-        >
-          <FormControlLabel value={true} control={<Radio />} label={"Ja"} />
-          <FormControlLabel value={false} control={<Radio />} label={"Nein"} />
-        </RadioGroup>
-      </FormControl>
-    );
-  }
 
   if (as === "checkbox") {
     return (
@@ -173,21 +140,4 @@ export default function OrderField<T>({
       </TextField>
     </Box>
   );
-}
-
-function useOrderValue<T>(path: Path, nestedPath?: NestedPath<T>) {
-  const order = useSelector<AppState, Order>((s) => s.app.current!);
-
-  let value = order[path];
-  if (nestedPath && typeof value === "object") {
-    //@ts-ignore
-    value = value[nestedPath];
-  }
-  return value || "";
-}
-
-export function useOption(name: string) {
-  const options = useSelector<AppState, AppOptions>((s) => s.app.options);
-  const value = options[name];
-  return value;
 }

@@ -8,25 +8,9 @@ import { scrollToRoot } from "../../../main.ex";
 import ContainerBox from "../../../shared/components/ContainerBox";
 import { CustomerData } from "../../../shared/components/CustomerData";
 import OrderField from "../../../shared/components/OrderField";
+import { etagen, movementObjects } from "../../../shared/constants";
 import { SendButton } from "../../../shared/SendButton";
 import { AppState } from "../../../store";
-
-const movementObjects = [
-  "-",
-  "Wohnung",
-  "Haus",
-  "Keller",
-  "Lager",
-  "Büro",
-  "Garten",
-];
-
-const etagen = [
-  "UG",
-  "EG",
-  ...[...new Array(8).keys()].map((k) => `${k + 1}. Etage`),
-  "9+ Etage",
-];
 
 export default function Inputs() {
   const navigate = useNavigate();

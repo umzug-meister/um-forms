@@ -1,10 +1,10 @@
 import { Grid } from "@mui/material";
-import React from "react";
 import { useSelector } from "react-redux";
 import { Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import { CustomerData } from "../../shared/components/CustomerData";
 import OrderField from "../../shared/components/OrderField";
+import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
 import { AppState } from "../../store";
 
 export default function Contact() {
@@ -13,16 +13,11 @@ export default function Contact() {
     <ContainerBox>
       <CustomerData />
 
-      <OrderField
+      <OrderSwitchField
         path="costsAssumption"
         label="Kostenübernahme von Arbeitsamt, ARGE etc?"
-        as="switch"
       />
-      <OrderField
-        path="isDateFix"
-        label="Steht der Umzugstermin fest?"
-        as="switch"
-      />
+      <OrderSwitchField path="isDateFix" label="Steht der Umzugstermin fest?" />
       {isDateFix ? (
         <Grid container justifyContent={"center"}>
           <Grid item xs={12} sm={6}>

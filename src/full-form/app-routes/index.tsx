@@ -5,7 +5,7 @@ import { LazyLoad } from "../../shared/components/LazyLoad";
 const Contact = lazy(() => import("./Contact"));
 const Auszug = lazy(() => import("./Auszug"));
 const Einzug = lazy(() => import("./Einzug"));
-const Extras = lazy(() => import("./Extras"));
+const Verpackung = lazy(() => import("./Verpackung"));
 const Main = lazy(() => import("./Main"));
 const Request = lazy(() => import("./Request"));
 const Success = lazy(() => import("../../shared/routes/Success"));
@@ -57,7 +57,7 @@ export function AppRoutes() {
           path="verpackung"
           element={
             <LazyLoad>
-              <Extras />
+              <Verpackung />
             </LazyLoad>
           }
         />
