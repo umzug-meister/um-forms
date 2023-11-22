@@ -14,7 +14,7 @@ export default defineConfig(({ mode }) => {
         },
         output: {
           dir: "express",
-          entryFileNames: `index.js`,
+          entryFileNames: `[name].js`,
           assetFileNames: `[name].[ext]`,
         },
       },
