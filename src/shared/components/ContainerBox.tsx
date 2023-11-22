@@ -22,7 +22,7 @@ export default function ContainerBox({
         <>
           <CardHeader
             title={
-              <Typography variant="h6" align="right">
+              <Typography variant="h5" align="right">
                 {title}
               </Typography>
             }

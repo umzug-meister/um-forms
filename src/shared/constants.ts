@@ -33,6 +33,6 @@ export const liftTypes = [
 ];
 
 export const typoProps: TypographyProps = {
-  variant: "subtitle2",
+  variant: "h6",
   align: "right",
 };
