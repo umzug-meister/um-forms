@@ -1,7 +1,6 @@
-import React, { Suspense, lazy } from "react";
+import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
-import { LoadingScreen } from "../../shared/components/LoadingScreen";
-import { Success } from "../../shared/routes/Success";
+import { LazyLoad } from "../../shared/components/LazyLoad";
 
 const Contact = lazy(() => import("./Contact"));
 const Auszug = lazy(() => import("./Auszug"));
@@ -9,11 +8,19 @@ const Einzug = lazy(() => import("./Einzug"));
 const Extras = lazy(() => import("./Extras"));
 const Main = lazy(() => import("./Main"));
 const Request = lazy(() => import("./Request"));
+const Success = lazy(() => import("../../shared/routes/Success"));
 
 export function AppRoutes() {
   return (
     <Routes>
-      <Route path="success/:id" element={<Success />} />
+      <Route
+        path="success/:id"
+        element={
+          <LazyLoad>
+            <Success />
+          </LazyLoad>
+        }
+      />
       <Route
         path="/"
         element={
@@ -65,8 +72,4 @@ export function AppRoutes() {
       </Route>
     </Routes>
   );
-}
-
-function LazyLoad({ children }: React.PropsWithChildren) {
-  return <Suspense fallback={<LoadingScreen />}>{children}</Suspense>;
 }

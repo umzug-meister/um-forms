@@ -4,12 +4,12 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Service } from "um-types";
-import { scrollToRoot } from "../main.ex";
-import ContainerBox from "../shared/components/ContainerBox";
-import { CustomerData } from "../shared/components/CustomerData";
-import OrderField from "../shared/components/OrderField";
-import { SendButton } from "../shared/SendButton";
-import { AppState } from "../store";
+import { scrollToRoot } from "../../../main.ex";
+import ContainerBox from "../../../shared/components/ContainerBox";
+import { CustomerData } from "../../../shared/components/CustomerData";
+import OrderField from "../../../shared/components/OrderField";
+import { SendButton } from "../../../shared/SendButton";
+import { AppState } from "../../../store";
 
 const movementObjects = [
   "-",
@@ -28,7 +28,7 @@ const etagen = [
   "9+ Etage",
 ];
 
-export function Inputs() {
+export default function Inputs() {
   const navigate = useNavigate();
 
   const services = useSelector<AppState, Service[]>((s) => s.app.services);

@@ -33,7 +33,7 @@ export function SendButton({ scrollToRoot, src }: Readonly<Props>) {
       endIcon={<SendIcon />}
       variant="contained"
     >
-      Anfragen
+      Absenden
     </AppButton>
   );
 }

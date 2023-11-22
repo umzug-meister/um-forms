@@ -1,10 +1,10 @@
 import { useMediaQuery, useTheme } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useMemo } from "react";
-import { MainCard } from "./MainCard";
-import { OfferCard } from "./OfferCard";
+import { MainCard } from "../MainCard";
+import { OfferCard } from "../OfferCard";
 
-export function Main() {
+export default function Main() {
   const theme = useTheme();
   const smallToMid = useMediaQuery(theme.breakpoints.between("sm", "md"));
 

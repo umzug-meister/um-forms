@@ -1,8 +1,6 @@
 import {
   Box,
-  Button,
   Card,
-  CardActionArea,
   CardActions,
   CardContent,
   CardHeader,
@@ -16,7 +14,7 @@ import { AppDispatch } from "../../store";
 import { clearState } from "../../store/appReducer";
 import { AppButton } from "../components/AppButton";
 
-export function Success() {
+export default function Success() {
   const params = useParams();
   const dispatch = useDispatch<AppDispatch>();
 
@@ -26,19 +24,6 @@ export function Success() {
   }, []);
 
   return (
-    // <Box
-    //   m="auto"
-    //   display="flex"
-    //   flexDirection="column"
-    //   justifyContent="center"
-    //   alignItems="center"
-    //   minWidth="300px"
-    //   minHeight="300px"
-    //   gap={3}
-    //   p={2}
-    //   borderRadius="10px"
-    //   sx={{ backgroundColor: "#d1c7be69" }}
-    // >
     <Box>
       <Card variant="outlined" sx={{ backgroundColor: "#d1c7be69" }}>
         <CardHeader
