@@ -145,7 +145,7 @@ export default function OrderField<T>({
       sx={{
         "& input[type=text]": {
           border: "none !important",
-          // padding: "8.5px 14px!important",
+          padding: "16px!important",
         },
       }}
     >
