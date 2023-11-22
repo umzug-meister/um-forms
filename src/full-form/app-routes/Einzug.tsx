@@ -71,7 +71,7 @@ export default function Einzug() {
       />
       <OrderSwitchField<Address>
         path={path}
-        nestedPath="demontage"
+        nestedPath="montage"
         label="Möbel-Demontage"
       />
       <OrderSwitchField<Address>
