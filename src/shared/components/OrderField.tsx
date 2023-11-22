@@ -119,6 +119,10 @@ export default function OrderField<T>({
           border: "none !important",
           padding: "16px!important",
         },
+        "& input[type=email]": {
+          border: "none !important",
+          padding: "16px!important",
+        },
       }}
     >
       <TextField
