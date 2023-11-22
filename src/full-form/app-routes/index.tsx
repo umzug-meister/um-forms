@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { LoadingScreen } from "../../shared/components/LoadingScreen";
+import { Success } from "../../shared/routes/Success";
 
 const Contact = lazy(() => import("./Contact"));
 const Auszug = lazy(() => import("./Auszug"));
@@ -12,6 +13,7 @@ const Request = lazy(() => import("./Request"));
 export function AppRoutes() {
   return (
     <Routes>
+      <Route path="success/:id" element={<Success />} />
       <Route
         path="/"
         element={

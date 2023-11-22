@@ -5,7 +5,7 @@ import AppLoader from "../shared/AppLoader";
 import { AppProgress } from "./components/AppProgress";
 import { Inputs } from "../components/Inputs";
 import { Main } from "../components/Main";
-import { Success } from "../components/Success";
+import { Success } from "../shared/routes/Success";
 import { store } from "../store";
 import { theme } from "../shared/theme";
 

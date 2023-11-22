@@ -9,6 +9,9 @@ export default defineConfig(({ mode }) => {
     base: mode === "development" ? "/" : "/um-forms/express/",
     build: {
       rollupOptions: {
+        input: {
+          app: "./form.html",
+        },
         output: {
           dir: "express",
           entryFileNames: `[name].js`,
@@ -16,6 +19,9 @@ export default defineConfig(({ mode }) => {
           assetFileNames: `[name].[ext]`,
         },
       },
+    },
+    server: {
+      open: "/form.html",
     },
   };
 });

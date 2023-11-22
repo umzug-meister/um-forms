@@ -7,6 +7,9 @@ const optiosn: ThemeOptions = {
       main: "#1ca76e",
     },
   },
+  shape: {
+    borderRadius: 2,
+  },
   typography: {
     fontFamily: `"Open Sans", Helvetica, Arial, Lucida, sans-serif`,
     fontSize: 14,

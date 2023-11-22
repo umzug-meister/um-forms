@@ -6,6 +6,8 @@ import { Urls } from "../api/Urls";
 import { set } from "lodash";
 import { AppState } from ".";
 
+export type SrcType = "express" | "UmzugRuckZuck";
+
 export interface AppOptions {
   [name: string]: any;
 }
@@ -44,7 +46,6 @@ interface AppSlice {
 }
 
 const initialOrder = {
-  src: "express",
   customer: {
     telNumber: "",
   },
@@ -101,7 +102,7 @@ const appSlice = createSlice({
 
       state.current = next;
     },
-    calculateOrder(state) {
+    calculateOrder(state, action: PayloadAction<{ src: SrcType }>) {
       const hvzPriceOption = state.options["hvzPrice"];
 
       let nmb = 0;
@@ -120,6 +121,7 @@ const appSlice = createSlice({
         (Number(state.current.timeBased.basis) || 0) + halteverbotszonen;
       const next = state.current;
 
+      set(next, ["src"], action.payload.src);
       set(next, ["sum"], orderSum);
       set(next, ["prices", "halteverbotszonen"], halteverbotszonen);
 

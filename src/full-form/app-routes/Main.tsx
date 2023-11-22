@@ -11,6 +11,8 @@ import {
 import { ButtonProps } from "@mui/material/Button";
 import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
+import { scrollToRoot } from "../../main.full";
+import { SendButton } from "../../shared/SendButton";
 
 const routes = [
   { label: "Kontakt", route: "/" },
@@ -39,13 +41,17 @@ export default function Main() {
   const nextButtonProps: ButtonProps = {
     variant: "contained",
     onClick: () => next(1),
-    disabled: activeStep === routes.length - 1,
+    disableElevation: true,
+    size: "large",
   };
+
+  const lastStep = activeStep === routes.length - 1;
 
   const backButtonProps: ButtonProps = {
     variant: "outlined",
     onClick: () => next(-1),
     disabled: activeStep === 0,
+    size: "large",
   };
 
   return (
@@ -62,7 +68,11 @@ export default function Main() {
 
       <Box display="flex" gap={4}>
         <Button {...backButtonProps}>zurück</Button>
-        <Button {...nextButtonProps}>weiter</Button>
+        {lastStep ? (
+          <SendButton scrollToRoot={scrollToRoot} src="UmzugRuckZuck" />
+        ) : (
+          <Button {...nextButtonProps}>weiter</Button>
+        )}
       </Box>
     </Box>
   );

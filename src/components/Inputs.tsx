@@ -1,16 +1,15 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
-import SendIcon from "@mui/icons-material/Send";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useCallback, useMemo } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useMemo } from "react";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { Address, AppPrice, Customer, Service } from "um-types";
-import { AppDispatch, AppState } from "../store";
-import { calculateOrder, uploadOrder } from "../store/appReducer";
-import { scrollToRoot } from "../main";
-import OrderField from "../shared/components/OrderField";
-import { CustomerData } from "../shared/components/CustomerData";
+import { Address, AppPrice, Service } from "um-types";
+import { scrollToRoot } from "../main.ex";
 import ContainerBox from "../shared/components/ContainerBox";
+import { CustomerData } from "../shared/components/CustomerData";
+import OrderField from "../shared/components/OrderField";
+import { SendButton } from "../shared/SendButton";
+import { AppState } from "../store";
 
 const movementObjects = [
   "-",
@@ -31,7 +30,6 @@ const etagen = [
 
 export function Inputs() {
   const navigate = useNavigate();
-  const dispatch = useDispatch<AppDispatch>();
 
   const services = useSelector<AppState, Service[]>((s) => s.app.services);
   const selectedId = useSelector<AppState, string | undefined>(
@@ -48,17 +46,6 @@ export function Inputs() {
       }.png`,
     [selectedOffer]
   );
-
-  const onUploadRequest = useCallback(() => {
-    const cb = (id: number | string) => {
-      setTimeout(() => {
-        navigate(`/success/${id}`);
-        scrollToRoot();
-      }, 1000);
-    };
-    dispatch(calculateOrder());
-    dispatch(uploadOrder(cb));
-  }, [dispatch]);
 
   return (
     <ContainerBox>
@@ -194,13 +181,7 @@ export function Inputs() {
         >
           Zurück
         </Button>
-        <Button
-          onClick={onUploadRequest}
-          endIcon={<SendIcon />}
-          variant="contained"
-        >
-          Anfragen
-        </Button>
+        <SendButton scrollToRoot={scrollToRoot} src="express" />
       </Box>
     </ContainerBox>
   );

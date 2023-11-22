@@ -13,7 +13,7 @@ import { AppPrice } from "um-types";
 import { AppDispatch, AppState } from "../store";
 import { setSelectedPriceId } from "../store/appReducer";
 import { useNavigate } from "react-router-dom";
-import { scrollToRoot } from "../main";
+import { scrollToRoot } from "../main.ex";
 
 interface Props {
   transporter: number;
