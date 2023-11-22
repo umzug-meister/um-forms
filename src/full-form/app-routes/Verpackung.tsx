@@ -6,22 +6,33 @@ import {
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { AppPacking, Service } from "um-types";
+import { AppPacking, Order, Service } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
+import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
 import { AppState } from "../../store";
 
 export default function Verpackung() {
+  const order = useSelector<AppState, Order>((s) => s.app.current);
   const services = useSelector<AppState, Service[]>((s) => s.app.services);
 
   const packings = services.filter(
-    (s) => s.tag === "Packmaterial"
+    (s) => s.tag === "Packmaterial" && s.show
   ) as AppPacking[];
 
   return (
     <ContainerBox title="Verpackung benötigt?">
-      {packings.map((packing) => (
-        <PackingCard key={packing.id} packing={packing} />
-      ))}
+      <OrderSwitchField
+        row
+        path="needPackings"
+        label="Möchten Sie Verpackung bei uns kaufen?"
+      />
+      {order.needPackings && (
+        <>
+          {packings.map((packing) => (
+            <PackingCard key={packing.id} packing={packing} />
+          ))}
+        </>
+      )}
     </ContainerBox>
   );
 }
@@ -34,6 +45,7 @@ function PackingCard({ packing }: Readonly<Props>) {
     currency: "EUR",
     style: "currency",
   });
+
   return (
     <Card variant="outlined">
       {packing.media && <CardMedia image={packing.media} />}

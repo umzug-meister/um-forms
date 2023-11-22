@@ -23,6 +23,7 @@ interface Props<T> {
     true: string;
     false: string;
   };
+  row?: boolean;
 }
 
 export function OrderSwitchField<T>({
@@ -30,6 +31,7 @@ export function OrderSwitchField<T>({
   path,
   label,
   labels,
+  row = false,
 }: Readonly<Props<T>>) {
   const value = useOrderValue(path, nestedPath);
 
@@ -60,6 +62,7 @@ export function OrderSwitchField<T>({
     >
       <FormLabel id={labelId}>{label}</FormLabel>
       <RadioGroup
+        row={row}
         sx={{ paddingLeft: 3 }}
         onChange={(event) => handleChange(event?.target.value === "true")}
         value={Boolean(value)}
