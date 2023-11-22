@@ -10,7 +10,7 @@ export default defineConfig(({ mode }) => {
     build: {
       rollupOptions: {
         input: {
-          app: "./form.html",
+          app: "./ex.html",
         },
         output: {
           dir: "express",
