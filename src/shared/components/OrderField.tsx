@@ -124,7 +124,7 @@ export default function OrderField<T>({
       <TextField
         InputProps={{ endAdornment }}
         helperText={
-          <Typography color={"primary"} variant="body2">
+          <Typography component="span" color="primary" variant="body2">
             {helperText}
           </Typography>
         }

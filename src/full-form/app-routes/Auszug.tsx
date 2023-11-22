@@ -92,7 +92,7 @@ export default function Auszug() {
         nestedPath="roomsToRelocate"
         type="number"
         label="Anzahl der Zimmer zum Umziehen"
-        helperText="wenn nur ein Teil der Wohnung umgezogen wird"
+        helperText="Falls nur ein Teil der Wohnung umgezogen wird"
       />
 
       <OrderField<Address>

@@ -36,6 +36,7 @@ export default function Main() {
 
   const next = (step: number) => {
     setActiveStep((curStep) => step + curStep);
+    scrollToRoot();
   };
 
   const nextButtonProps: ButtonProps = {
@@ -66,7 +67,7 @@ export default function Main() {
 
       <Outlet />
 
-      <Box display="flex" gap={4}>
+      <Box display="flex" gap={4} paddingBottom={5}>
         <AppButton {...backButtonProps}>zurück</AppButton>
         {lastStep ? (
           <SendButton scrollToRoot={scrollToRoot} src="UmzugRuckZuck" />

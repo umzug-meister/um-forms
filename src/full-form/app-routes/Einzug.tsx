@@ -40,7 +40,7 @@ export default function Einzug() {
         path={path}
         nestedPath="movementObject"
         select
-        label="Auszug aus"
+        label="Einzug in"
         selectOptions={movementObjects}
       />
       <OrderField<Address>
