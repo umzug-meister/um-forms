@@ -1,3 +1,5 @@
+import { TypographyProps } from "@mui/material";
+
 export const movementObjects = [
   "-",
   "Wohnung",
@@ -5,7 +7,6 @@ export const movementObjects = [
   "Keller",
   "Lager",
   "Büro",
-  "Garten",
 ];
 
 export const parkingDistances = [
@@ -30,3 +31,8 @@ export const liftTypes = [
   "6 Personen",
   "8+ Personen",
 ];
+
+export const typoProps: TypographyProps = {
+  variant: "subtitle2",
+  align: "right",
+};

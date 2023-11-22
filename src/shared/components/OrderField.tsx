@@ -6,6 +6,7 @@ import {
   FormGroup,
   MenuItem,
   TextField,
+  Typography,
 } from "@mui/material";
 import { useCallback, useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
@@ -26,6 +27,8 @@ interface Props<T> {
   error?: boolean;
   placeholder?: string;
   multiline?: boolean;
+  helperText?: string;
+  endAdornment?: React.ReactNode;
 }
 
 const options = {
@@ -46,6 +49,8 @@ export default function OrderField<T>({
   error,
   placeholder,
   multiline,
+  helperText,
+  endAdornment,
 }: Props<T>) {
   const value = useOrderValue(path, nestedPath);
   const dispatch = useDispatch<AppDispatch>();
@@ -117,6 +122,12 @@ export default function OrderField<T>({
       }}
     >
       <TextField
+        InputProps={{ endAdornment }}
+        helperText={
+          <Typography color={"primary"} variant="body2">
+            {helperText}
+          </Typography>
+        }
         error={error}
         type={type}
         id={id}

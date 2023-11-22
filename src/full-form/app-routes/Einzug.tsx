@@ -1,5 +1,6 @@
-import React from "react";
-import { Address } from "um-types";
+import { Typography } from "@mui/material";
+import { useSelector } from "react-redux";
+import { Address, Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
 import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
@@ -8,9 +9,13 @@ import {
   liftTypes,
   movementObjects,
   parkingDistances,
+  typoProps,
 } from "../../shared/constants";
 
+import { AppState } from "../../store";
+
 export default function Einzug() {
+  const order = useSelector<AppState, Order>((s) => s.app.current);
   const path = "to";
   return (
     <ContainerBox title="Einzugsadresse">
@@ -69,16 +74,41 @@ export default function Einzug() {
         nestedPath="hasLoft"
         label="Dachboden"
       />
-      <OrderSwitchField<Address>
-        path={path}
-        nestedPath="montage"
-        label="Möbel-Demontage"
-      />
+
+      <Typography {...typoProps}>gewünschte Leistungen</Typography>
+
       <OrderSwitchField<Address>
         path={path}
         nestedPath="packservice"
         label="Umzugsgut auspacken"
       />
+
+      <OrderSwitchField<Address>
+        path={path}
+        nestedPath="montage"
+        label="Möbel-Montage"
+      />
+      {order.to.montage && (
+        <>
+          <OrderField<Address>
+            path={path}
+            label={"Betten"}
+            nestedPath={"bedNumber"}
+            type="number"
+            endAdornment="Stück"
+            helperText="Anzahl der Betten zum Montieren"
+          />
+
+          <OrderField<Address>
+            path={path}
+            label="Gesamtbreite der Schränke"
+            nestedPath="wardrobeWidth"
+            type="number"
+            endAdornment="Meter"
+            helperText="Breite aller Schränke zum Montieren"
+          />
+        </>
+      )}
     </ContainerBox>
   );
 }
