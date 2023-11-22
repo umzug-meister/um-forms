@@ -144,7 +144,7 @@ export default function Auszug() {
             nestedPath={"kitchenWidth"}
             type="number"
             endAdornment="Meter"
-            helperText="Breite der Küche zum Demontieren"
+            helperText="Breite der Küchenzeile zum Demontieren"
           />
 
           <OrderField<Address>
