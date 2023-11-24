@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import { AppDispatch } from "../../store";
 import { updateOrderProps } from "../../store/appReducer";
 import { NestedPath, Path, useOption, useOrderValue } from "../hooks";
+import { AppTextField } from "./AppTextField";
 
 interface Props<T> {
   path: Path;
@@ -113,46 +114,31 @@ export default function OrderField<T>({
   }
 
   return (
-    <Box
-      sx={{
-        "& input[type=text]": {
-          border: "none !important",
-          padding: "16px!important",
-        },
-        "& input[type=email]": {
-          border: "none !important",
-          padding: "16px!important",
-        },
+    <AppTextField
+      InputProps={{ endAdornment }}
+      helperText={
+        <Typography component="span" color="primary" variant="body2">
+          {helperText}
+        </Typography>
+      }
+      error={error}
+      type={type}
+      id={id}
+      select={select}
+      value={value}
+      onChange={(ev) => {
+        handleChange(ev.target.value);
       }}
+      multiline={multiline}
+      minRows={4}
+      placeholder={placeholder}
+      label={label}
     >
-      <TextField
-        InputProps={{ endAdornment }}
-        helperText={
-          <Typography component="span" color="primary" variant="body2">
-            {helperText}
-          </Typography>
-        }
-        error={error}
-        type={type}
-        id={id}
-        select={select}
-        value={value}
-        onChange={(ev) => {
-          handleChange(ev.target.value);
-        }}
-        multiline={multiline}
-        minRows={4}
-        placeholder={placeholder}
-        label={label}
-        fullWidth
-        variant="outlined"
-      >
-        {selectOptions?.map((option) => (
-          <MenuItem key={option} value={option}>
-            {option}
-          </MenuItem>
-        ))}
-      </TextField>
-    </Box>
+      {selectOptions?.map((option) => (
+        <MenuItem key={option} value={option}>
+          {option}
+        </MenuItem>
+      ))}
+    </AppTextField>
   );
 }

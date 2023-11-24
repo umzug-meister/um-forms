@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
-import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 import {
   etagen,
   liftTypes,

@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppPrice, MLeistung, Order, Service } from "um-types";
+import { AppPrice, MLeistung, Order, OrderService, Service } from "um-types";
 import { appRequest } from "../api";
 import { Urls } from "../api/Urls";
 
@@ -60,6 +60,7 @@ const initialOrder = {
   timeBased: {},
   leistungen: new Array<MLeistung>(),
   images: new Array<string>(),
+  services: new Array<OrderService>(),
 } as Order;
 
 const initialState: AppSlice = {
@@ -101,6 +102,25 @@ const appSlice = createSlice({
       set(next, ["workersNumber"], workers);
 
       state.current = next;
+    },
+    setServiceColli(
+      state,
+      action: PayloadAction<{ id: string; colli: string }>
+    ) {
+      const { colli, id } = action.payload;
+
+      const curServices = state.current.services;
+
+      const available = curServices.find((s) => s.id === id);
+      if (available) {
+        available.colli = String(colli);
+      } else {
+        const service = state.services.find((s) => s.id === id);
+        if (service) {
+          const next: OrderService = { ...(service as OrderService), colli };
+          state.current.services = [...curServices, next];
+        }
+      }
     },
     calculateOrder(state, action: PayloadAction<{ src: SrcType }>) {
       const hvzPriceOption = state.options["hvzPrice"];
@@ -157,6 +177,7 @@ const appSlice = createSlice({
 const appReducer = appSlice.reducer;
 
 export const {
+  setServiceColli,
   updateOrderProps,
   setSelectedPriceId,
   calculateOrder,

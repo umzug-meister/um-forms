@@ -1,16 +1,19 @@
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import {
+  Box,
   Card,
   CardContent,
-  CardHeader,
-  CardMedia,
+  Divider,
   Grid,
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { AppPacking, Order, Service } from "um-types";
+import { AppTextField } from "../../shared/components/AppTextField";
 import ContainerBox from "../../shared/components/ContainerBox";
-import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 import { AppState } from "../../store";
+import { useServiceColli } from "../hooks";
 
 export default function Verpackung() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -23,10 +26,10 @@ export default function Verpackung() {
   return (
     <ContainerBox title="Verpackung benötigt?">
       <OrderSwitchField
-        row
         path="needPackings"
         label="Möchten Sie Verpackung bei uns kaufen?"
       />
+
       {order.needPackings && (
         <Grid container spacing={4}>
           {packings.map((packing) => (
@@ -42,24 +45,42 @@ interface Props {
 }
 
 function PackingCard({ packing }: Readonly<Props>) {
+  const { colli, onColliChange } = useServiceColli(packing.id);
+
   const formatter = new Intl.NumberFormat("de-DE", {
     currency: "EUR",
     style: "currency",
   });
 
   return (
-    <Grid item xs={12} sm={6}>
-      <Card sx={{ height: "100%" }}>
-        {packing.media && <CardMedia image={packing.media} />}
-        <CardMedia></CardMedia>
+    <Grid item xs={12}>
+      <Card sx={{ height: "100%" }} variant="outlined">
         <CardContent>
-          <Typography gutterBottom variant="h5">
-            {packing.name}
-          </Typography>
-          <Typography variant="body2">{packing.desc}</Typography>
-          <Typography gutterBottom variant="h5">
-            {formatter.format(Number(packing.price))}
-          </Typography>
+          <Box display={"flex"} flexDirection="column" gap={2}>
+            <Typography gutterBottom variant="h6" align="left">
+              {packing.name}
+            </Typography>
+
+            <Divider />
+
+            <Typography variant="body2">{packing.desc}</Typography>
+            <Typography gutterBottom variant="h5" color="primary" align="right">
+              {formatter.format(Number(packing.price))}
+            </Typography>
+
+            <Box display="flex" gap={2} justifyContent="end">
+              <AppTextField
+                InputProps={{
+                  endAdornment: <ShoppingCartCheckoutIcon color="info" />,
+                }}
+                onChange={(ev) => onColliChange(ev.target.value)}
+                value={colli}
+                type="number"
+                label="Anzahl"
+                fullWidth={false}
+              />
+            </Box>
+          </Box>
         </CardContent>
       </Card>
     </Grid>

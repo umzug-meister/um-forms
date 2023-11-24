@@ -13,7 +13,7 @@ export function useOption(name: string) {
 }
 
 export function useOrderValue<T>(path: Path, nestedPath?: NestedPath<T>) {
-  const order = useSelector<AppState, Order>((s) => s.app.current!);
+  const order = useSelector<AppState, Order>((s) => s.app.current);
 
   let value = order[path];
   if (nestedPath && typeof value === "object") {

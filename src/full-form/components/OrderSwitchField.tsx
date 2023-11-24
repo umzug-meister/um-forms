@@ -4,13 +4,15 @@ import {
   FormLabel,
   Radio,
   RadioGroup,
+  useMediaQuery,
+  useTheme,
 } from "@mui/material";
 import { useCallback, useId } from "react";
 import { useDispatch } from "react-redux";
 import { Order } from "um-types";
 import { AppDispatch } from "../../store";
 import { updateOrderProps } from "../../store/appReducer";
-import { useOrderValue } from "../hooks";
+import { useOrderValue } from "../../shared/hooks";
 
 type Path = keyof Order;
 type NestedPath<T> = keyof T;
@@ -23,7 +25,6 @@ interface Props<T> {
     true: string;
     false: string;
   };
-  row?: boolean;
 }
 
 export function OrderSwitchField<T>({
@@ -31,8 +32,10 @@ export function OrderSwitchField<T>({
   path,
   label,
   labels,
-  row = false,
 }: Readonly<Props<T>>) {
+  const theme = useTheme();
+  const narrowScreen = useMediaQuery(theme.breakpoints.down("md"));
+
   const value = useOrderValue(path, nestedPath);
 
   const dispatch = useDispatch<AppDispatch>();
@@ -62,7 +65,7 @@ export function OrderSwitchField<T>({
     >
       <FormLabel id={labelId}>{label}</FormLabel>
       <RadioGroup
-        row={row}
+        row={!narrowScreen}
         sx={{ paddingLeft: 3 }}
         onChange={(event) => handleChange(event?.target.value === "true")}
         value={Boolean(value)}

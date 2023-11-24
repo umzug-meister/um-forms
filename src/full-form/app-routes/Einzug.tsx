@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
-import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 import {
   etagen,
   liftTypes,
@@ -13,6 +13,7 @@ import {
 } from "../../shared/constants";
 
 import { AppState } from "../../store";
+import { BohrarbeitenList } from "../components/BohrarbeitenList";
 
 export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -94,6 +95,7 @@ export default function Einzug() {
             Wir montieren ausschließlich Möbelstücke, die zuvor von uns
             demontiert wurden.
           </Alert>
+
           <OrderField<Address>
             path={path}
             label={"Betten"}
@@ -113,6 +115,9 @@ export default function Einzug() {
           />
         </>
       )}
+
+      <OrderSwitchField path="bohrarbeiten" label="Bohrarbeiten" />
+      {order.bohrarbeiten && <BohrarbeitenList />}
     </ContainerBox>
   );
 }

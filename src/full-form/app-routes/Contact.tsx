@@ -4,7 +4,7 @@ import { Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import { CustomerData } from "../../shared/components/CustomerData";
 import OrderField from "../../shared/components/OrderField";
-import { OrderSwitchField } from "../../shared/components/OrderSwitchField";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 import { AppState } from "../../store";
 
 export default function Contact() {
