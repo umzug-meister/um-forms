@@ -1,4 +1,4 @@
-import { Typography, TypographyProps } from "@mui/material";
+import { Alert, Box, Typography, TypographyProps } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
@@ -136,16 +136,22 @@ export default function Auszug() {
         nestedPath="demontage"
         label="Möbel-Demontage"
       />
+
       {order.from.demontage && (
-        <>
-          <OrderField<Address>
-            path={path}
-            label="Küchenbreite"
-            nestedPath={"kitchenWidth"}
-            type="number"
-            endAdornment="Meter"
-            helperText="Breite der Küchenzeile zum Demontieren"
-          />
+        <Box display="flex" flexDirection="column" gap={2}>
+          <Box display="flex" flexDirection="column" gap={0.5}>
+            <Alert severity="info">
+              Eine abschließende Montage der Küche ist zurzeit nicht möglich
+            </Alert>
+            <OrderField<Address>
+              path={path}
+              label="Küchenbreite"
+              nestedPath={"kitchenWidth"}
+              type="number"
+              endAdornment="Meter"
+              helperText="Breite der Küchenzeile zum Demontieren"
+            />
+          </Box>
 
           <OrderField<Address>
             path={path}
@@ -164,10 +170,10 @@ export default function Auszug() {
             endAdornment="Meter"
             helperText="Breite aller Schränke zum Demontieren"
           />
-        </>
+        </Box>
       )}
 
-      <Typography {...typoProps}>außerordentliche Gegenstände</Typography>
+      <Typography {...typoProps}>besondere Gegenstände</Typography>
 
       <OrderSwitchField
         path="bulky"

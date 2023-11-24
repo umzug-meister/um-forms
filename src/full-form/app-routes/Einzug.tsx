@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
@@ -90,6 +90,10 @@ export default function Einzug() {
       />
       {order.to.montage && (
         <>
+          <Alert severity="info">
+            Wir montieren ausschließlich Möbelstücke, die zuvor von uns
+            demontiert wurden.
+          </Alert>
           <OrderField<Address>
             path={path}
             label={"Betten"}
