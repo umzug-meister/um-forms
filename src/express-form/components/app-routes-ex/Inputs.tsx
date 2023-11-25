@@ -7,6 +7,7 @@ import { Address, AppPrice, Service } from "um-types";
 import { scrollToRoot } from "../../../main.ex";
 import ContainerBox from "../../../shared/components/ContainerBox";
 import { CustomerData } from "../../../shared/components/CustomerData";
+import { DataPrivacyCheck } from "../../../shared/components/DataPrivacyCheck";
 import OrderField from "../../../shared/components/OrderField";
 import { etagen, movementObjects } from "../../../shared/constants";
 import { SendButton } from "../../../shared/SendButton";
@@ -153,6 +154,9 @@ export default function Inputs() {
             </Box>
           </Grid>
         </Grid>
+      </Box>
+      <Box>
+        <DataPrivacyCheck />
       </Box>
 
       <Box display="flex" m={2} gap={3} justifyContent="center">

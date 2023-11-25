@@ -19,7 +19,7 @@ export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
   const path = "to";
   return (
-    <ContainerBox title="Einzugsadresse">
+    <ContainerBox title="Einzug">
       <OrderField<Address>
         path={path}
         nestedPath="address"

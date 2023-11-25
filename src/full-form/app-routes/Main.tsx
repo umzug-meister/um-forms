@@ -12,7 +12,6 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
 import { AppButton } from "../../shared/components/AppButton";
-import { SendButton } from "../../shared/SendButton";
 
 const routes = [
   { label: "Kontakt", route: "/" },
@@ -26,7 +25,7 @@ export default function Main() {
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(4);
 
   const navigate = useNavigate();
 
@@ -69,11 +68,7 @@ export default function Main() {
 
       <Box display="flex" gap={4} paddingBottom={5}>
         <AppButton {...backButtonProps}>zurück</AppButton>
-        {lastStep ? (
-          <SendButton scrollToRoot={scrollToRoot} src="UmzugRuckZuck" />
-        ) : (
-          <AppButton {...nextButtonProps}>weiter</AppButton>
-        )}
+        {lastStep ? null : <AppButton {...nextButtonProps}>weiter</AppButton>}
       </Box>
     </Box>
   );

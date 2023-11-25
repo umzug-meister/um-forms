@@ -1,11 +1,4 @@
-import {
-  Box,
-  Card,
-  CardActions,
-  CardContent,
-  CardHeader,
-  Typography,
-} from "@mui/material";
+import { Alert, Box, Card, CardActions, CardContent } from "@mui/material";
 import { useCallback } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -24,35 +17,29 @@ export default function Success() {
   }, []);
 
   return (
-    <Box>
-      <Card variant="outlined" sx={{ backgroundColor: "#d1c7be69" }}>
-        <CardHeader
-          title={
-            <Typography align="center" variant="h4">
-              Anfrage erfolgreich versendet!
-            </Typography>
-          }
-        />
-        <CardContent>
-          <Typography align="center" variant="h6">
+    <Card elevation={0}>
+      <CardContent>
+        <Box display="flex" flexDirection="column" gap={1}>
+          <Alert>Anfrage erfolgreich versendet!</Alert>
+          <Alert severity="info">
             Ihre Anfrage-ID lautet: <strong>{`${params.id}`}</strong>
-          </Typography>
-          <Typography align="center">
-            Bitte diese ID bei Rückfragen bereithalten. Eine Bestätigungsmail
-            ist bereits unterwegs.
-          </Typography>
-        </CardContent>
-        <CardActions sx={{ justifyContent: "center" }}>
-          <AppButton
-            disableElevation
-            onClick={onOkClick}
-            variant="contained"
-            color="primary"
-          >
-            Alles Klar!
-          </AppButton>
-        </CardActions>
-      </Card>
-    </Box>
+            <p>
+              Bei Rückfragen, bitte diese ID bereithalten. Eine Bestätigungsmail
+              ist bereits unterwegs.
+            </p>
+          </Alert>
+        </Box>
+      </CardContent>
+      <CardActions sx={{ justifyContent: "center" }}>
+        <AppButton
+          disableElevation
+          onClick={onOkClick}
+          variant="contained"
+          color="primary"
+        >
+          Alles Klar!
+        </AppButton>
+      </CardActions>
+    </Card>
   );
 }

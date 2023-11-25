@@ -1,8 +1,10 @@
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import CheckOutlinedIcon from "@mui/icons-material/CheckOutlined";
+import ShoppingCartCheckoutOutlinedIcon from "@mui/icons-material/ShoppingCartCheckoutOutlined";
 import {
   Box,
   Card,
   CardContent,
+  CardHeader,
   Divider,
   Grid,
   Typography,
@@ -22,6 +24,8 @@ export default function Verpackung() {
   const packings = services.filter(
     (s) => s.tag === "Packmaterial" && s.show
   ) as AppPacking[];
+
+  packings.sort((a, b) => a.sort - b.sort);
 
   return (
     <ContainerBox title="Verpackung benötigt?">
@@ -52,31 +56,51 @@ function PackingCard({ packing }: Readonly<Props>) {
     style: "currency",
   });
 
+  const isInBasket = Number(colli) > 0;
+
   return (
     <Grid item xs={12}>
       <Card sx={{ height: "100%" }} variant="outlined">
+        <CardHeader
+          sx={{
+            background: "#e7e2da",
+          }}
+          title={
+            <Box
+              display="flex"
+              justifyContent="space-between"
+              alignItems="center"
+            >
+              <Typography variant="h6">{packing.name}</Typography>
+              <Typography variant="h6" align="right">
+                {formatter.format(Number(packing.price))}
+              </Typography>
+            </Box>
+          }
+        />
         <CardContent>
-          <Box display={"flex"} flexDirection="column" gap={2}>
-            <Typography gutterBottom variant="h6" align="left">
-              {packing.name}
-            </Typography>
-
-            <Divider />
-
+          <Box display="flex" flexDirection="column" gap={2}>
             <Typography variant="body2">{packing.desc}</Typography>
-            <Typography gutterBottom variant="h5" color="primary" align="right">
-              {formatter.format(Number(packing.price))}
-            </Typography>
-
-            <Box display="flex" gap={2} justifyContent="end">
+            <Box display="flex" justifyContent="end" width="100%">
               <AppTextField
                 InputProps={{
-                  endAdornment: <ShoppingCartCheckoutIcon color="info" />,
+                  endAdornment: isInBasket ? (
+                    <CheckOutlinedIcon color="primary" />
+                  ) : (
+                    <ShoppingCartCheckoutOutlinedIcon color="disabled" />
+                  ),
                 }}
+                inputProps={{ min: "0" }}
                 onChange={(ev) => onColliChange(ev.target.value)}
+                onBlur={(ev) => {
+                  const value = Number(ev.target.value);
+
+                  if (isNaN(value) || value <= 0) onColliChange("");
+                }}
                 value={colli}
                 type="number"
                 label="Anzahl"
+                size="small"
                 fullWidth={false}
               />
             </Box>

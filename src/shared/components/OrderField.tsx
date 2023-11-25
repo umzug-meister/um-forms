@@ -18,7 +18,7 @@ import { AppTextField } from "./AppTextField";
 interface Props<T> {
   path: Path;
   nestedPath?: NestedPath<T>;
-  label?: string;
+  label?: React.ReactNode;
   select?: true;
   enableMaps?: true;
   selectOptions?: string[];
@@ -115,6 +115,7 @@ export default function OrderField<T>({
 
   return (
     <AppTextField
+      size="medium"
       InputProps={{ endAdornment }}
       helperText={
         <Typography component="span" color="primary" variant="body2">

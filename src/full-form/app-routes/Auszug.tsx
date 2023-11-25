@@ -18,7 +18,7 @@ export default function Auszug() {
   const path = "from";
 
   return (
-    <ContainerBox title="Auszugsadresse">
+    <ContainerBox title="Auszug">
       <OrderField<Address>
         path={path}
         nestedPath="address"
