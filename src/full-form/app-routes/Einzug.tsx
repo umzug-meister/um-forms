@@ -14,10 +14,12 @@ import {
 
 import { AppState } from "../../store";
 import { BohrarbeitenList } from "../components/BohrarbeitenList";
+import StockwerkeToggle from "../components/StockwerkeToggle";
 
 export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
   const path = "to";
+
   return (
     <ContainerBox title="Einzug">
       <OrderField<Address>
@@ -28,6 +30,7 @@ export default function Einzug() {
         id="from-input-field"
         placeholder="Straße Nr, PLZ Ort"
       />
+
       <OrderSwitchField<Address>
         path={path}
         nestedPath="parkingSlot"
@@ -37,13 +40,7 @@ export default function Einzug() {
           false: "Wird von Kund:innen sichergestellt",
         }}
       />
-      <OrderField<Address>
-        path={path}
-        nestedPath="movementObject"
-        select
-        label="Einzug in"
-        selectOptions={movementObjects}
-      />
+
       <OrderField<Address>
         path={path}
         nestedPath="runningDistance"
@@ -51,30 +48,47 @@ export default function Einzug() {
         label="Entfernung vom Parkplatz zu Haustür, in Meter"
         selectOptions={parkingDistances}
       />
+
       <OrderField<Address>
         path={path}
-        nestedPath="floor"
+        nestedPath="movementObject"
         select
-        label="Stockwerk"
-        selectOptions={etagen}
+        label="Einzug in"
+        selectOptions={movementObjects}
       />
-      <OrderField<Address>
-        path={path}
-        nestedPath="liftType"
-        select
-        label="Fahrstuhl"
-        selectOptions={liftTypes}
-      />
-      <OrderSwitchField<Address>
-        path={path}
-        nestedPath="isAltbau"
-        label="Altbau"
-      />
-      <OrderSwitchField<Address>
-        path={path}
-        nestedPath="hasLoft"
-        label="Dachboden"
-      />
+
+      {order[path].movementObject === "Haus" && (
+        <StockwerkeToggle path={path} />
+      )}
+
+      {order[path].movementObject !== "Haus" && (
+        <>
+          <OrderField<Address>
+            path={path}
+            nestedPath="floor"
+            select
+            label="Stockwerk"
+            selectOptions={etagen}
+          />
+          <OrderField<Address>
+            path={path}
+            nestedPath="liftType"
+            select
+            label="Fahrstuhl"
+            selectOptions={liftTypes}
+          />
+          <OrderSwitchField<Address>
+            path={path}
+            nestedPath="isAltbau"
+            label="Altbau"
+          />
+          <OrderSwitchField<Address>
+            path={path}
+            nestedPath="hasLoft"
+            label="Dachboden"
+          />
+        </>
+      )}
 
       <Typography {...typoProps}>gewünschte Leistungen</Typography>
 

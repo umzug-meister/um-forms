@@ -12,6 +12,7 @@ import {
   typoProps,
 } from "../../shared/constants";
 import { AppState } from "../../store";
+import StockwerkeToggle from "../components/StockwerkeToggle";
 
 export default function Auszug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -53,9 +54,11 @@ export default function Auszug() {
         selectOptions={movementObjects}
       />
 
-      {/* stockwerke im Haus */}
+      {order[path].movementObject === "Haus" && (
+        <StockwerkeToggle path={path} />
+      )}
 
-      {order.from.movementObject !== "Haus" && (
+      {order[path].movementObject !== "Haus" && (
         <>
           <OrderField<Address>
             path={path}
