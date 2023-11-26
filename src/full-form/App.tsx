@@ -16,7 +16,7 @@ export default function App() {
           <HashRouter>
             <div
               style={{
-                maxWidth: "1080px",
+                maxWidth: "800px",
                 margin: "auto",
               }}
             >

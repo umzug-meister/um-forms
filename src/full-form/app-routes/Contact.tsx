@@ -3,9 +3,10 @@ import { useSelector } from "react-redux";
 import { Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import { CustomerData } from "../../shared/components/CustomerData";
+import { GridContainer } from "../../shared/components/GridContainer";
 import OrderField from "../../shared/components/OrderField";
-import { OrderSwitchField } from "../components/OrderSwitchField";
 import { AppState } from "../../store";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 
 export default function Contact() {
   const { isDateFix } = useSelector<AppState, Order>((s) => s.app.current);
@@ -19,13 +20,13 @@ export default function Contact() {
       />
       <OrderSwitchField path="isDateFix" label="Steht der Umzugstermin fest?" />
       {isDateFix ? (
-        <Grid container justifyContent={"center"}>
+        <GridContainer justifyContent={"center"}>
           <Grid item xs={12} sm={6}>
             <OrderField path="date" type="date" label="Umzugstermin" />
           </Grid>
-        </Grid>
+        </GridContainer>
       ) : (
-        <Grid container spacing={2}>
+        <GridContainer>
           <Grid item xs={12} sm={6}>
             <OrderField
               path="date_from"
@@ -40,7 +41,7 @@ export default function Contact() {
               label="spätester Umzugstermin"
             />
           </Grid>
-        </Grid>
+        </GridContainer>
       )}
     </ContainerBox>
   );

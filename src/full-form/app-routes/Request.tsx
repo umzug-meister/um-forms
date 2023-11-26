@@ -4,6 +4,7 @@ import ContainerBox from "../../shared/components/ContainerBox";
 import { DataPrivacyCheck } from "../../shared/components/DataPrivacyCheck";
 import OrderField from "../../shared/components/OrderField";
 import { SendButton } from "../../shared/SendButton";
+import { ImageUploader } from "../components/ImageUploader";
 
 export default function Request() {
   return (
@@ -19,6 +20,10 @@ export default function Request() {
           </p>
           Hierbei stehen Ihnen folgende Möglichkeiten zur Verfügung:
         </Alert>
+      </Box>
+
+      <Box>
+        <ImageUploader />
       </Box>
       <Box>
         <OrderField

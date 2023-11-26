@@ -12,6 +12,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
 import { AppButton } from "../../shared/components/AppButton";
+import { ColFlexBox } from "../../shared/components/ColFlexBox";
 
 const routes = [
   { label: "Kontakt", route: "/" },
@@ -55,7 +56,7 @@ export default function Main() {
   };
 
   return (
-    <Box display="flex" flexDirection="column" gap={4} alignItems="center">
+    <ColFlexBox gap={4} alignItems="center">
       <Stepper activeStep={activeStep}>
         {routes.map((route) => (
           <Step key={route.label}>
@@ -70,6 +71,6 @@ export default function Main() {
         <AppButton {...backButtonProps}>zurück</AppButton>
         {lastStep ? null : <AppButton {...nextButtonProps}>weiter</AppButton>}
       </Box>
-    </Box>
+    </ColFlexBox>
   );
 }

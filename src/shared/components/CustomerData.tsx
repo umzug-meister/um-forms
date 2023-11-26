@@ -1,12 +1,14 @@
-import { Box, Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { Customer } from "um-types";
+import { ColFlexBox } from "./ColFlexBox";
+import { GridContainer } from "./GridContainer";
 import OrderField from "./OrderField";
 
 export function CustomerData() {
   return (
     <form>
-      <Box display="flex" flexDirection={"column"} gap={2}>
-        <Grid container spacing={2}>
+      <ColFlexBox>
+        <GridContainer>
           <Grid item xs={12} sm={6}>
             <OrderField<Customer>
               path="customer"
@@ -16,8 +18,8 @@ export function CustomerData() {
               selectOptions={["-", "Frau", "Herr"]}
             />
           </Grid>
-        </Grid>
-        <Grid container spacing={2}>
+        </GridContainer>
+        <GridContainer>
           <Grid sx={{ gridRowStart: 2 }} item xs={12} sm={6}>
             <OrderField<Customer>
               path="customer"
@@ -48,8 +50,8 @@ export function CustomerData() {
               type="number"
             />
           </Grid>
-        </Grid>
-      </Box>
+        </GridContainer>
+      </ColFlexBox>
     </form>
   );
 }

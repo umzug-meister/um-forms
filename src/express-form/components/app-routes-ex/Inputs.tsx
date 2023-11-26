@@ -5,9 +5,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Service } from "um-types";
 import { scrollToRoot } from "../../../main.ex";
+import { ColFlexBox } from "../../../shared/components/ColFlexBox";
 import ContainerBox from "../../../shared/components/ContainerBox";
 import { CustomerData } from "../../../shared/components/CustomerData";
 import { DataPrivacyCheck } from "../../../shared/components/DataPrivacyCheck";
+import { GridContainer } from "../../../shared/components/GridContainer";
 import OrderField from "../../../shared/components/OrderField";
 import { etagen, movementObjects } from "../../../shared/constants";
 import { SendButton } from "../../../shared/SendButton";
@@ -35,7 +37,7 @@ export default function Inputs() {
   return (
     <ContainerBox>
       <Box>
-        <Grid container columnSpacing={3} rowSpacing={2}>
+        <GridContainer>
           <Grid
             item
             xs={12}
@@ -62,18 +64,18 @@ export default function Inputs() {
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Box display="flex" flexDirection="column" gap={2}>
+            <ColFlexBox>
               <Typography variant="h4">Wann?</Typography>
               <OrderField path="date" type="date" />
-            </Box>
+            </ColFlexBox>
           </Grid>
-        </Grid>
+        </GridContainer>
       </Box>
 
       <Box>
-        <Grid container columnSpacing={3} rowSpacing={2}>
+        <GridContainer>
           <Grid item xs={12} sm={6}>
-            <Box display="flex" flexDirection="column" gap={2}>
+            <ColFlexBox>
               <Typography variant="h4">Woher?</Typography>
               <OrderField<Address>
                 enableMaps
@@ -105,11 +107,11 @@ export default function Inputs() {
                 label="Objekt"
                 selectOptions={movementObjects}
               />
-            </Box>
+            </ColFlexBox>
           </Grid>
 
           <Grid item xs={12} sm={6}>
-            <Box display="flex" flexDirection="column" gap={2}>
+            <ColFlexBox>
               <Typography variant="h4">Wohin?</Typography>
               <OrderField<Address>
                 enableMaps
@@ -141,19 +143,19 @@ export default function Inputs() {
                 label="Objekt"
                 selectOptions={movementObjects}
               />
-            </Box>
+            </ColFlexBox>
           </Grid>
-        </Grid>
+        </GridContainer>
       </Box>
       <Box>
-        <Grid container>
+        <GridContainer>
           <Grid item xs={12}>
-            <Box display="flex" flexDirection="column" gap={2}>
+            <ColFlexBox>
               <Typography variant="h4">Nachricht an uns</Typography>
               <OrderField<Address> path="text" multiline />
-            </Box>
+            </ColFlexBox>
           </Grid>
-        </Grid>
+        </GridContainer>
       </Box>
       <Box>
         <DataPrivacyCheck />

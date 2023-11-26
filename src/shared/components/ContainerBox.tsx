@@ -1,12 +1,14 @@
 import {
-  Box,
   Card,
   CardContent,
   CardHeader,
   Divider,
+  Grid,
   Typography,
 } from "@mui/material";
 import React from "react";
+import { ColFlexBox } from "./ColFlexBox";
+import { GridContainer } from "./GridContainer";
 
 interface Props {
   title?: string;
@@ -17,24 +19,26 @@ export default function ContainerBox({
   title,
 }: React.PropsWithChildren<Readonly<Props>>) {
   return (
-    <Card elevation={0}>
-      {title && (
-        <>
-          <CardHeader
-            title={
-              <Typography variant="h4" color="primary" align="center">
-                {title}
-              </Typography>
-            }
-          />
-          <Divider />
-        </>
-      )}
-      <CardContent>
-        <Box display="flex" flexDirection="column" gap={4}>
-          {children}
-        </Box>
-      </CardContent>
-    </Card>
+    <GridContainer>
+      <Grid item xs={12}>
+        <Card elevation={0}>
+          {title && (
+            <>
+              <CardHeader
+                title={
+                  <Typography variant="h4" color="primary" align="center">
+                    {title}
+                  </Typography>
+                }
+              />
+              <Divider />
+            </>
+          )}
+          <CardContent>
+            <ColFlexBox gap={4}>{children}</ColFlexBox>
+          </CardContent>
+        </Card>
+      </Grid>
+    </GridContainer>
   );
 }

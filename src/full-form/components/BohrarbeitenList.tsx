@@ -1,8 +1,9 @@
-import { Box, FormLabel, Grid } from "@mui/material";
+import { FormLabel, Grid } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { AppService, Service } from "um-types";
 import { AppTextField } from "../../shared/components/AppTextField";
+import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import { AppState } from "../../store";
 import { useServiceColli } from "../hooks";
 
@@ -14,13 +15,13 @@ export function BohrarbeitenList() {
   ) as AppService[];
 
   return (
-    <Box display="flex" flexDirection="column" gap={2}>
+    <ColFlexBox>
       <Grid alignItems="center" container spacing={2}>
         {bohrArbeiten.map((b) => (
           <BohrArbeit service={b} key={b.id}></BohrArbeit>
         ))}
       </Grid>
-    </Box>
+    </ColFlexBox>
   );
 }
 
@@ -39,6 +40,7 @@ function BohrArbeit({ service }: Readonly<Props>) {
       </Grid>
       <Grid item xs={4} sm={2}>
         <AppTextField
+          size="small"
           onFocus={() => setFocused(true)}
           onBlur={() => setFocused(false)}
           onChange={(ev) => onColliChange(ev.target.value)}

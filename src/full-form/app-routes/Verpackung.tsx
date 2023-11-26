@@ -5,16 +5,17 @@ import {
   Card,
   CardContent,
   CardHeader,
-  Divider,
   Grid,
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { AppPacking, Order, Service } from "um-types";
 import { AppTextField } from "../../shared/components/AppTextField";
+import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../../shared/components/ContainerBox";
-import { OrderSwitchField } from "../components/OrderSwitchField";
+import { GridContainer } from "../../shared/components/GridContainer";
 import { AppState } from "../../store";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 import { useServiceColli } from "../hooks";
 
 export default function Verpackung() {
@@ -35,11 +36,11 @@ export default function Verpackung() {
       />
 
       {order.needPackings && (
-        <Grid container spacing={4}>
+        <GridContainer spacing={4}>
           {packings.map((packing) => (
             <PackingCard key={packing.id} packing={packing} />
           ))}
-        </Grid>
+        </GridContainer>
       )}
     </ContainerBox>
   );
@@ -60,10 +61,10 @@ function PackingCard({ packing }: Readonly<Props>) {
 
   return (
     <Grid item xs={12}>
-      <Card sx={{ height: "100%" }} variant="outlined">
+      <Card>
         <CardHeader
           sx={{
-            background: "#e7e2da",
+            background: (theme) => theme.palette.primary.light,
           }}
           title={
             <Box
@@ -71,15 +72,17 @@ function PackingCard({ packing }: Readonly<Props>) {
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography variant="h6">{packing.name}</Typography>
-              <Typography variant="h6" align="right">
+              <Typography color="#fff" variant="h6">
+                {packing.name}
+              </Typography>
+              <Typography color="#fff" variant="h6" align="right">
                 {formatter.format(Number(packing.price))}
               </Typography>
             </Box>
           }
         />
         <CardContent>
-          <Box display="flex" flexDirection="column" gap={2}>
+          <ColFlexBox>
             <Typography variant="body2">{packing.desc}</Typography>
             <Box display="flex" justifyContent="end" width="100%">
               <AppTextField
@@ -104,7 +107,7 @@ function PackingCard({ packing }: Readonly<Props>) {
                 fullWidth={false}
               />
             </Box>
-          </Box>
+          </ColFlexBox>
         </CardContent>
       </Card>
     </Grid>

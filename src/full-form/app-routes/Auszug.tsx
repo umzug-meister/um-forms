@@ -1,9 +1,9 @@
-import { Alert, Box, Typography, TypographyProps } from "@mui/material";
+import { Alert, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
+import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../../shared/components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
-import { OrderSwitchField } from "../components/OrderSwitchField";
 import {
   etagen,
   liftTypes,
@@ -12,6 +12,7 @@ import {
   typoProps,
 } from "../../shared/constants";
 import { AppState } from "../../store";
+import { OrderSwitchField } from "../components/OrderSwitchField";
 import StockwerkeToggle from "../components/StockwerkeToggle";
 
 export default function Auszug() {
@@ -141,8 +142,8 @@ export default function Auszug() {
       />
 
       {order.from.demontage && (
-        <Box display="flex" flexDirection="column" gap={2}>
-          <Box display="flex" flexDirection="column" gap={0.5}>
+        <ColFlexBox>
+          <ColFlexBox gap={1}>
             <Alert severity="info">
               Eine abschließende Montage der Küche ist zurzeit nicht möglich
             </Alert>
@@ -154,7 +155,7 @@ export default function Auszug() {
               endAdornment="Meter"
               helperText="Breite der Küchenzeile zum Demontieren"
             />
-          </Box>
+          </ColFlexBox>
 
           <OrderField<Address>
             path={path}
@@ -173,7 +174,7 @@ export default function Auszug() {
             endAdornment="Meter"
             helperText="Breite aller Schränke zum Demontieren"
           />
-        </Box>
+        </ColFlexBox>
       )}
 
       <Typography {...typoProps}>besondere Gegenstände</Typography>

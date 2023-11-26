@@ -103,6 +103,16 @@ const appSlice = createSlice({
 
       state.current = next;
     },
+
+    addImage(state, action: PayloadAction<{ imageUrl: string }>) {
+      state.current.images.push(action.payload.imageUrl);
+    },
+
+    removeImage(state, action: PayloadAction<{ imageUrl: string }>) {
+      state.current.images = state.current.images.filter(
+        (i) => i !== action.payload.imageUrl
+      );
+    },
     setServiceColli(
       state,
       action: PayloadAction<{ id: string; colli: string }>
@@ -182,6 +192,8 @@ export const {
   setSelectedPriceId,
   calculateOrder,
   clearState,
+  addImage,
+  removeImage,
 } = appSlice.actions;
 
 export { appReducer };
