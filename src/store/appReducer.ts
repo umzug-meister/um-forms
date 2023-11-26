@@ -1,5 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { AppPrice, MLeistung, Order, OrderService, Service } from "um-types";
+import {
+  AppPrice,
+  MLeistung,
+  Order,
+  OrderService,
+  SendData,
+  Service,
+} from "um-types";
 import { appRequest } from "../api";
 import { Urls } from "../api/Urls";
 
@@ -59,7 +66,7 @@ const initialOrder = {
   prices: {},
   timeBased: {},
   leistungen: new Array<MLeistung>(),
-  images: new Array<string>(),
+  sendData: new Array<SendData>(),
   services: new Array<OrderService>(),
 } as Order;
 
@@ -104,13 +111,13 @@ const appSlice = createSlice({
       state.current = next;
     },
 
-    addImage(state, action: PayloadAction<{ imageUrl: string }>) {
-      state.current.images.push(action.payload.imageUrl);
+    addImageData(state, action: PayloadAction<{ sendData: SendData }>) {
+      state.current.sendData.push(action.payload.sendData);
     },
 
-    removeImage(state, action: PayloadAction<{ imageUrl: string }>) {
-      state.current.images = state.current.images.filter(
-        (i) => i !== action.payload.imageUrl
+    removeImageData(state, action: PayloadAction<{ sendData: SendData }>) {
+      state.current.sendData = state.current.sendData.filter(
+        (i) => i.Key !== action.payload.sendData.Key
       );
     },
     setServiceColli(
@@ -192,8 +199,8 @@ export const {
   setSelectedPriceId,
   calculateOrder,
   clearState,
-  addImage,
-  removeImage,
+  addImageData,
+  removeImageData,
 } = appSlice.actions;
 
 export { appReducer };

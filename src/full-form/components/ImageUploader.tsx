@@ -1,6 +1,6 @@
 /// <reference types="aws-sdk" />
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
-import { Box, CardActions, CardMedia, Grid } from "@mui/material";
+import { CardActions, CardMedia, Grid } from "@mui/material";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -9,12 +9,12 @@ import IconButton from "@mui/material/IconButton";
 import { CognitoIdentityCredentials, config, S3 } from "aws-sdk";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Order } from "um-types";
+import { Order, SendData } from "um-types";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import { GridContainer } from "../../shared/components/GridContainer";
 import { useOption } from "../../shared/hooks";
 import { AppState } from "../../store";
-import { addImage, removeImage } from "../../store/appReducer";
+import { addImageData, removeImageData } from "../../store/appReducer";
 
 function initAws(poolId: string) {
   config.update({
@@ -25,22 +25,15 @@ function initAws(poolId: string) {
   });
 }
 
-function createFolderPath(name: string) {
+function createFolderPath() {
   const now = new Date();
-
   const year = now.getFullYear();
   const month = String(now.getMonth() + 1).padStart(2, "0");
   const day = String(now.getDate()).padStart(2, "0");
-  const album = name;
-  return `public/${year}/${month}/${day}/${album}/`;
+  return `public/${year}/${month}/${day}/`;
 }
 
 export const ImageUploader = () => {
-  const {
-    images,
-    customer: { lastName },
-  } = useSelector<AppState, Order>((s) => s.app.current);
-
   const poolId = useOption("poolId");
 
   const [showLoading, setShowLoading] = useState(false);
@@ -58,7 +51,7 @@ export const ImageUploader = () => {
     if (files !== null) {
       const promises = new Array<Promise<S3.ManagedUpload.SendData>>();
       setShowLoading(true);
-      const path = createFolderPath(lastName);
+      const path = createFolderPath();
 
       for (let i = 0; i < files.length; i++) {
         let currentFile = files.item(i);
@@ -73,8 +66,8 @@ export const ImageUploader = () => {
           const promise = upload.promise();
           promises.push(promise);
           promise
-            .then((data) => {
-              dispatch(addImage({ imageUrl: data.Location }));
+            .then((sendData) => {
+              dispatch(addImageData({ sendData }));
             })
             .catch((err) => console.log(err));
         }
@@ -86,48 +79,50 @@ export const ImageUploader = () => {
     }
   }
 
-  function onRemove(url: string) {
-    dispatch(removeImage({ imageUrl: url }));
+  function onRemove(sendData: SendData) {
+    dispatch(removeImageData({ sendData }));
   }
 
-  const props = { images, onFilesChange, onRemove, showLoading };
+  const props = { onFilesChange, onRemove, showLoading };
   return <ImageUploaderRenderer {...props} />;
 };
 
 interface Props {
-  images: string[];
-  onRemove(url: string): void;
+  onRemove(sd: SendData): void;
   onFilesChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   showLoading: boolean;
 }
 
 const ImageUploaderRenderer: React.FC<Props> = ({
-  onFilesChange,
-  images,
-  onRemove,
   showLoading,
+  onFilesChange,
+  onRemove,
 }) => {
+  const { sendData } = useSelector<AppState, Order>((s) => s.app.current);
+
   return (
-    <ColFlexBox>
-      <Box>
-        {showLoading ? (
-          <CircularProgress />
-        ) : (
-          <Button component="label" variant="outlined">
-            Bilder anhängen
-            <input
-              hidden
-              onChange={onFilesChange}
-              accept="image/*"
-              multiple
-              type="file"
-            />
-          </Button>
-        )}
-      </Box>
+    <ColFlexBox alignItems="center">
+      {showLoading ? (
+        <CircularProgress />
+      ) : (
+        <Button component="label" variant="outlined">
+          Bilder anhängen
+          <input
+            hidden
+            onChange={onFilesChange}
+            accept="image/*"
+            multiple
+            type="file"
+          />
+        </Button>
+      )}
       <GridContainer>
-        {images.map((url) => (
-          <ImagePreview url={url} key={url} onRemove={() => onRemove(url)} />
+        {sendData.map((sd) => (
+          <ImagePreview
+            url={sd.Location}
+            key={sd.Location}
+            onRemove={() => onRemove(sd)}
+          />
         ))}
       </GridContainer>
     </ColFlexBox>
@@ -141,8 +136,8 @@ const ImagePreview: React.FC<{ url: string; onRemove: () => void }> = ({
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card elevation={2} sx={{ padding: 1 }}>
-        <CardMedia sx={{ height: 200 }} image={url}></CardMedia>
-        <CardActions>
+        <CardMedia sx={{ height: 200 }} image={url} />
+        <CardActions sx={{ justifyContent: "center" }}>
           <IconButton onClick={onRemove} color="error">
             <DeleteOutlineIcon />
           </IconButton>
