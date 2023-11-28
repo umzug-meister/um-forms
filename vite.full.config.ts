@@ -7,9 +7,7 @@ export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
     base: mode === "development" ? "/" : "/um-forms/form/",
-    define: {
-      global: {},
-    },
+
     build: {
       rollupOptions: {
         input: {
