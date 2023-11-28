@@ -1,13 +1,13 @@
 import { lazy } from "react";
 import { Route, Routes } from "react-router-dom";
 import { LazyLoad } from "../../shared/components/LazyLoad";
-import Request from "./Request";
 
 const Contact = lazy(() => import("./Contact"));
 const Auszug = lazy(() => import("./Auszug"));
 const Einzug = lazy(() => import("./Einzug"));
 const Verpackung = lazy(() => import("./Verpackung"));
 const Main = lazy(() => import("./Main"));
+const Request = lazy(() => import("./Request"));
 const Success = lazy(() => import("../../shared/routes/Success"));
 
 export function AppRoutes() {
