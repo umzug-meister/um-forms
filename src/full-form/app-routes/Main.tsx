@@ -2,7 +2,6 @@ import {
   Alert,
   AlertColor,
   Box,
-  Snackbar,
   Step,
   StepLabel,
   Stepper,
@@ -14,10 +13,6 @@ import { ButtonProps } from "@mui/material/Button";
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
-import {
-  ValidationError,
-  ValidationErrorType,
-} from "../../shared/classes/ValidationError";
 import { AppButton } from "../../shared/components/AppButton";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import { useValidate } from "../../shared/hooks/useValidate";
@@ -56,6 +51,9 @@ export default function Main() {
     } catch (e: any) {
       alertMessage.current = e.toString();
       setOpenSnackbar(true);
+      setTimeout(() => {
+        setOpenSnackbar(false);
+      }, 5000);
     }
   };
 
@@ -76,30 +74,26 @@ export default function Main() {
   };
 
   return (
-    <>
-      <Snackbar
-        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-        open={openSnackbar}
-        onClose={() => setOpenSnackbar(false)}
-      >
-        <Alert severity={severity.current}>{alertMessage.current}</Alert>
-      </Snackbar>
-      <ColFlexBox gap={4} alignItems="center">
-        <Stepper activeStep={activeStep}>
-          {routes.map((route) => (
-            <Step key={route.label}>
-              <StepLabel>{narrowScreen ? null : route.label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+    <ColFlexBox gap={4} alignItems="center" paddingBottom={5}>
+      <Stepper activeStep={activeStep}>
+        {routes.map((route) => (
+          <Step key={route.label}>
+            <StepLabel>{narrowScreen ? null : route.label}</StepLabel>
+          </Step>
+        ))}
+      </Stepper>
 
-        <Outlet />
+      <Outlet />
 
-        <Box display="flex" gap={4} paddingBottom={5}>
+      <ColFlexBox sx={{ width: "100%" }}>
+        <Box display="flex" gap={4} justifyContent="center">
           <AppButton {...backButtonProps}>zurück</AppButton>
           {lastStep ? null : <AppButton {...nextButtonProps}>weiter</AppButton>}
         </Box>
+        {openSnackbar && (
+          <Alert severity={severity.current}>{alertMessage.current}</Alert>
+        )}
       </ColFlexBox>
-    </>
+    </ColFlexBox>
   );
 }
