@@ -74,7 +74,7 @@ export default function Main() {
   };
 
   return (
-    <ColFlexBox gap={4} alignItems="center" paddingBottom={5}>
+    <ColFlexBox gap={4} alignItems="center">
       <Stepper activeStep={activeStep}>
         {routes.map((route) => (
           <Step key={route.label}>
@@ -90,9 +90,11 @@ export default function Main() {
           <AppButton {...backButtonProps}>zurück</AppButton>
           {lastStep ? null : <AppButton {...nextButtonProps}>weiter</AppButton>}
         </Box>
-        {openSnackbar && (
-          <Alert severity={severity.current}>{alertMessage.current}</Alert>
-        )}
+        <Box sx={{ minHeight: 64 }}>
+          {openSnackbar && (
+            <Alert severity={severity.current}>{alertMessage.current}</Alert>
+          )}
+        </Box>
       </ColFlexBox>
     </ColFlexBox>
   );
