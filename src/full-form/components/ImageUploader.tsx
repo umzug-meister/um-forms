@@ -1,4 +1,3 @@
-/// <reference types="aws-sdk" />
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import { CardActions, CardMedia, Grid } from "@mui/material";
 import Button from "@mui/material/Button";
