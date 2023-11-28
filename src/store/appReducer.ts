@@ -92,6 +92,20 @@ const initialState: AppSlice = {
   services: new Array<Service>(),
 };
 
+const calculateVolume = (state: AppSlice) => {
+  const itemsVolume = state.current.items.reduce((acc, next) => {
+    return acc + Number(next.colli) * Number(next.volume);
+  }, 0);
+
+  const boxVol =
+    Number(state.options.boxCbm) * Number(state.current.boxNumber || 0);
+  const kleiderboxVol =
+    Number(state.options.kleiderboxCbm) *
+    Number(state.current.kleiderboxNumber || 0);
+
+  state.current.volume = boxVol + kleiderboxVol + itemsVolume;
+};
+
 const appSlice = createSlice({
   name: "order",
   initialState,
@@ -193,6 +207,7 @@ const appSlice = createSlice({
       } else {
         state.current.items[index].colli = furniture.colli;
       }
+      calculateVolume(state);
     },
     updateOrderProps(
       state,
@@ -204,6 +219,7 @@ const appSlice = createSlice({
       set(next, path, value);
 
       state.current = next;
+      calculateVolume(state);
     },
     clearState(state) {
       state.current = initialOrder;

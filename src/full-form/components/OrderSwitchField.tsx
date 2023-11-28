@@ -7,11 +7,8 @@ import {
   useMediaQuery,
   useTheme,
 } from "@mui/material";
-import { useCallback, useId } from "react";
-import { useDispatch } from "react-redux";
+import { useId } from "react";
 import { Order } from "um-types";
-import { AppDispatch } from "../../store";
-import { updateOrderProps } from "../../store/appReducer";
 import { useOrderValue } from "../../shared/hooks";
 
 type Path = keyof Order;
@@ -36,22 +33,9 @@ export function OrderSwitchField<T>({
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("md"));
 
-  const value = useOrderValue(path, nestedPath);
-
-  const dispatch = useDispatch<AppDispatch>();
+  const { value, setValue } = useOrderValue(path, nestedPath);
 
   const labelId = useId();
-
-  const handleChange = useCallback(
-    (value: any) => {
-      const propPath: string[] = [path];
-      if (nestedPath) {
-        propPath.push(String(nestedPath));
-      }
-      dispatch(updateOrderProps({ path: propPath, value }));
-    },
-    [path, nestedPath]
-  );
 
   return (
     <FormControl
@@ -67,7 +51,7 @@ export function OrderSwitchField<T>({
       <RadioGroup
         row={!narrowScreen}
         sx={{ paddingLeft: 3 }}
-        onChange={(event) => handleChange(event?.target.value === "true")}
+        onChange={(event) => setValue(event?.target.value === "true")}
         value={Boolean(value)}
       >
         <FormControlLabel

@@ -1,11 +1,7 @@
 import { Paper, ToggleButton, ToggleButtonGroup } from "@mui/material";
-import React, { useCallback } from "react";
-import { useDispatch } from "react-redux";
+import { styled } from "@mui/material/styles";
 import { Address } from "um-types";
 import { useOrderValue } from "../../shared/hooks";
-import { AppDispatch } from "../../store";
-import { updateOrderProps } from "../../store/appReducer";
-import { styled } from "@mui/material/styles";
 
 interface Props {
   path: "to" | "from";
@@ -29,16 +25,7 @@ const StyledToggleButtonGroup = styled(ToggleButtonGroup)(({ theme }) => ({
 }));
 
 export default function StockwerkeToggle({ path }: Readonly<Props>) {
-  const dispatch = useDispatch<AppDispatch>();
-
-  const value = useOrderValue<Address>(path, nestedPath) || [];
-
-  const handleChange = useCallback(
-    (_: React.MouseEvent<HTMLElement>, value: string[]) => {
-      dispatch(updateOrderProps({ path: [path, nestedPath], value }));
-    },
-    [path, nestedPath]
-  );
+  const { value, setValue } = useOrderValue<Address>(path, nestedPath) || [];
 
   return (
     <Paper
@@ -53,7 +40,7 @@ export default function StockwerkeToggle({ path }: Readonly<Props>) {
         fullWidth
         color="primary"
         value={value}
-        onChange={handleChange}
+        onChange={(_, value) => setValue(value)}
       >
         <ToggleButton value="UG">UG</ToggleButton>
         <ToggleButton value="EG">EG</ToggleButton>

@@ -4,13 +4,9 @@ import {
   FormControlLabel,
   FormGroup,
   MenuItem,
-  TextField,
   Typography,
 } from "@mui/material";
-import { useCallback, useEffect, useRef } from "react";
-import { useDispatch } from "react-redux";
-import { AppDispatch } from "../../store";
-import { updateOrderProps } from "../../store/appReducer";
+import { useEffect, useRef } from "react";
 import { NestedPath, Path, useOption, useOrderValue } from "../hooks";
 import { AppTextField } from "./AppTextField";
 
@@ -52,22 +48,10 @@ export default function OrderField<T>({
   helperText,
   endAdornment,
 }: Props<T>) {
-  const value = useOrderValue(path, nestedPath);
-  const dispatch = useDispatch<AppDispatch>();
+  const { value, setValue } = useOrderValue(path, nestedPath);
   const gapiKey = useOption("gapikey");
 
   const loaderRef = useRef<Loader | null>(null);
-
-  const handleChange = useCallback(
-    (value: any) => {
-      const propPath: string[] = [path];
-      if (nestedPath) {
-        propPath.push(String(nestedPath));
-      }
-      dispatch(updateOrderProps({ path: propPath, value }));
-    },
-    [path, nestedPath]
-  );
 
   useEffect(() => {
     if (enableMaps && gapiKey) {
@@ -87,12 +71,12 @@ export default function OrderField<T>({
         autocomplete.addListener("place_changed", () => {
           const { formatted_address } = autocomplete.getPlace();
           if (formatted_address) {
-            handleChange(formatted_address.replace(", Deutschland", ""));
+            setValue(formatted_address.replace(", Deutschland", ""));
           }
         });
       });
     }
-  }, [enableMaps, gapiKey, handleChange]);
+  }, [enableMaps, gapiKey]);
 
   if (as === "checkbox") {
     return (
@@ -102,7 +86,7 @@ export default function OrderField<T>({
             <Checkbox
               checked={Boolean(value)}
               onChange={(ev) => {
-                handleChange(ev.target.checked);
+                setValue(ev.target.checked);
               }}
             />
           }
@@ -127,7 +111,7 @@ export default function OrderField<T>({
       select={select}
       value={value}
       onChange={(ev) => {
-        handleChange(ev.target.value);
+        setValue(ev.target.value);
       }}
       multiline={multiline}
       minRows={4}

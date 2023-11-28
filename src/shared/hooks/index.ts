@@ -1,7 +1,8 @@
+import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Order, Furniture, Category } from "um-types";
 import { AppDispatch, AppState } from "../../store";
-import { AppOptions } from "../../store/appReducer";
+import { AppOptions, updateOrderProps } from "../../store/appReducer";
 
 export type Path = keyof Order;
 export type NestedPath<T> = keyof T;
@@ -15,12 +16,20 @@ export function useOption(name: string) {
 export function useOrderValue<T>(path: Path, nestedPath?: NestedPath<T>) {
   const order = useSelector<AppState, Order>((s) => s.app.current);
 
+  const dispatch = useDispatch<AppDispatch>();
+  const setValue = useCallback((value: any) => {
+    const propPath: string[] = [path];
+    if (nestedPath) {
+      propPath.push(String(nestedPath));
+    }
+    dispatch(updateOrderProps({ path: propPath, value }));
+  }, []);
   let value = order[path];
   if (nestedPath && typeof value === "object") {
     //@ts-ignore
     value = value[nestedPath];
   }
-  return value || "";
+  return { value: value || "", setValue };
 }
 
 export function useAppFurniture() {
