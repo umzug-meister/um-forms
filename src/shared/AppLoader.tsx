@@ -1,7 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { AppDispatch } from "../store";
-import { loadAllOptions, loadAllServices } from "../store/appReducer";
+import {
+  loadAllCategories,
+  loadAllFurniture,
+  loadAllOptions,
+  loadAllServices,
+} from "../store/appReducer";
 
 interface Props {
   full?: boolean;
@@ -9,17 +14,21 @@ interface Props {
 
 export default function AppLoader({
   children,
+  full,
 }: React.PropsWithChildren<Props>) {
   const [init, setInit] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
 
   useEffect(() => {
-    Promise.all([dispatch(loadAllOptions()), dispatch(loadAllServices())]).then(
-      () => {
-        setInit(true);
-      }
-    );
+    Promise.all([
+      full ? dispatch(loadAllFurniture()) : () => Promise.resolve(),
+      full ? dispatch(loadAllCategories()) : () => Promise.resolve(),
+      dispatch(loadAllOptions()),
+      dispatch(loadAllServices()),
+    ]).then(() => {
+      setInit(true);
+    });
   }, []);
 
   if (init) {

@@ -1,6 +1,5 @@
 import { Loader } from "@googlemaps/js-api-loader";
 import {
-  Box,
   Checkbox,
   FormControlLabel,
   FormGroup,

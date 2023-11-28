@@ -26,7 +26,7 @@ export default function Main() {
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(4);
 
   const navigate = useNavigate();
 

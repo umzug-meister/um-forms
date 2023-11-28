@@ -184,30 +184,21 @@ export default function Auszug() {
         label="Sperrige und nicht zerlegbare Gegenstände"
       />
       {order.bulky && (
-        <OrderField
-          path="bulkyText"
-          multiline
-          placeholder="Bitte listen Sie alle sperrige Gegenstände auf und geben Sie die Maßen an."
-        />
+        //TODO:
+        <></>
       )}
       <OrderSwitchField
         path="heavy"
         label="Besonders schwere Gegenstände, ab 100kg"
       />
       {order.heavy && (
-        <OrderField
-          path="heavyText"
-          multiline
-          placeholder="Bitte listen Sie alle schweren Gegenstände auf und geben Sie die Maßen sowie das Gewicht an."
-        />
+        //:TODO:
+        <></>
       )}
       <OrderSwitchField path="expensive" label="Antike und sehr wertvolle" />
       {order.expensive && (
-        <OrderField
-          path="expensiveText"
-          multiline
-          placeholder="Bitte listen Sie alle antike und sehr wertvolle Gegenstände an."
-        />
+        //TODO:
+        <></>
       )}
     </ContainerBox>
   );

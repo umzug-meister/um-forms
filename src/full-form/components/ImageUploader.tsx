@@ -106,7 +106,7 @@ const ImageUploaderRenderer: React.FC<Props> = ({
         <CircularProgress />
       ) : (
         <Button component="label" variant="outlined">
-          Bilder anhängen
+          Jetzt Bilder anhängen
           <input
             hidden
             onChange={onFilesChange}

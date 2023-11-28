@@ -17,6 +17,12 @@ export function AppTextField(props: TextFieldProps) {
               "& input[type=number]": {
                 border: "none !important",
                 padding: "10px!important",
+                appearance: "textfield",
+                MozAppearance: "textfield",
+                WebkitAppearance: "textfield",
+              },
+              "& input[type=number]::-webkit-inner-spin-button": {
+                display: "none",
               },
             }
           : {
@@ -31,6 +37,12 @@ export function AppTextField(props: TextFieldProps) {
               "& input[type=number]": {
                 border: "none !important",
                 padding: "16px!important",
+                appearance: "textfield",
+                MozAppearance: "textfield",
+                WebkitAppearance: "textfield",
+              },
+              "& input[type=number]::-webkit-inner-spin-button": {
+                display: "none",
               },
             }
       }

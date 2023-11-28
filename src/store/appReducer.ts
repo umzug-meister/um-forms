@@ -1,6 +1,8 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   AppPrice,
+  Category,
+  Furniture,
   MLeistung,
   Order,
   OrderService,
@@ -13,11 +15,24 @@ import { Urls } from "../api/Urls";
 import { set } from "lodash";
 import { AppState } from ".";
 
+interface AppSlice {
+  current: Order;
+  options: AppOptions;
+  furniture: Furniture[];
+  services: Service[];
+  categories: Category[];
+  selectedPriceID: string | undefined;
+}
+
 export type SrcType = "express" | "UmzugRuckZuck";
 
 export interface AppOptions {
   [name: string]: any;
 }
+
+export const loadAllCategories = createAsyncThunk("loadAllCategories", () => {
+  return appRequest("get")(Urls.categories());
+});
 
 export const uploadOrder = createAsyncThunk(
   "uploadOrder",
@@ -37,6 +52,10 @@ export const uploadOrder = createAsyncThunk(
   }
 );
 
+export const loadAllFurniture = createAsyncThunk("loadAllFurniture", () => {
+  return appRequest("get")(Urls.items());
+});
+
 export const loadAllOptions = createAsyncThunk("loadAllOptions", () => {
   return appRequest("get")(Urls.options());
 });
@@ -44,13 +63,6 @@ export const loadAllOptions = createAsyncThunk("loadAllOptions", () => {
 export const loadAllServices = createAsyncThunk("loadAllServices", () => {
   return appRequest("get")(Urls.services());
 });
-
-interface AppSlice {
-  current: Order;
-  options: AppOptions;
-  services: Service[];
-  selectedPriceID: string | undefined;
-}
 
 const initialOrder = {
   customer: {
@@ -68,12 +80,15 @@ const initialOrder = {
   leistungen: new Array<MLeistung>(),
   sendData: new Array<SendData>(),
   services: new Array<OrderService>(),
+  items: new Array<Furniture>(),
 } as Order;
 
 const initialState: AppSlice = {
   selectedPriceID: undefined,
   current: initialOrder,
   options: {},
+  furniture: [],
+  categories: [],
   services: new Array<Service>(),
 };
 
@@ -164,6 +179,21 @@ const appSlice = createSlice({
 
       state.current = next;
     },
+    setFurniture(state, action: PayloadAction<{ furniture: Furniture }>) {
+      const { furniture } = action.payload;
+
+      const index = state.current.items.findIndex(
+        (i) =>
+          i.id === furniture.id &&
+          i.selectedCategory === furniture.selectedCategory
+      );
+
+      if (index < 0) {
+        state.current.items.push(furniture);
+      } else {
+        state.current.items[index].colli = furniture.colli;
+      }
+    },
     updateOrderProps(
       state,
       action: PayloadAction<{ path: string[]; value: any }>
@@ -187,6 +217,12 @@ const appSlice = createSlice({
       })
       .addCase(loadAllServices.fulfilled, (state, action) => {
         state.services = action.payload;
+      })
+      .addCase(loadAllFurniture.fulfilled, (state, action) => {
+        state.furniture = action.payload;
+      })
+      .addCase(loadAllCategories.fulfilled, (state, action) => {
+        state.categories = action.payload;
       });
   },
 });
@@ -201,6 +237,7 @@ export const {
   clearState,
   addImageData,
   removeImageData,
+  setFurniture,
 } = appSlice.actions;
 
 export { appReducer };
