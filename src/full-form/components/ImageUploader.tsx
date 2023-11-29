@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 
-import * as AWS from "aws-sdk";
+import { CognitoIdentityCredentials, config, S3 } from "aws-sdk";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Order, SendData } from "um-types";
@@ -16,9 +16,9 @@ import { AppState } from "../../store";
 import { addImageData, removeImageData } from "../../store/appReducer";
 
 function initAws(poolId: string) {
-  AWS.config.update({
+  config.update({
     region: "eu-central-1",
-    credentials: new AWS.CognitoIdentityCredentials({
+    credentials: new CognitoIdentityCredentials({
       IdentityPoolId: poolId,
     }),
   });
@@ -48,14 +48,14 @@ export const ImageUploader = () => {
   function onFilesChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
     if (files !== null) {
-      const promises = new Array<Promise<AWS.S3.ManagedUpload.SendData>>();
+      const promises = new Array<Promise<S3.ManagedUpload.SendData>>();
       setShowLoading(true);
       const path = createFolderPath();
 
       for (let i = 0; i < files.length; i++) {
         let currentFile = files.item(i);
         if (currentFile !== null) {
-          const upload = new AWS.S3.ManagedUpload({
+          const upload = new S3.ManagedUpload({
             params: {
               Bucket: "umzug.meister",
               Key: path.concat(currentFile.name),
