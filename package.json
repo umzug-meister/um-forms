@@ -8,7 +8,7 @@
     "full": "vite --host --config vite.full.config.ts",
     "build": "tsc && vite build --config vite.ex.config.ts",
     "build-full": "tsc && vite build --config vite.full.config.ts",
-    "preview": "vite preview"
+    "preview": "vite preview  --config vite.full.config.ts"
   },
   "peerDependencies": {
     "aws-sdk": "2.1506.0"

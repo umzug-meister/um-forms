@@ -34,7 +34,7 @@ export default function Main() {
 
   const { validate } = useValidate();
 
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
 
   const navigate = useNavigate();
 

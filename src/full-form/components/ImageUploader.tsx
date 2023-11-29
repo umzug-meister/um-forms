@@ -5,7 +5,7 @@ import Card from "@mui/material/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 
-import { CognitoIdentityCredentials, config, S3 } from "aws-sdk";
+import { CognitoIdentityCredentials, config, S3, STS } from "aws-sdk";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Order, SendData } from "um-types";
@@ -14,6 +14,8 @@ import { GridContainer } from "../../shared/components/GridContainer";
 import { useOption } from "../../shared/hooks";
 import { AppState } from "../../store";
 import { addImageData, removeImageData } from "../../store/appReducer";
+
+console.debug(STS.prototype, STS);
 
 function initAws(poolId: string) {
   config.update({
