@@ -15,8 +15,6 @@ import { useOption } from "../../shared/hooks";
 import { AppState } from "../../store";
 import { addImageData, removeImageData } from "../../store/appReducer";
 
-console.debug(STS.prototype, STS);
-
 function initAws(poolId: string) {
   config.update({
     region: "eu-central-1",
@@ -36,6 +34,7 @@ function createFolderPath() {
 
 export const ImageUploader = () => {
   const poolId = useOption("poolId");
+  console.log(STS.prototype, STS);
 
   const [showLoading, setShowLoading] = useState(false);
 
