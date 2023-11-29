@@ -14,10 +14,8 @@ import { SendButton } from "../../shared/SendButton";
 import { ImageUploader } from "../components/ImageUploader";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { FurnitureCalculator } from "../components/FurnitureCalculator";
-import { STS } from "aws-sdk";
 
 export default function Request() {
-  console.log("log", STS.prototype, STS);
   return (
     <ContainerBox title="Auftrag absenden">
       <Box>

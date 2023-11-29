@@ -8,19 +8,19 @@
     "full": "vite --host --config vite.full.config.ts",
     "build": "tsc && vite build --config vite.ex.config.ts",
     "build-full": "tsc && vite build --config vite.full.config.ts",
-    "preview": "vite preview  --config vite.full.config.ts"
-  },
-  "peerDependencies": {
-    "aws-sdk": "2.1506.0"
+    "build-test": "tsc && vite build --config vite.full.test.config.ts",
+    "preview": "vite preview  --config vite.full.config.ts",
+    "serve": "npm run build-test && http-server form"
   },
   "dependencies": {
+    "@aws-sdk/client-s3": "^3.461.0",
+    "@aws-sdk/credential-providers": "^3.461.0",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@googlemaps/js-api-loader": "^1.15.1",
     "@mui/icons-material": "^5.11.16",
     "@mui/material": "^5.12.1",
     "@reduxjs/toolkit": "^1.9.7",
-    "aws-sdk": "2.1506.0",
     "axios": "^1.3.6",
     "lodash": "^4.17.21",
     "react": "^18.2.0",
@@ -35,6 +35,7 @@
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "@vitejs/plugin-react": "^4.2.0",
+    "http-server": "^14.1.1",
     "typescript": "^5.3.2",
     "um-types": "^1.0.31",
     "vite": "^5.0.3"

@@ -5,7 +5,9 @@ import Card from "@mui/material/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 
-import { CognitoIdentityCredentials, config, S3, STS } from "aws-sdk";
+import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Order, SendData } from "um-types";
@@ -14,15 +16,6 @@ import { GridContainer } from "../../shared/components/GridContainer";
 import { useOption } from "../../shared/hooks";
 import { AppState } from "../../store";
 import { addImageData, removeImageData } from "../../store/appReducer";
-
-function initAws(poolId: string) {
-  config.update({
-    region: "eu-central-1",
-    credentials: new CognitoIdentityCredentials({
-      IdentityPoolId: poolId,
-    }),
-  });
-}
 
 function createFolderPath() {
   const now = new Date();
@@ -34,48 +27,67 @@ function createFolderPath() {
 
 export const ImageUploader = () => {
   const poolId = useOption("poolId");
-  console.log("test", STS.prototype, STS);
 
   const [showLoading, setShowLoading] = useState(false);
 
   const dispatch = useDispatch();
 
+  let client: S3Client | null = null;
+
   useEffect(() => {
+    const region = "eu-central-1";
     if (poolId) {
-      initAws(poolId);
+      client = new S3Client({
+        region,
+        credentials: fromCognitoIdentityPool({
+          identityPoolId: poolId,
+          clientConfig: { region },
+        }),
+      });
     }
   }, [poolId]);
 
-  function onFilesChange(event: React.ChangeEvent<HTMLInputElement>) {
+  async function onFilesChange(event: React.ChangeEvent<HTMLInputElement>) {
     const files = event.target.files;
     if (files !== null) {
-      const promises = new Array<Promise<S3.ManagedUpload.SendData>>();
       setShowLoading(true);
       const path = createFolderPath();
 
+      if (client === null) {
+        return;
+      }
+      const Bucket = "umzug.meister";
       for (let i = 0; i < files.length; i++) {
         let currentFile = files.item(i);
         if (currentFile !== null) {
-          const upload = new S3.ManagedUpload({
-            params: {
-              Bucket: "umzug.meister",
-              Key: path.concat(currentFile.name),
-              Body: currentFile,
-            },
+          const Key = path.concat(currentFile.name);
+          const putCommand = new PutObjectCommand({
+            Bucket,
+            Key,
+            Body: currentFile,
           });
-          const promise = upload.promise();
-          promises.push(promise);
-          promise
-            .then((sendData) => {
-              dispatch(addImageData({ sendData }));
-            })
-            .catch((err) => console.log(err));
+
+          await client.send(putCommand);
+
+          const response = `https://s3.eu-central-1.amazonaws.com/${Bucket}/${Key}`;
+
+          // dispatch(addImageData({ sendData: { Bucket, }}))
+          console.log(response);
+
+          // const promise = upload.promise();
+          // promises.push(promise);
+          // promise
+          //   .then((sendData) => {
+          //     dispatch(addImageData({ sendData }));
+          //   })
+          //   .catch((err) => console.log(err));
         }
       }
+      setShowLoading(false);
 
-      Promise.all(promises).then(() => {
-        setShowLoading(false);
-      });
+      // Promise.all(promises).then(() => {
+      //   setShowLoading(false);
+      // });
     }
   }
 
