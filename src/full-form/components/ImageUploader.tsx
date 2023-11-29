@@ -34,7 +34,7 @@ function createFolderPath() {
 
 export const ImageUploader = () => {
   const poolId = useOption("poolId");
-  console.log(STS.prototype, STS);
+  console.log("test", STS.prototype, STS);
 
   const [showLoading, setShowLoading] = useState(false);
 
