@@ -47,7 +47,7 @@ export default function Auszug() {
         path={path}
         nestedPath="runningDistance"
         select
-        label="Entfernung vom Parkplatz zu Haustür, in Meter"
+        label="Entfernung vom Parkplatz zur Haustür, in Meter"
         selectOptions={parkingDistances}
       />
 
