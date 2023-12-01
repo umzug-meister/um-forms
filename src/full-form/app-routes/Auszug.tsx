@@ -12,6 +12,7 @@ import {
   typoProps,
 } from "../../shared/constants";
 import { AppState } from "../../store";
+import { CustomItemsWidget } from "../components/CustomItemsWidget";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 import StockwerkeToggle from "../components/StockwerkeToggle";
 
@@ -184,22 +185,17 @@ export default function Auszug() {
         label="Sperrige und nicht zerlegbare Gegenstände"
       />
       {order.bulky && (
-        //TODO:
-        <></>
+        <CustomItemsWidget propName="bulkyItems" breite tiefe hoehe />
       )}
       <OrderSwitchField
         path="heavy"
         label="Besonders schwere Gegenstände, ab 100kg"
       />
       {order.heavy && (
-        //:TODO:
-        <></>
+        <CustomItemsWidget propName="heavyItems" breite tiefe hoehe weight />
       )}
       <OrderSwitchField path="expensive" label="Antike und sehr wertvolle" />
-      {order.expensive && (
-        //TODO:
-        <></>
-      )}
+      {order.expensive && <CustomItemsWidget propName="expensiveItems" />}
     </ContainerBox>
   );
 }

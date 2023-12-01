@@ -28,14 +28,13 @@ const routes = [
 export default function Main() {
   const severity = useRef<AlertColor>("error");
   const alertMessage = useRef("");
+
   const [openSnackbar, setOpenSnackbar] = useState(false);
+  const [activeStep, setActiveStep] = useState(1);
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
   const { validate } = useValidate();
-
-  const [activeStep, setActiveStep] = useState(3);
-
   const navigate = useNavigate();
 
   useEffect(() => {

@@ -30,6 +30,10 @@ export function AppTextField(props: TextFieldProps) {
       fullWidth
       variant="outlined"
       {...props}
+      inputProps={{
+        "data-hj-allow": "",
+        ...props.inputProps,
+      }}
     />
   );
 }
