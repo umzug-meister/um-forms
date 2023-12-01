@@ -11,9 +11,14 @@ import ContainerBox from "../../shared/components/ContainerBox";
 import { DataPrivacyCheck } from "../../shared/components/DataPrivacyCheck";
 import OrderField from "../../shared/components/OrderField";
 import { SendButton } from "../../shared/SendButton";
-import { ImageUploader } from "../components/ImageUploader";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
-import { FurnitureCalculator } from "../components/FurnitureCalculator";
+import { LazyLoad } from "../../shared/components/LazyLoad";
+import { lazy } from "react";
+
+const FurnitureCalculator = lazy(
+  () => import("../components/FurnitureCalculator")
+);
+const ImageUploader = lazy(() => import("../components/ImageUploader"));
 
 export default function Request() {
   return (
@@ -48,7 +53,9 @@ export default function Request() {
               besseres Bild von Ihrem Umzugsvolumen machen und Ihnen optimal
               weiterhelfen.
             </Typography>
-            <ImageUploader />
+            <LazyLoad>
+              <ImageUploader />
+            </LazyLoad>
           </AccordionDetails>
         </Accordion>
         <Accordion>
@@ -62,7 +69,9 @@ export default function Request() {
               Nutzen Sie doch einfach unseren praktischen Rechner, um Ihre
               Umzugsliste zu erstellen und das Umzugsvolumen zu berechnen.
             </Typography>
-            <FurnitureCalculator />
+            <LazyLoad>
+              <FurnitureCalculator />
+            </LazyLoad>
           </AccordionDetails>
         </Accordion>
       </Box>

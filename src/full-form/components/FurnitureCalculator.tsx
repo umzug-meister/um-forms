@@ -15,7 +15,7 @@ import { AppDispatch } from "../../store";
 import { setFurniture } from "../../store/appReducer";
 import { NumberInput } from "./NumberInput";
 
-export function FurnitureCalculator() {
+export default function FurnitureCalculator() {
   const categories = useCategories();
 
   const sorted = [...categories];

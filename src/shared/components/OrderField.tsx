@@ -20,6 +20,7 @@ interface Props<T> {
   type?: "text" | "date" | "email" | "number";
   as?: "default" | "checkbox";
   id?: string;
+  required?: true;
   error?: boolean;
   placeholder?: string;
   multiline?: boolean;
@@ -47,6 +48,7 @@ export default function OrderField<T>({
   multiline,
   helperText,
   endAdornment,
+  required,
 }: Props<T>) {
   const { value, setValue } = useOrderValue(path, nestedPath);
   const gapiKey = useOption("gapikey");
@@ -98,6 +100,7 @@ export default function OrderField<T>({
 
   return (
     <AppTextField
+      required={required}
       size="medium"
       InputProps={{ endAdornment }}
       helperText={

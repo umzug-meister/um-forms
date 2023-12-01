@@ -25,6 +25,7 @@ export function CustomerData() {
               path="customer"
               nestedPath="firstName"
               label="Vorname"
+              required
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -32,6 +33,7 @@ export function CustomerData() {
               path="customer"
               nestedPath="lastName"
               label="Nachname"
+              required
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -40,6 +42,7 @@ export function CustomerData() {
               nestedPath="email"
               type="email"
               label="E-Mail"
+              required
             />
           </Grid>
           <Grid item xs={12} sm={6}>

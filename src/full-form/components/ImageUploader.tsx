@@ -26,7 +26,7 @@ function createFolderPath(dateAsString: string | undefined) {
   return `public/${year}/${month}/${day}/`;
 }
 
-export const ImageUploader = () => {
+export default function ImageUploader() {
   const poolId = useOption("poolId");
 
   const { bucketImages, date, date_to } = useSelector<AppState, Order>(
@@ -122,7 +122,7 @@ export const ImageUploader = () => {
       </GridContainer>
     </ColFlexBox>
   );
-};
+}
 
 const ImagePreview: React.FC<{ url: string; onRemove: () => void }> = ({
   url,

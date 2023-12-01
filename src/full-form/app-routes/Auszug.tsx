@@ -9,6 +9,7 @@ import {
   liftTypes,
   movementObjects,
   parkingDistances,
+  squares,
   typoProps,
 } from "../../shared/constants";
 import { AppState } from "../../store";
@@ -23,6 +24,7 @@ export default function Auszug() {
   return (
     <ContainerBox title="Auszug">
       <OrderField<Address>
+        required
         path={path}
         nestedPath="address"
         enableMaps
@@ -41,6 +43,7 @@ export default function Auszug() {
         }}
       />
       <OrderField<Address>
+        required
         path={path}
         nestedPath="runningDistance"
         select
@@ -49,6 +52,7 @@ export default function Auszug() {
       />
 
       <OrderField<Address>
+        required
         path={path}
         nestedPath="movementObject"
         select
@@ -66,6 +70,7 @@ export default function Auszug() {
             path={path}
             nestedPath="floor"
             select
+            required
             label="Stockwerk"
             selectOptions={etagen}
           />
@@ -74,6 +79,7 @@ export default function Auszug() {
             path={path}
             nestedPath="liftType"
             select
+            required
             label="Fahrstuhl"
             selectOptions={liftTypes}
           />
@@ -87,6 +93,7 @@ export default function Auszug() {
 
       <OrderField<Address>
         path={path}
+        required
         nestedPath="roomsNumber"
         type="number"
         label="Anzahl der Zimmer"
@@ -103,9 +110,10 @@ export default function Auszug() {
       <OrderField<Address>
         path={path}
         nestedPath="area"
-        type="number"
+        select
+        required
+        selectOptions={squares}
         label="Wohnfläche"
-        endAdornment="m²"
       />
 
       <Typography {...typoProps}>weitere Räumlichkeiten</Typography>

@@ -27,6 +27,7 @@ export default function Contact() {
               path="date"
               type="date"
               label="Umzugstermin"
+              required
             />
           </Grid>
         </GridContainer>
@@ -38,6 +39,7 @@ export default function Contact() {
               path="date_from"
               type="date"
               label="frühester Umzugstermin"
+              required
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -46,6 +48,7 @@ export default function Contact() {
               path="date_to"
               type="date"
               label="spätester Umzugstermin"
+              required
             />
           </Grid>
         </GridContainer>

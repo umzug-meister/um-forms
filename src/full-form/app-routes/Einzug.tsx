@@ -25,6 +25,7 @@ export default function Einzug() {
       <OrderField<Address>
         path={path}
         nestedPath="address"
+        required
         enableMaps
         label="Einzugsadresse"
         id="from-input-field"
@@ -43,6 +44,7 @@ export default function Einzug() {
 
       <OrderField<Address>
         path={path}
+        required
         nestedPath="runningDistance"
         select
         label="Entfernung vom Parkplatz zu Haustür, in Meter"
@@ -51,6 +53,7 @@ export default function Einzug() {
 
       <OrderField<Address>
         path={path}
+        required
         nestedPath="movementObject"
         select
         label="Einzug in"
@@ -67,6 +70,7 @@ export default function Einzug() {
             path={path}
             nestedPath="floor"
             select
+            required
             label="Stockwerk"
             selectOptions={etagen}
           />
@@ -74,6 +78,7 @@ export default function Einzug() {
             path={path}
             nestedPath="liftType"
             select
+            required
             label="Fahrstuhl"
             selectOptions={liftTypes}
           />
@@ -112,8 +117,8 @@ export default function Einzug() {
 
           <OrderField<Address>
             path={path}
-            label={"Betten"}
-            nestedPath={"bedNumber"}
+            label="Betten"
+            nestedPath="bedNumber"
             type="number"
             endAdornment="Stück"
             helperText="Anzahl der Betten zum Montieren"

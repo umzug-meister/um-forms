@@ -21,25 +21,52 @@ export function useValidate() {
   return { validate };
 }
 
+function missing(value: string) {
+  throw new ValidationError(
+    `Das Feld "${value}" ist erforderlich. Bitte tragen Sie etwas ein.`
+  );
+}
+
 function validateCustomer(order: Order) {
   const {
     customer: { firstName, lastName, email },
   } = order;
   if (!firstName) {
-    throw new ValidationError("Bitte tragen Sie Ihr Vorname ein");
+    missing("Vorname");
   }
   if (!lastName) {
-    throw new ValidationError("Bitte tragen Sie Ihr Nachname ein");
+    missing("Nachname");
   }
   if (!email) {
-    throw new ValidationError("Bitte tragen Sie Ihr E-Mail Adresse ein");
+    missing("E-Mail");
   }
-  if (!/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
+  if (email && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
     throw new ValidationError("Die E-Mail Adresse ist ungültig");
+  }
+  return validateDate(order);
+}
+
+function validateDate(order: Order) {
+  const now = new Date();
+
+  if (order.isDateFix) {
+    if (!order.date) {
+      missing("Umzugstermin");
+    }
+  } else {
+    if (!order.date_from) {
+      missing("frühester Umzugstermin");
+    }
+    if (!order.date_to) {
+      missing("spätester Umzugstermin");
+    }
   }
   return true;
 }
 
 function validateFrom(order: Order) {
+  const {
+    from: { address, runningDistance, movementObject },
+  } = order;
   return true;
 }
