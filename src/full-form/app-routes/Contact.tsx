@@ -22,13 +22,19 @@ export default function Contact() {
       {isDateFix ? (
         <GridContainer justifyContent={"center"}>
           <Grid item xs={12} sm={6}>
-            <OrderField path="date" type="date" label="Umzugstermin" />
+            <OrderField
+              key="date"
+              path="date"
+              type="date"
+              label="Umzugstermin"
+            />
           </Grid>
         </GridContainer>
       ) : (
         <GridContainer>
           <Grid item xs={12} sm={6}>
             <OrderField
+              key="date_from"
               path="date_from"
               type="date"
               label="frühester Umzugstermin"
@@ -36,6 +42,7 @@ export default function Contact() {
           </Grid>
           <Grid item xs={12} sm={6}>
             <OrderField
+              key="date_to"
               path="date_to"
               type="date"
               label="spätester Umzugstermin"

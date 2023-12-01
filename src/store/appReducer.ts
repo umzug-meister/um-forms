@@ -6,7 +6,7 @@ import {
   MLeistung,
   Order,
   OrderService,
-  SendData,
+  BucketObject,
   Service,
 } from "um-types";
 import { appRequest } from "../api";
@@ -78,7 +78,7 @@ const initialOrder = {
   prices: {},
   timeBased: {},
   leistungen: new Array<MLeistung>(),
-  sendData: new Array<SendData>(),
+  bucketImages: new Array<BucketObject>(),
   services: new Array<OrderService>(),
   items: new Array<Furniture>(),
 } as Order;
@@ -140,15 +140,21 @@ const appSlice = createSlice({
       state.current = next;
     },
 
-    addImageData(state, action: PayloadAction<{ sendData: SendData }>) {
-      state.current.sendData.push(action.payload.sendData);
+    addImageData(state, action: PayloadAction<{ bucketObject: BucketObject }>) {
+      const { bucketObject } = action.payload;
+      if (
+        !state.current.bucketImages.some((i) => i.ETag === bucketObject.ETag)
+      ) {
+        state.current.bucketImages.push(bucketObject);
+      }
     },
 
-    removeImageData(state, action: PayloadAction<{ sendData: SendData }>) {
-      state.current.sendData = state.current.sendData.filter(
-        (i) => i.Key !== action.payload.sendData.Key
+    removeImageData(state, action: PayloadAction<{ ETag: string }>) {
+      state.current.bucketImages = state.current.bucketImages.filter(
+        (i) => i.ETag !== action.payload.ETag
       );
     },
+
     setServiceColli(
       state,
       action: PayloadAction<{ id: string; colli: string }>
@@ -214,6 +220,8 @@ const appSlice = createSlice({
       action: PayloadAction<{ path: string[]; value: any }>
     ) {
       const { path, value } = action.payload;
+
+      console.log(action.payload);
 
       const next = state.current;
       set(next, path, value);

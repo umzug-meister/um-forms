@@ -5,39 +5,44 @@ import Card from "@mui/material/Card";
 import CircularProgress from "@mui/material/CircularProgress";
 import IconButton from "@mui/material/IconButton";
 
-import { S3Client, PutObjectCommand } from "@aws-sdk/client-s3";
+import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Order, SendData } from "um-types";
+import { BucketObject, Order } from "um-types";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import { GridContainer } from "../../shared/components/GridContainer";
 import { useOption } from "../../shared/hooks";
 import { AppState } from "../../store";
 import { addImageData, removeImageData } from "../../store/appReducer";
 
-function createFolderPath() {
-  const now = new Date();
-  const year = now.getFullYear();
-  const month = String(now.getMonth() + 1).padStart(2, "0");
-  const day = String(now.getDate()).padStart(2, "0");
+function createFolderPath(dateAsString: string | undefined) {
+  const date = dateAsString ? new Date(dateAsString) : new Date();
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
   return `public/${year}/${month}/${day}/`;
 }
 
 export const ImageUploader = () => {
   const poolId = useOption("poolId");
 
+  const { bucketImages, date, date_to } = useSelector<AppState, Order>(
+    (s) => s.app.current
+  );
+
   const [showLoading, setShowLoading] = useState(false);
 
   const dispatch = useDispatch();
 
-  let client: S3Client | null = null;
+  const clientRef = useRef<S3Client | null>(null);
 
   useEffect(() => {
     const region = "eu-central-1";
     if (poolId) {
-      client = new S3Client({
+      clientRef.current = new S3Client({
         region,
         credentials: fromCognitoIdentityPool({
           identityPoolId: poolId,
@@ -51,9 +56,9 @@ export const ImageUploader = () => {
     const files = event.target.files;
     if (files !== null) {
       setShowLoading(true);
-      const path = createFolderPath();
+      const path = createFolderPath(date || date_to);
 
-      if (client === null) {
+      if (clientRef.current === null) {
         return;
       }
       const Bucket = "umzug.meister";
@@ -61,56 +66,34 @@ export const ImageUploader = () => {
         let currentFile = files.item(i);
         if (currentFile !== null) {
           const Key = path.concat(currentFile.name);
+
           const putCommand = new PutObjectCommand({
             Bucket,
             Key,
             Body: currentFile,
           });
 
-          await client.send(putCommand);
+          const { ETag } = await clientRef.current.send(putCommand);
 
-          const response = `https://s3.eu-central-1.amazonaws.com/${Bucket}/${Key}`;
+          const Location = `https://s3.eu-central-1.amazonaws.com/${Bucket}/${Key}`;
 
-          // dispatch(addImageData({ sendData: { Bucket, }}))
-          console.log(response);
+          const bucketObject: BucketObject = {
+            Bucket,
+            Key,
+            Location,
+            ETag: ETag ?? "",
+          };
 
-          // const promise = upload.promise();
-          // promises.push(promise);
-          // promise
-          //   .then((sendData) => {
-          //     dispatch(addImageData({ sendData }));
-          //   })
-          //   .catch((err) => console.log(err));
+          dispatch(addImageData({ bucketObject }));
         }
       }
       setShowLoading(false);
-
-      // Promise.all(promises).then(() => {
-      //   setShowLoading(false);
-      // });
     }
   }
 
-  function onRemove(sendData: SendData) {
-    dispatch(removeImageData({ sendData }));
+  function onRemove(ETag: string) {
+    dispatch(removeImageData({ ETag }));
   }
-
-  const props = { onFilesChange, onRemove, showLoading };
-  return <ImageUploaderRenderer {...props} />;
-};
-
-interface Props {
-  onRemove(sd: SendData): void;
-  onFilesChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
-  showLoading: boolean;
-}
-
-const ImageUploaderRenderer: React.FC<Props> = ({
-  showLoading,
-  onFilesChange,
-  onRemove,
-}) => {
-  const { sendData } = useSelector<AppState, Order>((s) => s.app.current);
 
   return (
     <ColFlexBox alignItems="center">
@@ -129,11 +112,11 @@ const ImageUploaderRenderer: React.FC<Props> = ({
         </Button>
       )}
       <GridContainer>
-        {sendData.map((sd) => (
+        {bucketImages.map(({ ETag, Location }) => (
           <ImagePreview
-            url={sd.Location}
-            key={sd.Location}
-            onRemove={() => onRemove(sd)}
+            url={Location}
+            key={ETag}
+            onRemove={() => onRemove(ETag)}
           />
         ))}
       </GridContainer>
