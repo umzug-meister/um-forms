@@ -79,6 +79,8 @@ export default function Inputs() {
               <Typography variant="h4">Woher?</Typography>
               <OrderField<Address>
                 enableMaps
+                required
+                label="Adresse"
                 path="from"
                 nestedPath="address"
                 id="from-input-field"
@@ -96,12 +98,14 @@ export default function Inputs() {
                 path="from"
                 nestedPath="floor"
                 select
+                required
                 label="Etage"
                 selectOptions={etagen}
               />
 
               <OrderField<Address>
                 path="from"
+                required
                 nestedPath="movementObject"
                 select
                 label="Objekt"
@@ -116,6 +120,8 @@ export default function Inputs() {
               <OrderField<Address>
                 enableMaps
                 path="to"
+                required
+                label="Adresse"
                 nestedPath="address"
                 id="to-input-field"
                 placeholder="Straße Nr, PLZ Ort"
@@ -132,6 +138,7 @@ export default function Inputs() {
                 path="to"
                 nestedPath="floor"
                 select
+                required
                 label="Etage"
                 selectOptions={etagen}
               />
@@ -140,6 +147,7 @@ export default function Inputs() {
                 path="to"
                 nestedPath="movementObject"
                 select
+                required
                 label="Objekt"
                 selectOptions={movementObjects}
               />
