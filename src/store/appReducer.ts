@@ -221,8 +221,6 @@ const appSlice = createSlice({
     ) {
       const { path, value } = action.payload;
 
-      console.log(action.payload);
-
       const next = state.current;
       set(next, path, value);
 

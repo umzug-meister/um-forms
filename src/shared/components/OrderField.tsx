@@ -17,7 +17,7 @@ interface Props<T> {
   select?: true;
   enableMaps?: true;
   selectOptions?: string[];
-  type?: "text" | "date" | "email" | "number";
+  type?: "text" | "email" | "number";
   as?: "default" | "checkbox";
   id?: string;
   required?: true;

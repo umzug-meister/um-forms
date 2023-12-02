@@ -4,12 +4,14 @@ import { Order } from "um-types";
 import ContainerBox from "../../shared/components/ContainerBox";
 import { CustomerData } from "../../shared/components/CustomerData";
 import { GridContainer } from "../../shared/components/GridContainer";
-import OrderField from "../../shared/components/OrderField";
+import { OrderDateField } from "../../shared/components/OrderDateField";
 import { AppState } from "../../store";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 
 export default function Contact() {
-  const { isDateFix } = useSelector<AppState, Order>((s) => s.app.current);
+  const { isDateFix, date_from } = useSelector<AppState, Order>(
+    (s) => s.app.current
+  );
   return (
     <ContainerBox>
       <CustomerData />
@@ -22,10 +24,9 @@ export default function Contact() {
       {isDateFix ? (
         <GridContainer justifyContent={"center"}>
           <Grid item xs={12} sm={6}>
-            <OrderField
+            <OrderDateField
               key="date"
               path="date"
-              type="date"
               label="Umzugstermin"
               required
             />
@@ -34,19 +35,18 @@ export default function Contact() {
       ) : (
         <GridContainer>
           <Grid item xs={12} sm={6}>
-            <OrderField
+            <OrderDateField
               key="date_from"
               path="date_from"
-              type="date"
               label="frühester Umzugstermin"
               required
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <OrderField
+            <OrderDateField
+              minDate={date_from}
               key="date_to"
               path="date_to"
-              type="date"
               label="spätester Umzugstermin"
               required
             />

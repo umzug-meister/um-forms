@@ -9,6 +9,7 @@ import { AppTextField } from "../../shared/components/AppTextField";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import { GridContainer } from "../../shared/components/GridContainer";
 import { useOrderValue } from "../../shared/hooks";
+import { End } from "./End";
 
 type RootProps = {
   propName: "bulkyItems" | "heavyItems" | "expensiveItems";
@@ -138,7 +139,7 @@ function CustomItemWidgetLine({
           <Grid item xs={4} sm={3} md={2}>
             <AppTextField
               {...buildProps("number", "Breite", "breite")}
-              InputProps={{ endAdornment: "cm" }}
+              InputProps={{ endAdornment: <End>cm</End> }}
             />
           </Grid>
         )}
@@ -146,7 +147,7 @@ function CustomItemWidgetLine({
           <Grid item xs={4} sm={3} md={2}>
             <AppTextField
               {...buildProps("number", "Tiefe", "tiefe")}
-              InputProps={{ endAdornment: "cm" }}
+              InputProps={{ endAdornment: <End>cm</End> }}
             />
           </Grid>
         )}
@@ -154,7 +155,7 @@ function CustomItemWidgetLine({
           <Grid item xs={4} sm={3} md={2}>
             <AppTextField
               {...buildProps("number", "Höhe", "hoehe")}
-              InputProps={{ endAdornment: "cm" }}
+              InputProps={{ endAdornment: <End>cm</End> }}
             />
           </Grid>
         )}
@@ -162,7 +163,9 @@ function CustomItemWidgetLine({
           <Grid item xs={4} sm={3} md={2}>
             <AppTextField
               {...buildProps("number", "Gewicht", "weight")}
-              InputProps={{ endAdornment: "kg" }}
+              InputProps={{
+                endAdornment: <End>kg</End>,
+              }}
             />
           </Grid>
         )}

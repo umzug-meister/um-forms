@@ -15,6 +15,7 @@ import { OrderSwitchField } from "../components/OrderSwitchField";
 import { AppState } from "../../store";
 import { BohrarbeitenList } from "../components/BohrarbeitenList";
 import StockwerkeToggle from "../components/StockwerkeToggle";
+import { End } from "../components/End";
 
 export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -47,7 +48,7 @@ export default function Einzug() {
         required
         nestedPath="runningDistance"
         select
-        label="Entfernung vom Parkplatz zur Haustür, in Meter"
+        label="Entfernung vom Parkplatz zur Haustür"
         selectOptions={parkingDistances}
       />
 
@@ -120,7 +121,7 @@ export default function Einzug() {
             label="Betten"
             nestedPath="bedNumber"
             type="number"
-            endAdornment="Stück"
+            endAdornment={<End>Stück</End>}
             helperText="Anzahl der Betten zum Montieren"
           />
 
@@ -129,7 +130,7 @@ export default function Einzug() {
             label="Gesamtbreite der Schränke"
             nestedPath="wardrobeWidth"
             type="number"
-            endAdornment="Meter"
+            endAdornment={<End>Meter</End>}
             helperText="Breite aller Schränke zum Montieren"
           />
         </>

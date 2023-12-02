@@ -30,7 +30,7 @@ export default function Main() {
   const alertMessage = useRef("");
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [activeStep, setActiveStep] = useState(1);
+  const [activeStep, setActiveStep] = useState(2);
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
@@ -43,10 +43,11 @@ export default function Main() {
 
   const next = (step: number) => {
     try {
-      if (validate(activeStep)) {
-        setActiveStep((curStep) => step + curStep);
-        scrollToRoot();
+      if (step > 0) {
+        validate(activeStep);
       }
+      setActiveStep((curStep) => step + curStep);
+      scrollToRoot();
     } catch (e: any) {
       alertMessage.current = e.toString();
       setOpenSnackbar(true);

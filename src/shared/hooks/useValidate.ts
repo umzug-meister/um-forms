@@ -1,7 +1,24 @@
 import { useSelector } from "react-redux";
-import { Order } from "um-types";
+import { Address, Customer, Order } from "um-types";
 import { AppState } from "../../store";
 import { ValidationError } from "../classes/ValidationError";
+
+type ValidationSchemaRequired<T> = {
+  key: keyof T;
+  message: string;
+  type: "required";
+};
+
+type ValidationSchemaRegex<T> = {
+  key: keyof T;
+  message: string;
+  type: "regex";
+  regex: RegExp;
+};
+
+type ValidationSchema<T> =
+  | ValidationSchemaRegex<T>
+  | ValidationSchemaRequired<T>;
 
 export function useValidate() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -9,16 +26,34 @@ export function useValidate() {
   const validate = (step: number) => {
     switch (step) {
       case 0:
-        return validateCustomer(order);
+        validateCustomer(order);
+        return validateDate(order);
       case 1:
         return validateFrom(order);
       case 2:
-        return validateFrom(order);
+        return validateTo(order);
       default:
         return true;
     }
   };
   return { validate };
+}
+
+function validateObject<T>(obj: any, schemas: ValidationSchema<T>[]) {
+  schemas.forEach((vs) => {
+    const { key, message, type } = vs;
+    if (type === "required") {
+      if (!obj[key]) {
+        missing(message);
+      }
+    } else {
+      const res = vs.regex.test(obj[key]);
+      if (!res) {
+        throw new ValidationError(message);
+      }
+    }
+  });
+  return true;
 }
 
 function missing(value: string) {
@@ -28,45 +63,137 @@ function missing(value: string) {
 }
 
 function validateCustomer(order: Order) {
-  const {
-    customer: { firstName, lastName, email },
-  } = order;
-  if (!firstName) {
-    missing("Vorname");
-  }
-  if (!lastName) {
-    missing("Nachname");
-  }
-  if (!email) {
-    missing("E-Mail");
-  }
-  if (email && !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g.test(email)) {
-    throw new ValidationError("Die E-Mail Adresse ist ungültig");
-  }
-  return validateDate(order);
+  const schemas: ValidationSchema<Customer>[] = [
+    {
+      key: "firstName",
+      message: "Vorname",
+      type: "required",
+    },
+    {
+      key: "lastName",
+      message: "Nachname",
+      type: "required",
+    },
+    {
+      key: "email",
+      message: "E-Mail",
+      type: "required",
+    },
+    {
+      key: "email",
+      message: "Die E-Mail Adresse ist ungültig",
+      type: "regex",
+      regex: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+    },
+  ];
+
+  return validateObject(order.customer, schemas);
 }
 
 function validateDate(order: Order) {
-  const now = new Date();
+  const schemas: ValidationSchema<Order>[] = order.isDateFix
+    ? [{ key: "date", message: "Umzugstermin", type: "required" }]
+    : [
+        {
+          key: "date_from",
+          message: "frühester Umzugstermin",
+          type: "required",
+        },
+        { key: "date_to", message: "spätester Umzugstermin", type: "required" },
+      ];
 
-  if (order.isDateFix) {
-    if (!order.date) {
-      missing("Umzugstermin");
-    }
-  } else {
-    if (!order.date_from) {
-      missing("frühester Umzugstermin");
-    }
-    if (!order.date_to) {
-      missing("spätester Umzugstermin");
-    }
+  return validateObject(order, schemas);
+}
+
+function validateFrom(order: Order) {
+  const { from } = order;
+  const primarySchemas: ValidationSchema<Address>[] = [
+    {
+      key: "address",
+      message: "Einzugsadresse",
+      type: "required",
+    },
+    {
+      key: "runningDistance",
+      message: "Entfernung vom Parkplatz zur Haustür",
+      type: "required",
+    },
+    {
+      key: "movementObject",
+      message: "Auszug aus",
+      type: "required",
+    },
+    {
+      key: "roomsNumber",
+      message: "Anzahl der Zimmer",
+      type: "required",
+    },
+    {
+      key: "area",
+      message: "Wohnfläche",
+      type: "required",
+    },
+  ];
+  validateObject(from, primarySchemas);
+
+  if (from.movementObject !== "Haus") {
+    const secondarySchemas: ValidationSchema<Address>[] = [
+      {
+        key: "floor",
+        message: "Stockwerk",
+        type: "required",
+      },
+      {
+        key: "liftType",
+        message: "Fahrstuhl",
+        type: "required",
+      },
+    ];
+    validateObject(from, secondarySchemas);
   }
   return true;
 }
 
-function validateFrom(order: Order) {
-  const {
-    from: { address, runningDistance, movementObject },
-  } = order;
+function validateTo(order: Order) {
+  const { to } = order;
+  const primarySchemas: ValidationSchema<Address>[] = [
+    {
+      key: "address",
+      message: "Auszugsadresse",
+      type: "required",
+    },
+    {
+      key: "runningDistance",
+      message: "Entfernung vom Parkplatz zur Haustür",
+      type: "required",
+    },
+    {
+      key: "movementObject",
+      message: "Auszug aus",
+      type: "required",
+    },
+    {
+      key: "roomsNumber",
+      message: "Anzahl der Zimmer",
+      type: "required",
+    },
+  ];
+  validateObject(to, primarySchemas);
+
+  if (to.movementObject !== "Haus") {
+    const secondarySchemas: ValidationSchema<Address>[] = [
+      {
+        key: "floor",
+        message: "Stockwerk",
+        type: "required",
+      },
+      {
+        key: "liftType",
+        message: "Fahrstuhl",
+        type: "required",
+      },
+    ];
+    validateObject(to, secondarySchemas);
+  }
   return true;
 }

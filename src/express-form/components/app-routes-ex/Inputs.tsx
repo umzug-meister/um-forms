@@ -10,6 +10,7 @@ import ContainerBox from "../../../shared/components/ContainerBox";
 import { CustomerData } from "../../../shared/components/CustomerData";
 import { DataPrivacyCheck } from "../../../shared/components/DataPrivacyCheck";
 import { GridContainer } from "../../../shared/components/GridContainer";
+import { OrderDateField } from "../../../shared/components/OrderDateField";
 import OrderField from "../../../shared/components/OrderField";
 import { etagen, movementObjects } from "../../../shared/constants";
 import { SendButton } from "../../../shared/SendButton";
@@ -65,7 +66,7 @@ export default function Inputs() {
         <Grid item xs={12} sm={6}>
           <ColFlexBox>
             <Typography variant="h4">Wann?</Typography>
-            <OrderField path="date" type="date" />
+            <OrderDateField path="date" />
           </ColFlexBox>
         </Grid>
       </GridContainer>

@@ -14,6 +14,7 @@ import {
 } from "../../shared/constants";
 import { AppState } from "../../store";
 import { CustomItemsWidget } from "../components/CustomItemsWidget";
+import { End } from "../components/End";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 import StockwerkeToggle from "../components/StockwerkeToggle";
 
@@ -47,7 +48,7 @@ export default function Auszug() {
         path={path}
         nestedPath="runningDistance"
         select
-        label="Entfernung vom Parkplatz zur Haustür, in Meter"
+        label="Entfernung vom Parkplatz zur Haustür"
         selectOptions={parkingDistances}
       />
 
@@ -161,7 +162,7 @@ export default function Auszug() {
               label="Küchenbreite"
               nestedPath={"kitchenWidth"}
               type="number"
-              endAdornment="Meter"
+              endAdornment={<End>Meter</End>}
               helperText="Breite der Küchenzeile zum Demontieren"
             />
           </ColFlexBox>
@@ -171,7 +172,7 @@ export default function Auszug() {
             label={"Betten"}
             nestedPath={"bedNumber"}
             type="number"
-            endAdornment="Stück"
+            endAdornment={<End>Stück</End>}
             helperText="Anzahl der Betten zum Demontieren"
           />
 
@@ -180,7 +181,7 @@ export default function Auszug() {
             label="Gesamtbreite der Schränke"
             nestedPath="wardrobeWidth"
             type="number"
-            endAdornment="Meter"
+            endAdornment={<End>Meter</End>}
             helperText="Breite aller Schränke zum Demontieren"
           />
         </ColFlexBox>
