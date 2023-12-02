@@ -1,4 +1,4 @@
-import { TypographyProps } from "@mui/material";
+import { SxProps, Theme, TypographyProps } from "@mui/material";
 
 export const movementObjects = ["Wohnung", "Haus", "Keller", "Lager", "Büro"];
 
@@ -25,4 +25,9 @@ export const liftTypes = [
 export const typoProps: TypographyProps = {
   variant: "h6",
   align: "right",
+};
+
+export const rootSX: SxProps<Theme> = {
+  margin: "auto",
+  maxWidth: "900px",
 };
