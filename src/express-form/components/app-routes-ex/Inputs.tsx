@@ -36,138 +36,130 @@ export default function Inputs() {
 
   return (
     <ContainerBox>
-      <Box>
-        <GridContainer>
-          <Grid
-            item
-            xs={12}
-            sx={{
-              height: "70px",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-            }}
-          >
-            <Box>
-              <img src={imageSrc} height={50} />
-            </Box>
-          </Grid>
-          <Grid item xs={12}>
-            <Typography>
-              Wir prüfen die Verfügbarkeit an dem gewählten Datum und melden uns
-              schnellstmöglich bei Ihnen. Die Anfrage ist{" "}
-              <strong>unverbindlich und kostenlos</strong>.
-            </Typography>
-          </Grid>
-          <Grid item xs={12}>
-            <CustomerData />
-          </Grid>
+      <GridContainer>
+        <Grid
+          item
+          xs={12}
+          sx={{
+            height: "70px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <Box>
+            <img src={imageSrc} height={50} />
+          </Box>
+        </Grid>
+        <Grid item xs={12}>
+          <Typography>
+            Wir prüfen die Verfügbarkeit an dem gewählten Datum und melden uns
+            schnellstmöglich bei Ihnen. Die Anfrage ist{" "}
+            <strong>unverbindlich und kostenlos</strong>.
+          </Typography>
+        </Grid>
+        <Grid item xs={12}>
+          <CustomerData />
+        </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <ColFlexBox>
-              <Typography variant="h4">Wann?</Typography>
-              <OrderField path="date" type="date" />
-            </ColFlexBox>
-          </Grid>
-        </GridContainer>
-      </Box>
+        <Grid item xs={12} sm={6}>
+          <ColFlexBox>
+            <Typography variant="h4">Wann?</Typography>
+            <OrderField path="date" type="date" />
+          </ColFlexBox>
+        </Grid>
+      </GridContainer>
 
-      <Box>
-        <GridContainer>
-          <Grid item xs={12} sm={6}>
-            <ColFlexBox>
-              <Typography variant="h4">Woher?</Typography>
-              <OrderField<Address>
-                enableMaps
-                required
-                label="Adresse"
-                path="from"
-                nestedPath="address"
-                id="from-input-field"
-                placeholder="Straße Nr, PLZ Ort"
-              />
+      <GridContainer>
+        <Grid item xs={12} sm={6}>
+          <ColFlexBox>
+            <Typography variant="h4">Woher?</Typography>
+            <OrderField<Address>
+              enableMaps
+              required
+              label="Adresse"
+              path="from"
+              nestedPath="address"
+              id="from-input-field"
+              placeholder="Straße Nr, PLZ Ort"
+            />
 
-              <OrderField<Address>
-                path="from"
-                nestedPath="parkingSlot"
-                label="Halteverbot?"
-                as="checkbox"
-              />
+            <OrderField<Address>
+              path="from"
+              nestedPath="parkingSlot"
+              label="Halteverbot?"
+              as="checkbox"
+            />
 
-              <OrderField<Address>
-                path="from"
-                nestedPath="floor"
-                select
-                required
-                label="Etage"
-                selectOptions={etagen}
-              />
+            <OrderField<Address>
+              path="from"
+              nestedPath="floor"
+              select
+              required
+              label="Etage"
+              selectOptions={etagen}
+            />
 
-              <OrderField<Address>
-                path="from"
-                required
-                nestedPath="movementObject"
-                select
-                label="Objekt"
-                selectOptions={movementObjects}
-              />
-            </ColFlexBox>
-          </Grid>
+            <OrderField<Address>
+              path="from"
+              required
+              nestedPath="movementObject"
+              select
+              label="Objekt"
+              selectOptions={movementObjects}
+            />
+          </ColFlexBox>
+        </Grid>
 
-          <Grid item xs={12} sm={6}>
-            <ColFlexBox>
-              <Typography variant="h4">Wohin?</Typography>
-              <OrderField<Address>
-                enableMaps
-                path="to"
-                required
-                label="Adresse"
-                nestedPath="address"
-                id="to-input-field"
-                placeholder="Straße Nr, PLZ Ort"
-              />
+        <Grid item xs={12} sm={6}>
+          <ColFlexBox>
+            <Typography variant="h4">Wohin?</Typography>
+            <OrderField<Address>
+              enableMaps
+              path="to"
+              required
+              label="Adresse"
+              nestedPath="address"
+              id="to-input-field"
+              placeholder="Straße Nr, PLZ Ort"
+            />
 
-              <OrderField<Address>
-                path="to"
-                nestedPath="parkingSlot"
-                label="Halteverbot?"
-                as="checkbox"
-              />
+            <OrderField<Address>
+              path="to"
+              nestedPath="parkingSlot"
+              label="Halteverbot?"
+              as="checkbox"
+            />
 
-              <OrderField<Address>
-                path="to"
-                nestedPath="floor"
-                select
-                required
-                label="Etage"
-                selectOptions={etagen}
-              />
+            <OrderField<Address>
+              path="to"
+              nestedPath="floor"
+              select
+              required
+              label="Etage"
+              selectOptions={etagen}
+            />
 
-              <OrderField<Address>
-                path="to"
-                nestedPath="movementObject"
-                select
-                required
-                label="Objekt"
-                selectOptions={movementObjects}
-              />
-            </ColFlexBox>
-          </Grid>
-        </GridContainer>
-      </Box>
-      <Box>
-        <GridContainer>
-          <Grid item xs={12}>
-            <ColFlexBox>
-              <Typography variant="h4">Nachricht an uns</Typography>
-              <OrderField<Address> path="text" multiline />
-            </ColFlexBox>
-          </Grid>
-        </GridContainer>
-      </Box>
-      <Box>
-        <DataPrivacyCheck />
-      </Box>
+            <OrderField<Address>
+              path="to"
+              nestedPath="movementObject"
+              select
+              required
+              label="Objekt"
+              selectOptions={movementObjects}
+            />
+          </ColFlexBox>
+        </Grid>
+      </GridContainer>
+      <GridContainer>
+        <Grid item xs={12}>
+          <ColFlexBox>
+            <Typography variant="h4">Nachricht an uns</Typography>
+            <OrderField<Address> path="text" multiline />
+          </ColFlexBox>
+        </Grid>
+      </GridContainer>
+      <DataPrivacyCheck />
 
       <Box display="flex" m={2} gap={3} justifyContent="center">
         <Button
