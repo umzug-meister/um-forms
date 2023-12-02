@@ -1,18 +1,18 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
   AppPrice,
+  BucketObject,
   Category,
   Furniture,
   MLeistung,
   Order,
   OrderService,
-  BucketObject,
   Service,
 } from "um-types";
 import { appRequest } from "../api";
 import { Urls } from "../api/Urls";
 
-import { set } from "lodash";
+import { set, cloneDeep } from "lodash";
 import { AppState } from ".";
 
 interface AppSlice {
@@ -41,10 +41,95 @@ export const uploadOrder = createAsyncThunk(
       app: { current },
     } = thunkApi.getState() as AppState;
 
-    const next = {
-      ...current,
-      date: new Date(current.date).toLocaleDateString("ru"),
-    };
+    const next: Order = cloneDeep(current);
+    if (next.isDateFix) {
+      //@ts-expect-error
+      next.date_from = undefined;
+      //@ts-expect-error
+      next.date_to = undefined;
+    }
+
+    if (!next.isDateFix) {
+      next.date = next.date_from;
+    }
+
+    if (typeof next.from !== "undefined") {
+      if (next.from.movementObject !== "Haus") {
+        if (next.from.stockwerke) {
+          //@ts-expect-error
+          next.from.stockwerke = undefined;
+        }
+      }
+
+      if (next.from.movementObject === "Haus") {
+        next.from = {
+          ...next.from,
+          //@ts-expect-error
+          floor: undefined,
+          //@ts-expect-error
+          liftType: undefined,
+        };
+      }
+
+      if (!next.from.demontage) {
+        next.from = {
+          ...next.from,
+          //@ts-expect-error
+          bedNumber: undefined,
+          //@ts-expect-error
+          kitchenWidth: undefined,
+          //@ts-expect-error
+          wardrobeWidth: undefined,
+        };
+      }
+    }
+
+    if (typeof next.to !== "undefined") {
+      if (!next.to?.montage) {
+        next.to = {
+          ...next.to,
+          //@ts-expect-error
+          bedNumber: undefined,
+          //@ts-expect-error
+          kitchenWidth: undefined,
+        };
+      }
+
+      if (next.to?.movementObject !== "Haus") {
+        if (next.to.stockwerke) {
+          //@ts-expect-error
+          next.to.stockwerke = undefined;
+        }
+      }
+
+      if (next.to?.movementObject === "Haus") {
+        next.to = {
+          ...next.to,
+          //@ts-expect-error
+          floor: undefined,
+          //@ts-expect-error
+          liftType: undefined,
+        };
+      }
+    }
+
+    if (
+      !next.bohrarbeiten &&
+      next.services?.length &&
+      next.services.length > 0
+    ) {
+      next.services = next.services.filter((s) => s.tag !== "Bohrarbeiten");
+    }
+
+    if (
+      !next.needPackings &&
+      next.services?.length &&
+      next.services.length > 0
+    ) {
+      next.services = next.services.filter((s) => s.tag !== "Packmaterial");
+    }
+
+    next.timestamp = Date.now();
 
     return appRequest("post")(Urls.orderById(""), next).then((res) => {
       cb(res.id);

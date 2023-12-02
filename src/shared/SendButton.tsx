@@ -27,7 +27,6 @@ export function SendButton({ scrollToRoot, src }: Readonly<Props>) {
         navigate(`/success/${id}`);
       }, 1000);
     };
-
     dispatch(calculateOrder({ src }));
     dispatch(uploadOrder(cb));
   }, [dispatch]);

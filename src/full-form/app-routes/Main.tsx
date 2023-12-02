@@ -30,7 +30,8 @@ export default function Main() {
   const alertMessage = useRef("");
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
-  const [activeStep, setActiveStep] = useState(0);
+  const [activeStep, setActiveStep] = useState(3);
+
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
