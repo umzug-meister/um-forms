@@ -1,10 +1,11 @@
-import React from "react";
-import { Provider } from "react-redux";
-import { store } from "../store";
-import { theme } from "../shared/theme";
-import AppLoader from "../shared/AppLoader";
 import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
+import AppLoader from "../shared/AppLoader";
+import { ColFlexBox } from "../shared/components/ColFlexBox";
+import { rootSX } from "../shared/ruckzuckStyle";
+import { theme } from "../shared/theme";
+import { store } from "../store";
 import { AppRoutes } from "./app-routes";
 
 export default function App() {
@@ -14,14 +15,9 @@ export default function App() {
         <CssBaseline />
         <ThemeProvider theme={theme}>
           <HashRouter>
-            <div
-              style={{
-                maxWidth: "800px",
-                margin: "auto",
-              }}
-            >
+            <ColFlexBox sx={rootSX}>
               <AppRoutes />
-            </div>
+            </ColFlexBox>
           </HashRouter>
         </ThemeProvider>
       </AppLoader>

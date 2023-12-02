@@ -2,6 +2,8 @@ import { CssBaseline, ThemeProvider } from "@mui/material";
 import { Provider } from "react-redux";
 import { HashRouter } from "react-router-dom";
 import AppLoader from "../shared/AppLoader";
+import { ColFlexBox } from "../shared/components/ColFlexBox";
+import { rootSX } from "../shared/ruckzuckStyle";
 import { theme } from "../shared/theme";
 import { store } from "../store";
 import AppRoutesEx from "./components/app-routes-ex";
@@ -15,10 +17,10 @@ export function App() {
           <CssBaseline />
           <ThemeProvider theme={theme}>
             <HashRouter>
-              <div style={{ maxWidth: "1080px", margin: "auto" }}>
+              <ColFlexBox sx={rootSX}>
                 <AppProgress />
                 <AppRoutesEx />
-              </div>
+              </ColFlexBox>
             </HashRouter>
           </ThemeProvider>
         </AppLoader>

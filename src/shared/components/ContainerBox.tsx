@@ -34,7 +34,7 @@ export default function ContainerBox({
               <Divider />
             </>
           )}
-          <CardContent>
+          <CardContent sx={{ p: 0.5 }}>
             <ColFlexBox gap={4}>{children}</ColFlexBox>
           </CardContent>
         </Card>

@@ -1,8 +1,3 @@
-#um-express-form-root {
-  max-width: 1080px;
-  margin: auto;
-}
-
 input[value=""]::-webkit-datetime-edit {
   color: transparent;
 }
