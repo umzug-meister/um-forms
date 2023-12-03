@@ -4,14 +4,15 @@ import { Address, Order } from "um-types";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../../shared/components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
+import { typoProps } from "../../shared/constants";
+
 import {
   etagen,
   liftTypes,
   movementObjects,
   parkingDistances,
   squares,
-  typoProps,
-} from "../../shared/constants";
+} from "um-types/constants";
 import { AppState } from "../../store";
 import { CustomItemsWidget } from "../components/CustomItemsWidget";
 import { End } from "../components/End";

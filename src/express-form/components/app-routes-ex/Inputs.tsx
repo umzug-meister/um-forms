@@ -4,6 +4,7 @@ import { useMemo } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Service } from "um-types";
+import { etagen, movementObjects } from "um-types/constants";
 import { scrollToRoot } from "../../../main.ex";
 import { ColFlexBox } from "../../../shared/components/ColFlexBox";
 import ContainerBox from "../../../shared/components/ContainerBox";
@@ -12,7 +13,7 @@ import { DataPrivacyCheck } from "../../../shared/components/DataPrivacyCheck";
 import { GridContainer } from "../../../shared/components/GridContainer";
 import { OrderDateField } from "../../../shared/components/OrderDateField";
 import OrderField from "../../../shared/components/OrderField";
-import { etagen, movementObjects } from "../../../shared/constants";
+
 import { SendButton } from "../../../shared/SendButton";
 import { AppState } from "../../../store";
 

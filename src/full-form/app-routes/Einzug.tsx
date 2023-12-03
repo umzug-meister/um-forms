@@ -1,15 +1,15 @@
 import { Alert, Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
-import ContainerBox from "../../shared/components/ContainerBox";
-import OrderField from "../../shared/components/OrderField";
 import {
   etagen,
   liftTypes,
   movementObjects,
   parkingDistances,
-  typoProps,
-} from "../../shared/constants";
+} from "um-types/constants";
+import ContainerBox from "../../shared/components/ContainerBox";
+import OrderField from "../../shared/components/OrderField";
+import { typoProps } from "../../shared/constants";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 
 import { AppState } from "../../store";
