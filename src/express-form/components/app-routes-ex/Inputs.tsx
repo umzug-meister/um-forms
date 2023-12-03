@@ -107,7 +107,7 @@ export default function Inputs() {
               required
               nestedPath="movementObject"
               select
-              label="Objekt"
+              label="Auszug aus"
               selectOptions={movementObjects}
             />
           </ColFlexBox>
@@ -147,7 +147,7 @@ export default function Inputs() {
               nestedPath="movementObject"
               select
               required
-              label="Objekt"
+              label="Einzug in"
               selectOptions={movementObjects}
             />
           </ColFlexBox>
