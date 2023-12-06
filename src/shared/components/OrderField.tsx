@@ -10,6 +10,8 @@ import { useEffect, useRef } from "react";
 import { NestedPath, Path, useOption, useOrderValue } from "../hooks";
 import { AppTextField } from "./AppTextField";
 
+import { clearCountry } from "um-types/utils";
+
 interface Props<T> {
   path: Path;
   nestedPath?: NestedPath<T>;
@@ -73,7 +75,7 @@ export default function OrderField<T>({
         autocomplete.addListener("place_changed", () => {
           const { formatted_address } = autocomplete.getPlace();
           if (formatted_address) {
-            setValue(formatted_address.replace(", Deutschland", ""));
+            setValue(clearCountry(formatted_address));
           }
         });
       });

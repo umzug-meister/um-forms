@@ -3,6 +3,7 @@ import {
   AppPrice,
   BucketObject,
   Category,
+  CustomItem,
   Furniture,
   MLeistung,
   Order,
@@ -33,6 +34,14 @@ export interface AppOptions {
 export const loadAllCategories = createAsyncThunk("loadAllCategories", () => {
   return appRequest("get")(Urls.categories());
 });
+
+const calcCustomItemVolume = (ci: CustomItem) => {
+  const { breite, hoehe, tiefe } = ci;
+  if (breite && tiefe && hoehe) {
+    ci.itemVolume =
+      (Number(breite) * Number(tiefe) * Number(hoehe)) / 1_000_000;
+  }
+};
 
 export const uploadOrder = createAsyncThunk(
   "uploadOrder",
@@ -127,6 +136,25 @@ export const uploadOrder = createAsyncThunk(
       next.services.length > 0
     ) {
       next.services = next.services.filter((s) => s.tag !== "Packmaterial");
+    }
+
+    if (next.bulky) {
+      next.bulkyItems.forEach(calcCustomItemVolume);
+    } else {
+      //@ts-expect-error
+      next.bulkyItems = undefined;
+    }
+    if (next.expensive) {
+      next.expensiveItems.forEach(calcCustomItemVolume);
+    } else {
+      //@ts-expect-error
+      next.expensiveItems = undefined;
+    }
+    if (next.heavy) {
+      next.heavyItems.forEach(calcCustomItemVolume);
+    } else {
+      //@ts-expect-error
+      next.heavyItems = undefined;
     }
 
     next.timestamp = Date.now();
