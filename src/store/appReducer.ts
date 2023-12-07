@@ -157,6 +157,8 @@ export const uploadOrder = createAsyncThunk(
       next.heavyItems = undefined;
     }
 
+    next.items = next.items.filter((i) => Number(i.colli) > 0);
+
     next.timestamp = Date.now();
 
     return appRequest("post")(Urls.orderById(""), next).then((res) => {

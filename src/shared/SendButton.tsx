@@ -1,5 +1,5 @@
 import SendIcon from "@mui/icons-material/Send";
-import { useCallback } from "react";
+import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Order } from "um-types";
@@ -16,11 +16,14 @@ export function SendButton({ scrollToRoot, src }: Readonly<Props>) {
   const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
 
+  const [uploading, setUploading] = useState(false);
+
   const { dataPrivacyAccepted } = useSelector<AppState, Order>(
     (s) => s.app.current
   );
 
   const onUploadRequest = useCallback(() => {
+    setUploading(true);
     const cb = (id: number | string) => {
       setTimeout(() => {
         scrollToRoot();
@@ -33,7 +36,7 @@ export function SendButton({ scrollToRoot, src }: Readonly<Props>) {
 
   return (
     <AppButton
-      disabled={!dataPrivacyAccepted}
+      disabled={!dataPrivacyAccepted || uploading}
       onClick={onUploadRequest}
       endIcon={<SendIcon />}
       variant="contained"
