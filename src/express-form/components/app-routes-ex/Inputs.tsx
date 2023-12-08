@@ -173,7 +173,7 @@ export default function Inputs() {
         >
           Zurück
         </Button>
-        <SendButton scrollToRoot={scrollToRoot} src="express" />
+        <SendButton src="express" />
       </Box>
     </ContainerBox>
   );

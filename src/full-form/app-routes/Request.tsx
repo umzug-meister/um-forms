@@ -6,7 +6,6 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import { scrollToRoot } from "../../main.full";
 import ContainerBox from "../../shared/components/ContainerBox";
 import { DataPrivacyCheck } from "../../shared/components/DataPrivacyCheck";
 import OrderField from "../../shared/components/OrderField";
@@ -92,7 +91,7 @@ export default function Request() {
         alignItems="center"
       >
         <DataPrivacyCheck />
-        <SendButton scrollToRoot={scrollToRoot} src="UmzugRuckZuck" />
+        <SendButton src="UmzugRuckZuck" />
       </Box>
     </ContainerBox>
   );
