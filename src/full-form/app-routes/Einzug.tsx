@@ -1,4 +1,4 @@
-import { Alert, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import {
@@ -13,9 +13,9 @@ import { typoProps } from "../../shared/constants";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 
 import { AppState } from "../../store";
+import { AppInfo } from "../components/AppInfo";
 import { BohrarbeitenList } from "../components/BohrarbeitenList";
 import StockwerkeToggle from "../components/StockwerkeToggle";
-import { End } from "../components/End";
 
 export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -101,7 +101,7 @@ export default function Einzug() {
       <OrderSwitchField<Address>
         path={path}
         nestedPath="packservice"
-        label="Umzugsgut auspacken"
+        label="Auspackservice (Umzugsgut auspacken)"
       />
 
       <OrderSwitchField<Address>
@@ -111,27 +111,9 @@ export default function Einzug() {
       />
       {order.to.montage && (
         <>
-          <Alert severity="info">
-            Wir montieren ausschließlich Möbelstücke, die zuvor von uns
-            demontiert wurden.
-          </Alert>
-
-          <OrderField<Address>
-            path={path}
-            label="Betten"
-            nestedPath="bedNumber"
-            type="number"
-            endAdornment={<End>Stück</End>}
-            helperText="Anzahl der Betten zum Montieren"
-          />
-
-          <OrderField<Address>
-            path={path}
-            label="Gesamtbreite der Schränke"
-            nestedPath="wardrobeWidth"
-            type="number"
-            endAdornment={<End>Meter</End>}
-            helperText="Breite aller Schränke zum Montieren"
+          <AppInfo
+            text=" Wir montieren ausschließlich Möbelstücke, die zuvor von uns
+            demontiert wurden."
           />
         </>
       )}

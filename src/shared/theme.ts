@@ -4,7 +4,17 @@ import { createTheme } from "@mui/material/styles";
 const optiosn: ThemeOptions = {
   palette: {
     primary: {
-      main: "#1ca76e",
+      main: "#199663",
+    },
+  },
+  components: {
+    MuiFormLabel: {
+      styleOverrides: {
+        root: {
+          color: "#1a1a1a",
+          fontWeight: "400",
+        },
+      },
     },
   },
   shape: {

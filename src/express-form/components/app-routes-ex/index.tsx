@@ -4,7 +4,6 @@ import { LazyLoad } from "../../../shared/components/LazyLoad";
 
 const Inputs = lazy(() => import("./Inputs"));
 const Main = lazy(() => import("./Main"));
-const Success = lazy(() => import("./../../../shared/routes/Success"));
 
 export default function AppRoutesEx() {
   return (
@@ -22,14 +21,6 @@ export default function AppRoutesEx() {
         element={
           <LazyLoad>
             <Inputs />
-          </LazyLoad>
-        }
-      />
-      <Route
-        path="success/:id"
-        element={
-          <LazyLoad>
-            <Success />
           </LazyLoad>
         }
       />

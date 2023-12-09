@@ -13,6 +13,8 @@ import { SendButton } from "../../shared/SendButton";
 import ExpandMoreOutlinedIcon from "@mui/icons-material/ExpandMoreOutlined";
 import { LazyLoad } from "../../shared/components/LazyLoad";
 import { lazy } from "react";
+import { AppInfo } from "../components/AppInfo";
+import { ColFlexBox } from "../../shared/components/ColFlexBox";
 
 const FurnitureCalculator = lazy(
   () => import("../components/FurnitureCalculator")
@@ -22,22 +24,27 @@ const ImageUploader = lazy(() => import("../components/ImageUploader"));
 export default function Request() {
   return (
     <ContainerBox title="Auftrag absenden">
-      <Box>
-        <Alert severity="info">
-          Wir möchten Sie darauf hinweisen, dass eine genaue Bestimmung des
-          Umzugsguts ohne eine detaillierte Liste Ihrer Möbel nur eingeschränkt
-          möglich ist.
-          <p>
-            Um Ihnen ein <strong>präziseres Angebot</strong> erstellen zu
-            können, benötigen wir weitere Informationen zu Ihren Möbeln.
-          </p>
-          Hierbei stehen Ihnen folgende Möglichkeiten zur Verfügung:
-          <ul>
-            <li>Bilder anhängen</li>
-            <li>Umzugsvolumen berechnen</li>
-          </ul>
-        </Alert>
-      </Box>
+      <ColFlexBox>
+        <AppInfo
+          text={
+            <>
+              Um Ihnen ein <strong>präziseres Angebot</strong> erstellen zu
+              können, benötigen wir weitere Informationen zu Ihren Möbeln.
+            </>
+          }
+        />
+        <AppInfo
+          text={
+            <>
+              Hierbei stehen Ihnen folgende Möglichkeiten zur Verfügung:
+              <ul>
+                <li>Bilder anhängen</li>
+                <li>Umzugsvolumen berechnen</li>
+              </ul>
+            </>
+          }
+        />
+      </ColFlexBox>
 
       <Box>
         <Accordion>

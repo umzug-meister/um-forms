@@ -50,7 +50,7 @@ export function OrderSwitchField<T>({
       <FormLabel id={labelId}>{label}</FormLabel>
       <RadioGroup
         row={!narrowScreen}
-        sx={{ paddingLeft: 3 }}
+        sx={{ paddingLeft: 3, gap: 2 }}
         onChange={(event) => setValue(event?.target.value === "true")}
         value={Boolean(value)}
       >

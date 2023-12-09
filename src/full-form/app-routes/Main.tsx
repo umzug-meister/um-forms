@@ -1,6 +1,5 @@
 import {
   Alert,
-  AlertColor,
   Box,
   Step,
   StepLabel,
@@ -26,7 +25,6 @@ const routes = [
 ];
 
 export default function Main() {
-  const severity = useRef<AlertColor>("error");
   const alertMessage = useRef("");
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -93,7 +91,7 @@ export default function Main() {
         </Box>
         <Box sx={{ minHeight: 64 }}>
           {openSnackbar && (
-            <Alert severity={severity.current}>{alertMessage.current}</Alert>
+            <Alert severity="error">{alertMessage.current}</Alert>
           )}
         </Box>
       </ColFlexBox>

@@ -1,4 +1,4 @@
-import { Alert, Typography } from "@mui/material";
+import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
@@ -14,6 +14,7 @@ import {
   squares,
 } from "um-types/constants";
 import { AppState } from "../../store";
+import { AppInfo } from "../components/AppInfo";
 import { CustomItemsWidget } from "../components/CustomItemsWidget";
 import { End } from "../components/End";
 import { OrderSwitchField } from "../components/OrderSwitchField";
@@ -143,7 +144,7 @@ export default function Auszug() {
       <OrderSwitchField<Address>
         path={path}
         nestedPath="packservice"
-        label="Umzugsgut in Kartons einpacken"
+        label="Einpackservice (Umzugsgut in Kartons einpacken)"
       />
 
       <OrderSwitchField<Address>
@@ -155,9 +156,7 @@ export default function Auszug() {
       {order.from.demontage && (
         <ColFlexBox>
           <ColFlexBox gap={1}>
-            <Alert severity="info">
-              Eine abschließende Montage der Küche ist zurzeit nicht möglich
-            </Alert>
+            <AppInfo text="Eine abschließende Montage der Küche ist zurzeit nicht möglich." />
             <OrderField<Address>
               path={path}
               label="Küchenbreite"

@@ -8,19 +8,10 @@ const Einzug = lazy(() => import("./Einzug"));
 const Verpackung = lazy(() => import("./Verpackung"));
 const Main = lazy(() => import("./Main"));
 const Request = lazy(() => import("./Request"));
-const Success = lazy(() => import("../../shared/routes/Success"));
 
 export function AppRoutes() {
   return (
     <Routes>
-      <Route
-        path="success/:id"
-        element={
-          <LazyLoad>
-            <Success />
-          </LazyLoad>
-        }
-      />
       <Route
         path="/"
         element={

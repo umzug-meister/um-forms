@@ -106,7 +106,7 @@ export default function OrderField<T>({
       size="medium"
       InputProps={{ endAdornment }}
       helperText={
-        <Typography component="span" color="primary" variant="body2">
+        <Typography component="span" color="primary" variant="subtitle2">
           {helperText}
         </Typography>
       }
