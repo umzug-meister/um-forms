@@ -16,6 +16,7 @@ import { AppState } from "../../store";
 import { AppInfo } from "../components/AppInfo";
 import { BohrarbeitenList } from "../components/BohrarbeitenList";
 import StockwerkeToggle from "../components/StockwerkeToggle";
+import { HVZInfo } from "../components/HVZInfo";
 
 export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -42,6 +43,8 @@ export default function Einzug() {
           false: "Wird von Kund:innen sichergestellt",
         }}
       />
+
+      <HVZInfo show={order.to.parkingSlot} />
 
       <OrderField<Address>
         path={path}

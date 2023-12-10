@@ -5,7 +5,6 @@ import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../../shared/components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
 import { typoProps } from "../../shared/constants";
-
 import {
   etagen,
   liftTypes,
@@ -19,6 +18,7 @@ import { CustomItemsWidget } from "../components/CustomItemsWidget";
 import { End } from "../components/End";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 import StockwerkeToggle from "../components/StockwerkeToggle";
+import { HVZInfo } from "../components/HVZInfo";
 
 export default function Auszug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -45,6 +45,8 @@ export default function Auszug() {
           false: "Wird von Kund:innen sichergestellt",
         }}
       />
+      <HVZInfo show={order.from.parkingSlot} />
+
       <OrderField<Address>
         required
         path={path}
