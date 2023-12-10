@@ -23,7 +23,7 @@ const optiosn: ThemeOptions = {
   typography: {
     fontFamily: `"Open Sans", Helvetica, Arial, Lucida, sans-serif`,
     fontSize: 14,
-    fontWeightRegular: 300,
+    fontWeightRegular: 400,
   },
 };
 
