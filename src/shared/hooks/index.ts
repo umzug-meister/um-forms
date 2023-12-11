@@ -43,7 +43,7 @@ export function useAppFurniture() {
 
 export function useCategories() {
   const categories = useSelector<AppState, Category[]>((s) => s.app.categories);
-  return categories;
+  return [...categories].sort((a, b) => b.name.localeCompare(a.name));
 }
 
 export function useFurnitureValue(

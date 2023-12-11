@@ -19,9 +19,6 @@ import { NumberInput } from "./NumberInput";
 export default function FurnitureCalculator() {
   const categories = useCategories();
 
-  const sorted = [...categories];
-  sorted.sort((a, b) => a.sort - b.sort);
-
   return (
     <ColFlexBox gap={4}>
       <ColFlexBox>
@@ -30,7 +27,7 @@ export default function FurnitureCalculator() {
         <Boxes />
       </ColFlexBox>
 
-      {sorted.map((cat) => (
+      {categories.map((cat) => (
         <CategoryRenderer key={cat.id} category={cat} />
       ))}
 
@@ -51,6 +48,9 @@ function CategoryRenderer({ category }: Readonly<CategoryRendererProps>) {
   const furniture = useAppFurniture();
   const filtered = furniture.filter((f) => inCategory(f, category));
 
+  if (filtered.length === 0) {
+    return null;
+  }
   return (
     <ColFlexBox>
       <Typography {...typoProps}>{category.name}</Typography>
@@ -126,7 +126,7 @@ function Boxes() {
                 </p>
               </>
             }
-          ></AppInfo>
+          />
         </Grid>
         <Grid item xs={12} sm={6}>
           <NumberInput
