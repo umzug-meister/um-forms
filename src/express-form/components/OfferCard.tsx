@@ -4,7 +4,7 @@ import { Box, FormControlLabel, Radio, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppPrice } from "um-types";
+import { AppPrice, Service } from "um-types";
 import { scrollToRoot } from "../../main.ex";
 import { AppButton } from "../../shared/components/AppButton";
 import { AppDispatch, AppState } from "../../store";
@@ -143,15 +143,17 @@ function OfferLine(offer: AppPrice) {
 }
 
 function useOffers(transporter: number, workers: number) {
-  const offers = useSelector<AppState, AppPrice[]>(
-    (s) => s.app.services as any
-  );
+  const services = useSelector<AppState, Service[]>((s) => s.app.services);
+
+  const offers = services.filter(isOffer);
 
   return offers
-    .filter(
-      (o) => o.tag == "Price" && o.workers == workers && o.t35 == transporter
-    )
+    .filter((offer) => offer.workers == workers && offer.t35 == transporter)
     .sort((a, b) => Number(a.includedHours) - Number(b.includedHours));
+}
+
+function isOffer(service: Service): service is AppPrice {
+  return service.tag === "Price";
 }
 
 function useSelectedId() {
