@@ -105,7 +105,7 @@ function validateDate(order: Order) {
   return validateObject(order, schemas);
 }
 
-const STREET_REGEX = /.*\d.*/g;
+const STREET_REGEX = /.{1,50}\d.{1,2}/g;
 
 function validateFrom(order: Order) {
   const { from } = order;
