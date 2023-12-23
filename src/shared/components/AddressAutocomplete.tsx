@@ -52,7 +52,7 @@ export function AddressAutocomplete({ path }: Readonly<Props>) {
 
       loaderRef.current.load().then((google) => {
         const autocomplete = new google.maps.places.Autocomplete(
-          document.getElementById(autocompleteID!) as any,
+          document.getElementById(autocompleteID) as any,
           options
         );
 

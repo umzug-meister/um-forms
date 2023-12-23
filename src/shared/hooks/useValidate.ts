@@ -172,6 +172,8 @@ function validateFrom(order: Order) {
 
 function validateTo(order: Order) {
   const { to } = order;
+
+  const streetRegex = /.*\d.*/g;
   const primarySchemas: ValidationSchema<Address>[] = [
     {
       key: "address_street",
@@ -182,7 +184,7 @@ function validateTo(order: Order) {
       key: "address_street",
       message: "Straße und Hausnummer sind unvollständig.",
       type: "regex",
-      regex: /.*\d.*/g,
+      regex: streetRegex,
     },
     {
       key: "address_zip",
