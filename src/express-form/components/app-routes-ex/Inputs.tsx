@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Service } from "um-types";
 import { etagen, movementObjects } from "um-types/constants";
 import { scrollToRoot } from "../../../main.ex";
+import { AddressAutocomplete } from "../../../shared/components/AddressAutocomplete";
 import { ColFlexBox } from "../../../shared/components/ColFlexBox";
 import ContainerBox from "../../../shared/components/ContainerBox";
 import { CustomerData } from "../../../shared/components/CustomerData";
@@ -76,15 +77,7 @@ export default function Inputs() {
         <Grid item xs={12} sm={6}>
           <ColFlexBox>
             <Typography variant="h4">Woher?</Typography>
-            <OrderField<Address>
-              enableMaps
-              required
-              label="Adresse"
-              path="from"
-              nestedPath="address"
-              id="from-input-field"
-              placeholder="Straße Nr, PLZ Ort"
-            />
+            <AddressAutocomplete path="from" />
 
             <OrderField<Address>
               path="from"
@@ -116,15 +109,7 @@ export default function Inputs() {
         <Grid item xs={12} sm={6}>
           <ColFlexBox>
             <Typography variant="h4">Wohin?</Typography>
-            <OrderField<Address>
-              enableMaps
-              path="to"
-              required
-              label="Adresse"
-              nestedPath="address"
-              id="to-input-field"
-              placeholder="Straße Nr, PLZ Ort"
-            />
+            <AddressAutocomplete path="to" />
 
             <OrderField<Address>
               path="to"

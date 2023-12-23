@@ -1,4 +1,3 @@
-import { Loader } from "@googlemaps/js-api-loader";
 import {
   Checkbox,
   FormControlLabel,
@@ -6,18 +5,14 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import { useEffect, useRef } from "react";
-import { NestedPath, Path, useOption, useOrderValue } from "../hooks";
+import { NestedPath, Path, useOrderValue } from "../hooks";
 import { AppTextField } from "./AppTextField";
-
-import { clearCountry } from "um-types/utils";
 
 interface Props<T> {
   path: Path;
   nestedPath?: NestedPath<T>;
   label?: React.ReactNode;
   select?: true;
-  enableMaps?: true;
   selectOptions?: string[];
   type?: "text" | "email" | "number";
   as?: "default" | "checkbox";
@@ -30,11 +25,6 @@ interface Props<T> {
   endAdornment?: React.ReactNode;
 }
 
-const options = {
-  fields: ["formatted_address", "address_components"],
-  componentRestrictions: { country: ["de", "at", "ch"] },
-};
-
 export default function OrderField<T>({
   label,
   path,
@@ -43,7 +33,6 @@ export default function OrderField<T>({
   selectOptions,
   type,
   as,
-  enableMaps,
   id,
   error,
   placeholder,
@@ -53,34 +42,6 @@ export default function OrderField<T>({
   required,
 }: Props<T>) {
   const { value, setValue } = useOrderValue(path, nestedPath);
-  const gapiKey = useOption("gapikey");
-
-  const loaderRef = useRef<Loader | null>(null);
-
-  useEffect(() => {
-    if (enableMaps && gapiKey) {
-      if (loaderRef.current == null) {
-        loaderRef.current = new Loader({
-          apiKey: gapiKey,
-          libraries: ["places"],
-        });
-      }
-
-      loaderRef.current.load().then((google) => {
-        const autocomplete = new google.maps.places.Autocomplete(
-          document.getElementById(id!) as any,
-          options
-        );
-
-        autocomplete.addListener("place_changed", () => {
-          const { formatted_address } = autocomplete.getPlace();
-          if (formatted_address) {
-            setValue(clearCountry(formatted_address));
-          }
-        });
-      });
-    }
-  }, [enableMaps, gapiKey]);
 
   if (as === "checkbox") {
     return (

@@ -19,6 +19,7 @@ import { End } from "../components/End";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 import StockwerkeToggle from "../components/StockwerkeToggle";
 import { HVZInfo } from "../components/HVZInfo";
+import { AddressAutocomplete } from "../../shared/components/AddressAutocomplete";
 
 export default function Auszug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -26,15 +27,7 @@ export default function Auszug() {
 
   return (
     <ContainerBox title="Auszug">
-      <OrderField<Address>
-        required
-        path={path}
-        nestedPath="address"
-        enableMaps
-        label="Auszugsadresse"
-        id="from-input-field"
-        placeholder="Straße Nr, PLZ Ort"
-      />
+      <AddressAutocomplete path="from" />
 
       <OrderSwitchField<Address>
         path={path}

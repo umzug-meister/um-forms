@@ -17,6 +17,7 @@ import { AppInfo } from "../components/AppInfo";
 import { BohrarbeitenList } from "../components/BohrarbeitenList";
 import StockwerkeToggle from "../components/StockwerkeToggle";
 import { HVZInfo } from "../components/HVZInfo";
+import { AddressAutocomplete } from "../../shared/components/AddressAutocomplete";
 
 export default function Einzug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -24,15 +25,7 @@ export default function Einzug() {
 
   return (
     <ContainerBox title="Einzug">
-      <OrderField<Address>
-        path={path}
-        nestedPath="address"
-        required
-        enableMaps
-        label="Einzugsadresse"
-        id="from-input-field"
-        placeholder="Straße Nr, PLZ Ort"
-      />
+      <AddressAutocomplete path="to" />
 
       <OrderSwitchField<Address>
         path={path}

@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import {
+  Address,
   AppPrice,
   BucketObject,
   Category,
@@ -91,6 +92,7 @@ export const uploadOrder = createAsyncThunk(
           wardrobeWidth: undefined,
         };
       }
+      next.from.address = `${next.from.address_street}, ${next.from.address_zip} ${next.from.address_city}`;
     }
 
     if (typeof next.to !== "undefined") {
@@ -120,6 +122,8 @@ export const uploadOrder = createAsyncThunk(
           liftType: undefined,
         };
       }
+
+      next.to.address = `${next.to.address_street}, ${next.to.address_zip} ${next.to.address_city}`;
     }
 
     if (
@@ -270,6 +274,20 @@ const appSlice = createSlice({
       );
     },
 
+    setAddressParts(
+      state,
+      action: PayloadAction<{
+        path: "from" | "to";
+        addressParts: Partial<Address>;
+      }>
+    ) {
+      const next = state.current;
+      const { path, addressParts } = action.payload;
+      const curAddrss = next[path];
+
+      set(next, [path], { ...curAddrss, ...addressParts });
+    },
+
     setServiceColli(
       state,
       action: PayloadAction<{ id: string; colli: string }>
@@ -375,6 +393,7 @@ export const {
   addImageData,
   removeImageData,
   setFurniture,
+  setAddressParts,
 } = appSlice.actions;
 
 export { appReducer };

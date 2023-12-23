@@ -15,6 +15,7 @@ export function CustomerData() {
               nestedPath="salutation"
               select
               label="Anrede"
+              id="honorific-prefix"
               selectOptions={["-", "Frau", "Herr"]}
             />
           </Grid>
@@ -24,6 +25,7 @@ export function CustomerData() {
             <OrderField<Customer>
               path="customer"
               nestedPath="firstName"
+              id="firstName"
               label="Vorname"
               required
             />
@@ -32,6 +34,7 @@ export function CustomerData() {
             <OrderField<Customer>
               path="customer"
               nestedPath="lastName"
+              id="lastName"
               label="Nachname"
               required
             />

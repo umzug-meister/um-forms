@@ -109,8 +109,24 @@ function validateFrom(order: Order) {
   const { from } = order;
   const primarySchemas: ValidationSchema<Address>[] = [
     {
-      key: "address",
-      message: "Einzugsadresse",
+      key: "address_street",
+      message: "Straße und Hausnummer",
+      type: "required",
+    },
+    {
+      key: "address_street",
+      message: "Straße und Hausnummer sind unvollständig.",
+      type: "regex",
+      regex: /.*\d.*/g,
+    },
+    {
+      key: "address_zip",
+      message: "PLZ",
+      type: "required",
+    },
+    {
+      key: "address_city",
+      message: "Ort",
       type: "required",
     },
     {
@@ -158,8 +174,24 @@ function validateTo(order: Order) {
   const { to } = order;
   const primarySchemas: ValidationSchema<Address>[] = [
     {
-      key: "address",
-      message: "Auszugsadresse",
+      key: "address_street",
+      message: "Straße und Hausnummer",
+      type: "required",
+    },
+    {
+      key: "address_street",
+      message: "Straße und Hausnummer sind unvollständig.",
+      type: "regex",
+      regex: /.*\d.*/g,
+    },
+    {
+      key: "address_zip",
+      message: "PLZ",
+      type: "required",
+    },
+    {
+      key: "address_city",
+      message: "Ort",
       type: "required",
     },
     {
