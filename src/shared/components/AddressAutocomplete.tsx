@@ -46,12 +46,12 @@ export function AddressAutocomplete({ path }: Readonly<Props>) {
       if (loaderRef.current == null) {
         loaderRef.current = new Loader({
           apiKey: gapiKey,
-          libraries: ["places"],
+          language: "de",
         });
       }
 
-      loaderRef.current.load().then((google) => {
-        const autocomplete = new google.maps.places.Autocomplete(
+      loaderRef.current.importLibrary("places").then((google) => {
+        const autocomplete = new google.Autocomplete(
           document.getElementById(autocompleteID) as any,
           options
         );
