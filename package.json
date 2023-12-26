@@ -39,7 +39,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "http-server": "^14.1.1",
     "typescript": "^5.3.2",
-    "um-types": "^1.1.7",
+    "um-types": "^1.1.9",
     "vite": "^5.0.4"
   }
 }

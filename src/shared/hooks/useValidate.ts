@@ -83,7 +83,7 @@ function validateCustomer(order: Order) {
       key: "email",
       message: "Die E-Mail Adresse ist ungültig",
       type: "regex",
-      regex: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/g,
+      regex: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
     },
   ];
 
@@ -105,7 +105,7 @@ function validateDate(order: Order) {
   return validateObject(order, schemas);
 }
 
-const STREET_REGEX = /.{1,50}\d.{0,5}/g;
+const STREET_REGEX = /.{1,50}\d.{0,5}/;
 
 function validateFrom(order: Order) {
   const { from } = order;
