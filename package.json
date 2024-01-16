@@ -6,9 +6,10 @@
   "scripts": {
     "ex": "vite --host --config vite.ex.config.ts",
     "full": "vite --host --config vite.full.config.ts",
+    "fur": "vite --host --config vite.fur.config.ts",
     "build": "tsc && vite build --config vite.ex.config.ts",
     "build-full": "tsc && vite build --config vite.full.config.ts",
-    "build-test": "tsc && vite build --config vite.full.test.config.ts",
+    "build-fur": "tsc && vite build --config vite.fur.config.ts",
     "preview": "vite preview  --config vite.full.config.ts",
     "serve": "npm run build-test && http-server form"
   },
@@ -39,7 +40,7 @@
     "@vitejs/plugin-react": "^4.2.0",
     "http-server": "^14.1.1",
     "typescript": "^5.3.2",
-    "um-types": "^1.1.9",
+    "um-types": "^1.1.10",
     "vite": "^5.0.4"
   }
 }

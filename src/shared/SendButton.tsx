@@ -2,17 +2,18 @@ import SendIcon from "@mui/icons-material/Send";
 import { CircularProgress } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Order } from "um-types";
+import { Order, OrderSrcType } from "um-types";
 import { AppDispatch, AppState } from "../store";
-import { calculateOrder, SrcType, uploadOrder } from "../store/appReducer";
+import { calculateOrder, uploadOrder } from "../store/appReducer";
 import { AppButton } from "./components/AppButton";
 import { useOption } from "./hooks";
 
 interface Props {
-  src: SrcType;
+  src: OrderSrcType;
+  validateFn?: () => boolean;
 }
 
-export function SendButton({ src }: Readonly<Props>) {
+export function SendButton({ src, validateFn = () => true }: Readonly<Props>) {
   const dispatch = useDispatch<AppDispatch>();
 
   const succesUrl = useOption("successUrl");
@@ -24,12 +25,14 @@ export function SendButton({ src }: Readonly<Props>) {
   );
 
   const onUploadRequest = useCallback(() => {
-    setUploading(true);
-    const cb = (id: number | string) => {
-      window.location.href = succesUrl;
-    };
-    dispatch(calculateOrder({ src }));
-    dispatch(uploadOrder(cb));
+    if (validateFn()) {
+      setUploading(true);
+      const cb = (id: number | string) => {
+        window.location.href = succesUrl;
+      };
+      dispatch(calculateOrder({ src }));
+      dispatch(uploadOrder(cb));
+    }
   }, [dispatch]);
 
   return (

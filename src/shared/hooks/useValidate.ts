@@ -23,7 +23,7 @@ type ValidationSchema<T> =
 export function useValidate() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
 
-  const validate = (step: number): boolean => {
+  const validate = (step: number | "moebelliste"): boolean => {
     switch (step) {
       case 0:
         validateCustomer(order);
@@ -32,6 +32,8 @@ export function useValidate() {
         return validateFrom(order);
       case 2:
         return validateTo(order);
+      case "moebelliste":
+        return validateCustomer(order);
       default:
         return true;
     }

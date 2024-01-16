@@ -9,6 +9,7 @@ import {
   MLeistung,
   Order,
   OrderService,
+  OrderSrcType,
   Service,
 } from "um-types";
 import { appRequest } from "../api";
@@ -25,8 +26,6 @@ interface AppSlice {
   categories: Category[];
   selectedPriceID: string | undefined;
 }
-
-export type SrcType = "express" | "UmzugRuckZuck";
 
 export interface AppOptions {
   [name: string]: any;
@@ -307,7 +306,7 @@ const appSlice = createSlice({
         }
       }
     },
-    calculateOrder(state, action: PayloadAction<{ src: SrcType }>) {
+    calculateOrder(state, action: PayloadAction<{ src: OrderSrcType }>) {
       const hvzPriceOption = state.options["hvzPrice"];
 
       let nmb = 0;
