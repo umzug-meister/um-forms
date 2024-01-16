@@ -1,20 +1,20 @@
 import { Alert, Grid, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { Category, Furniture } from "um-types";
-import { ColFlexBox } from "../../shared/components/ColFlexBox";
-import { GridContainer } from "../../shared/components/GridContainer";
-import { typoProps } from "../../shared/constants";
+import { ColFlexBox } from "./ColFlexBox";
+import { GridContainer } from "./GridContainer";
+import { typoProps } from "../constants";
 import {
   useAppFurniture,
   useCategories,
   useFurnitureValue,
   useOption,
   useOrderValue,
-} from "../../shared/hooks";
+} from "../hooks";
 import { AppDispatch } from "../../store";
 import { setFurniture } from "../../store/appReducer";
-import { AppInfo } from "./AppInfo";
-import { NumberInput } from "./NumberInput";
+import { AppInfo } from "../../full-form/components/AppInfo";
+import { NumberInput } from "../../full-form/components/NumberInput";
 
 export default function FurnitureCalculator() {
   const categories = useCategories();

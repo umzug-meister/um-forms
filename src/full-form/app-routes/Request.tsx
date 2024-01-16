@@ -16,9 +16,11 @@ import { AppInfo } from "../components/AppInfo";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 
 const FurnitureCalculator = lazy(
-  () => import("../components/FurnitureCalculator")
+  () => import("../../shared/components/FurnitureCalculator")
 );
-const ImageUploader = lazy(() => import("../components/ImageUploader"));
+const ImageUploader = lazy(
+  () => import("../../shared/components/ImageUploader")
+);
 
 export default function Request() {
   return (

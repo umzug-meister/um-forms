@@ -1,5 +1,4 @@
 import { Typography } from "@mui/material";
-import React from "react";
 import { useSelector } from "react-redux";
 import { AppState } from "../../store";
 import { AppOptions } from "../../store/appReducer";
