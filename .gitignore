@@ -12,6 +12,7 @@ dist
 build
 express
 form
+fur
 dist-ssr
 *.local
 
