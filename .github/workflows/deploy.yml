@@ -45,7 +45,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./express/*"
-          remote_path: "${{ env.FTP_UPLOAD_PATH }}/express"
+          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/express"
 
       - name: Sync full form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -56,7 +56,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./form/*"
-          remote_path: "${{ env.FTP_UPLOAD_PATH }}/form"
+          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/form"
 
       - name: Sync fur form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -67,4 +67,4 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./form/*"
-          remote_path: "${{ env.FTP_UPLOAD_PATH }}/form"
+          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/form"
