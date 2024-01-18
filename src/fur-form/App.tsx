@@ -1,4 +1,10 @@
-import { Alert, Box, CssBaseline, ThemeProvider } from "@mui/material";
+import {
+  Alert,
+  Box,
+  CssBaseline,
+  ThemeProvider,
+  Typography,
+} from "@mui/material";
 import React, { useRef, useState } from "react";
 import { Provider } from "react-redux";
 import AppLoader from "../shared/AppLoader";
@@ -47,8 +53,11 @@ const ReduxApp = () => {
 
   return (
     <ColFlexBox sx={rootSX} gap={8}>
-      <CustomerData />
       <FurnitureCalculator />
+      <Typography variant="h5">
+        Sie können die Möbelliste direkt an uns senden.
+      </Typography>
+      <CustomerData />
       <ImageUploader />
       <DataPrivacyCheck />
       <SendButton src="Moebelliste" validateFn={validateFn} />
