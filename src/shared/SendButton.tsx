@@ -10,10 +10,9 @@ import { useOption } from "./hooks";
 
 interface Props {
   src: OrderSrcType;
-  validateFn?: () => boolean;
 }
 
-export function SendButton({ src, validateFn = () => true }: Readonly<Props>) {
+export function SendButton({ src }: Readonly<Props>) {
   const dispatch = useDispatch<AppDispatch>();
 
   const succesUrl = useOption("successUrl");
@@ -25,14 +24,12 @@ export function SendButton({ src, validateFn = () => true }: Readonly<Props>) {
   );
 
   const onUploadRequest = useCallback(() => {
-    if (validateFn()) {
-      setUploading(true);
-      const cb = (id: number | string) => {
-        window.location.href = succesUrl;
-      };
-      dispatch(calculateOrder({ src }));
-      dispatch(uploadOrder(cb));
-    }
+    setUploading(true);
+    const cb = (id: number | string) => {
+      window.location.href = succesUrl;
+    };
+    dispatch(calculateOrder({ src }));
+    dispatch(uploadOrder(cb));
   }, [dispatch]);
 
   return (

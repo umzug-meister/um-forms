@@ -60,7 +60,7 @@ const ReduxApp = () => {
       <CustomerData />
       <ImageUploader />
       <DataPrivacyCheck />
-      <SendButton src="Moebelliste" validateFn={validateFn} />
+      <SendButton src="Moebelliste" />
       <Box sx={{ minHeight: 64 }}>
         {openSnackbar && <Alert severity="error">{alertMessage.current}</Alert>}
       </Box>
