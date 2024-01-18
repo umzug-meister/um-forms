@@ -66,5 +66,5 @@ jobs:
           password: ${{ secrets.FTP_PASS }}
           sftp_only: true
           port: 22
-          local_path: "./form/*"
-          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/form"
+          local_path: "./fur/*"
+          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/fur"
