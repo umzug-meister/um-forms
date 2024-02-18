@@ -5,8 +5,3 @@ export const typoProps: TypographyProps = {
   align: "right",
   color: "primary",
 };
-
-export const rootSX: SxProps<Theme> = {
-  margin: "auto",
-  maxWidth: "900px",
-};

@@ -5,7 +5,7 @@ import {
   Box,
   Typography,
 } from "@mui/material";
-import ContainerBox from "../../shared/components/ContainerBox";
+import ContainerBox from "../components/ContainerBox";
 import { DataPrivacyCheck } from "../../shared/components/DataPrivacyCheck";
 import OrderField from "../../shared/components/OrderField";
 import { SendButton } from "../../shared/SendButton";

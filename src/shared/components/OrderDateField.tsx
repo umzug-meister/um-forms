@@ -1,7 +1,10 @@
 import React from "react";
 import { NestedPath, Path, useOrderValue } from "../hooks";
-import { AppTextField } from "./AppTextField";
-import { formatISO } from "date-fns";
+import { formatISO, parseISO } from "date-fns";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
+import de from "date-fns/locale/de";
 
 interface Props<T> {
   path: Path;
@@ -22,22 +25,26 @@ export function OrderDateField<T>({
 }: Readonly<Props<T>>) {
   const { value, setValue } = useOrderValue(path, nestedPath);
 
-  const min = formatISO(minDate ? new Date(minDate) : new Date(), {
-    representation: "date",
-  });
+  const min = minDate ? new Date(minDate) : new Date();
 
   return (
-    <AppTextField
-      required={required}
-      size="medium"
-      value={value}
-      type="date"
-      inputProps={{ min }}
-      id={id}
-      label={label}
-      onChange={(ev) => {
-        setValue(ev.target.value);
-      }}
-    />
+    <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={de}>
+      <DatePicker
+        disablePast
+        minDate={min}
+        value={typeof value === "string" && parseISO(value)}
+        onChange={(v) => {
+          setValue(formatISO(v as Date, { representation: "date" }));
+        }}
+        label={label}
+        slotProps={{
+          textField: {
+            id,
+            required,
+            fullWidth: true,
+          },
+        }}
+      />
+    </LocalizationProvider>
   );
 }

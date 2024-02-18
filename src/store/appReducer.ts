@@ -17,6 +17,7 @@ import { Urls } from "../api/Urls";
 
 import { set, cloneDeep } from "lodash";
 import { AppState } from ".";
+import { formatISO } from "date-fns";
 
 interface AppSlice {
   current: Order;
@@ -59,6 +60,7 @@ export const uploadOrder = createAsyncThunk(
     }
 
     if (!next.isDateFix) {
+      //help agents find teh date
       next.date = next.date_from;
     }
 
@@ -199,6 +201,9 @@ const initialOrder = {
   bucketImages: new Array<BucketObject>(),
   services: new Array<OrderService>(),
   items: new Array<Furniture>(),
+  date: formatISO(new Date(), { representation: "date" }),
+  date_from: formatISO(new Date(), { representation: "date" }),
+  date_to: formatISO(new Date(), { representation: "date" }),
 } as Order;
 
 const initialState: AppSlice = {

@@ -54,6 +54,7 @@ export function CustomerData() {
               nestedPath="telNumber"
               label="Telefon"
               type="number"
+              required
             />
           </Grid>
         </GridContainer>

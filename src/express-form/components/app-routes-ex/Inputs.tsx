@@ -1,6 +1,6 @@
 import NavigateBeforeIcon from "@mui/icons-material/NavigateBefore";
 import { Box, Button, Grid, Typography } from "@mui/material";
-import { useMemo } from "react";
+import { useMemo, useRef, useState } from "react";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { Address, AppPrice, Service } from "um-types";
@@ -8,18 +8,33 @@ import { etagen, movementObjects } from "um-types/constants";
 import { scrollToRoot } from "../../../main.ex";
 import { AddressAutocomplete } from "../../../shared/components/AddressAutocomplete";
 import { ColFlexBox } from "../../../shared/components/ColFlexBox";
-import ContainerBox from "../../../shared/components/ContainerBox";
 import { CustomerData } from "../../../shared/components/CustomerData";
 import { DataPrivacyCheck } from "../../../shared/components/DataPrivacyCheck";
 import { GridContainer } from "../../../shared/components/GridContainer";
 import { OrderDateField } from "../../../shared/components/OrderDateField";
 import OrderField from "../../../shared/components/OrderField";
+import { ErrorSnackbar } from "../../../shared/ErrorSnackbar";
 
 import { SendButton } from "../../../shared/SendButton";
 import { AppState } from "../../../store";
 
 export default function Inputs() {
   const navigate = useNavigate();
+
+  const alertMessage = useRef("");
+
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+
+  const onValidation = (message: string, valid: boolean) => {
+    console.log(message, valid);
+    if (!valid) {
+      alertMessage.current = message;
+      setOpenSnackbar(true);
+      setTimeout(() => {
+        setOpenSnackbar(false);
+      }, 4000);
+    }
+  };
 
   const services = useSelector<AppState, Service[]>((s) => s.app.services);
   const selectedId = useSelector<AppState, string | undefined>(
@@ -38,7 +53,7 @@ export default function Inputs() {
   );
 
   return (
-    <ContainerBox>
+    <>
       <GridContainer>
         <Grid
           item
@@ -68,7 +83,7 @@ export default function Inputs() {
         <Grid item xs={12} sm={6}>
           <ColFlexBox>
             <Typography variant="h4">Wann?</Typography>
-            <OrderDateField path="date" />
+            <OrderDateField path="date" label="Umzugstermin" required />
           </ColFlexBox>
         </Grid>
       </GridContainer>
@@ -158,8 +173,13 @@ export default function Inputs() {
         >
           Zurück
         </Button>
-        <SendButton src="express" />
+        <SendButton
+          src="express"
+          shouldValidateCustomer
+          onValidation={onValidation}
+        />
       </Box>
-    </ContainerBox>
+      <ErrorSnackbar open={openSnackbar} message={alertMessage.current} />
+    </>
   );
 }

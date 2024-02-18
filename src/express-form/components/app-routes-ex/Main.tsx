@@ -1,6 +1,6 @@
 import { useMediaQuery, useTheme } from "@mui/material";
-import Grid from "@mui/material/Grid";
 import { useMemo } from "react";
+import { GridContainer } from "../../../shared/components/GridContainer";
 import { MainCard } from "../MainCard";
 import { OfferCard } from "../OfferCard";
 
@@ -11,8 +11,7 @@ export default function Main() {
   const mainCard = useMemo(() => <MainCard />, []);
 
   return (
-    <Grid
-      container
+    <GridContainer
       rowSpacing={{ xs: 2, sm: 3, md: 4 }}
       columnSpacing={{ sm: 2, md: 3 }}
     >
@@ -43,6 +42,6 @@ export default function Main() {
         primary="#cecece"
         secondary="#DDDEDF"
       />
-    </Grid>
+    </GridContainer>
   );
 }

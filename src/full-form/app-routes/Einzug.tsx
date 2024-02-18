@@ -7,7 +7,7 @@ import {
   movementObjects,
   parkingDistances,
 } from "um-types/constants";
-import ContainerBox from "../../shared/components/ContainerBox";
+import ContainerBox from "../components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
 import { typoProps } from "../../shared/constants";
 import { OrderSwitchField } from "../components/OrderSwitchField";

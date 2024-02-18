@@ -2,7 +2,7 @@ import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Address, Order } from "um-types";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
-import ContainerBox from "../../shared/components/ContainerBox";
+import ContainerBox from "../components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
 import { typoProps } from "../../shared/constants";
 import {
