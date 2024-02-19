@@ -12,7 +12,7 @@ import { useSelector } from "react-redux";
 import { AppPacking, Order, Service } from "um-types";
 import { AppTextField } from "../../shared/components/AppTextField";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
-import ContainerBox from "../../shared/components/ContainerBox";
+import ContainerBox from "../components/ContainerBox";
 import { GridContainer } from "../../shared/components/GridContainer";
 import { AppState } from "../../store";
 import { OrderSwitchField } from "../components/OrderSwitchField";

@@ -23,7 +23,7 @@ type ValidationSchema<T> =
 export function useValidate() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
 
-  const validate = (step: number | "moebelliste"): boolean => {
+  const validate = (step: number): boolean => {
     switch (step) {
       case 0:
         validateCustomer(order);
@@ -32,8 +32,7 @@ export function useValidate() {
         return validateFrom(order);
       case 2:
         return validateTo(order);
-      case "moebelliste":
-        return validateCustomer(order);
+
       default:
         return true;
     }
@@ -64,7 +63,7 @@ function missing(value: string) {
   );
 }
 
-function validateCustomer(order: Order) {
+export function validateCustomer(order: Order) {
   const schemas: ValidationSchema<Customer>[] = [
     {
       key: "firstName",
@@ -81,11 +80,17 @@ function validateCustomer(order: Order) {
       message: "E-Mail",
       type: "required",
     },
+
     {
       key: "email",
       message: "Die E-Mail Adresse ist ungültig",
       type: "regex",
       regex: /^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/,
+    },
+    {
+      key: "telNumber",
+      message: "Telefon",
+      type: "required",
     },
   ];
 

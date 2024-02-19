@@ -1,5 +1,4 @@
 import {
-  Alert,
   Box,
   Step,
   StepLabel,
@@ -14,6 +13,7 @@ import { Outlet, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
 import { AppButton } from "../../shared/components/AppButton";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
+import { ErrorSnackbar } from "../../shared/ErrorSnackbar";
 import { useValidate } from "../../shared/hooks/useValidate";
 
 const routes = [
@@ -89,11 +89,7 @@ export default function Main() {
           <AppButton {...backButtonProps}>zurück</AppButton>
           {lastStep ? null : <AppButton {...nextButtonProps}>weiter</AppButton>}
         </Box>
-        <Box sx={{ minHeight: 64 }}>
-          {openSnackbar && (
-            <Alert severity="error">{alertMessage.current}</Alert>
-          )}
-        </Box>
+        <ErrorSnackbar open={openSnackbar} message={alertMessage.current} />
       </ColFlexBox>
     </ColFlexBox>
   );

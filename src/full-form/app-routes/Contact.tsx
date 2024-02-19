@@ -1,7 +1,7 @@
 import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
 import { Order } from "um-types";
-import ContainerBox from "../../shared/components/ContainerBox";
+import ContainerBox from "../components/ContainerBox";
 import { CustomerData } from "../../shared/components/CustomerData";
 import { GridContainer } from "../../shared/components/GridContainer";
 import { OrderDateField } from "../../shared/components/OrderDateField";
