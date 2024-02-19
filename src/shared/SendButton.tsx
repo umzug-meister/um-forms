@@ -32,7 +32,7 @@ export function SendButton({
     (s) => s.app.current
   );
 
-  const onUploadRequest = useCallback(() => {
+  const onUploadRequest = useCallback(async () => {
     try {
       if (shouldValidateCustomer) {
         validateCustomer(order);
@@ -42,7 +42,7 @@ export function SendButton({
         window.location.href = succesUrl;
       };
       dispatch(calculateOrder({ src }));
-      dispatch(uploadOrder(cb));
+      await dispatch(uploadOrder(cb));
     } catch (e: any) {
       onValidation?.(e.toString(), false);
     } finally {
