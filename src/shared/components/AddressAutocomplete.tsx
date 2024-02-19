@@ -91,6 +91,7 @@ export function AddressAutocomplete({ path }: Readonly<Props>) {
           path={path}
           nestedPath="address_street"
           label="Straße und Hausnummer"
+          required
         />
       </GridItem>
 
@@ -100,6 +101,7 @@ export function AddressAutocomplete({ path }: Readonly<Props>) {
           path={path}
           nestedPath="address_zip"
           label="PLZ"
+          required
         />
       </GridItem>
 
@@ -109,6 +111,7 @@ export function AddressAutocomplete({ path }: Readonly<Props>) {
           path={path}
           nestedPath="address_city"
           label="Ort"
+          required
         />
       </GridItem>
     </GridContainer>
