@@ -5,6 +5,7 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import de from "date-fns/locale/de";
+import { AppTextField } from "./AppTextField";
 
 interface Props<T> {
   path: Path;
@@ -30,6 +31,7 @@ export function OrderDateField<T>({
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={de}>
       <DatePicker
+        slots={{ textField: AppTextField }}
         disablePast
         minDate={min}
         value={typeof value === "string" && parseISO(value)}
