@@ -8,7 +8,6 @@ export default defineConfig(({ mode }) => {
     plugins: [react()],
     base: mode === "development" ? "/" : "/um-forms/fur/",
     build: {
-      sourcemap: true,
       rollupOptions: {
         input: {
           app: "./fur.html",
