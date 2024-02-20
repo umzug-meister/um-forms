@@ -11,7 +11,6 @@ export default defineConfig(({ mode }) => {
       global: {},
     },
     build: {
-      sourcemap: true,
       rollupOptions: {
         input: {
           app: "./full.html",
