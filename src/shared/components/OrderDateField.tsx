@@ -24,7 +24,7 @@ export function OrderDateField<T>({
   required,
   minDate,
 }: Readonly<Props<T>>) {
-  const { value, setValue } = useOrderValue(path, nestedPath);
+  const { value, setValue } = useOrderValue<T>(path, nestedPath);
 
   const min = minDate ? new Date(minDate) : new Date();
 
@@ -44,6 +44,12 @@ export function OrderDateField<T>({
             id,
             required,
             fullWidth: true,
+            sx: {
+              "& input[type=text]": {
+                border: "none !important",
+                padding: `16px!important`,
+              },
+            },
           },
         }}
       />
