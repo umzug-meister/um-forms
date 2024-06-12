@@ -60,7 +60,7 @@ export const uploadOrder = createAsyncThunk(
     }
 
     if (!next.isDateFix) {
-      //help agents find teh date
+      //help agents find the date
       next.date = next.date_from;
     }
 
@@ -201,6 +201,7 @@ const initialOrder = {
   bucketImages: new Array<BucketObject>(),
   services: new Array<OrderService>(),
   items: new Array<Furniture>(),
+  isDateFix: true,
   date: formatISO(new Date(), { representation: "date" }),
   date_from: formatISO(new Date(), { representation: "date" }),
   date_to: formatISO(new Date(), { representation: "date" }),
