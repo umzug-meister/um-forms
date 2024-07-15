@@ -6,7 +6,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 
 import { AppTextField } from "./AppTextField";
 
-import de from "date-fns/locale/de";
+import { de } from "date-fns/locale/de";
 
 interface Props<T> {
   path: Path;
