@@ -14,7 +14,6 @@ export default function App() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const onValidation = (message: string, valid: boolean) => {
-    console.log(message, valid);
     if (!valid) {
       alertMessage.current = message;
       setOpenSnackbar(true);
@@ -25,7 +24,7 @@ export default function App() {
   };
 
   return (
-    <MainApp>
+    <MainApp full>
       <FurnitureCalculator />
       <Typography variant="h5">
         Sie können die Möbelliste direkt an uns senden.

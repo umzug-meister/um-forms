@@ -26,7 +26,6 @@ export default function Inputs() {
   const [openSnackbar, setOpenSnackbar] = useState(false);
 
   const onValidation = (message: string, valid: boolean) => {
-    console.log(message, valid);
     if (!valid) {
       alertMessage.current = message;
       setOpenSnackbar(true);
