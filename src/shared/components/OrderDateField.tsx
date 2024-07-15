@@ -1,11 +1,12 @@
 import React from "react";
 import { NestedPath, Path, useOrderValue } from "../hooks";
 import { formatISO, parseISO } from "date-fns";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import de from "date-fns/locale/de";
+import { LocalizationProvider, DatePicker } from "@mui/x-date-pickers";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
+
 import { AppTextField } from "./AppTextField";
+
+import { de } from "date-fns/locale/de";
 
 interface Props<T> {
   path: Path;
@@ -34,7 +35,7 @@ export function OrderDateField<T>({
         slots={{ textField: AppTextField }}
         disablePast
         minDate={min}
-        value={typeof value === "string" && parseISO(value)}
+        value={typeof value === "string" ? parseISO(value) : undefined}
         onChange={(v) => {
           setValue(formatISO(v as Date, { representation: "date" }));
         }}

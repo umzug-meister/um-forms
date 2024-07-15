@@ -1,7 +1,8 @@
 import { ThemeOptions } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
+import { deDE } from "@mui/x-date-pickers/locales";
 
-const optiosn: ThemeOptions = {
+const opts: ThemeOptions = {
   palette: {
     primary: {
       main: "#199663",
@@ -27,4 +28,4 @@ const optiosn: ThemeOptions = {
   },
 };
 
-export const theme = createTheme(optiosn);
+export const theme = createTheme(opts, deDE);
