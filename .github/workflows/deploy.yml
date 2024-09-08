@@ -1,9 +1,12 @@
+name: 🚀 Deploy um-forms
+
 on:
   push:
     branches:
       - "main"
 
-name: 🚀 Deploy um-forms
+env:
+  REMOTE_PATH: "/208989_umzug___ruck_zuck/wordpress/um-forms"
 
 jobs:
   web-deploy:
@@ -45,7 +48,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./express/*"
-          remote_path: "/134479_umzug___ruck_zuck/wordpress/um-forms/express"
+          remote_path: "$REMOTE_PATH/express"
 
       - name: Sync full form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
