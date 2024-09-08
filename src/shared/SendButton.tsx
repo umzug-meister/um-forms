@@ -51,21 +51,19 @@ export function SendButton({
   }, [dispatch, order]);
 
   return (
-    <>
-      <AppButton
-        disabled={!dataPrivacyAccepted}
-        onClick={onUploadRequest}
-        endIcon={
-          uploading ? (
-            <CircularProgress size={20} color="inherit" />
-          ) : (
-            <SendIcon />
-          )
-        }
-        variant="contained"
-      >
-        Absenden
-      </AppButton>
-    </>
+    <AppButton
+      disabled={!dataPrivacyAccepted}
+      onClick={onUploadRequest}
+      endIcon={
+        uploading ? (
+          <CircularProgress size={20} color="inherit" />
+        ) : (
+          <SendIcon />
+        )
+      }
+      variant="contained"
+    >
+      Absenden
+    </AppButton>
   );
 }
