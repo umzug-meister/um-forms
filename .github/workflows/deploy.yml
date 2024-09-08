@@ -5,12 +5,11 @@ on:
     branches:
       - "main"
 
-env:
-  REMOTE_PATH: "/208989_umzug___ruck_zuck/wordpress/um-forms"
-
 jobs:
   web-deploy:
     name: Deploy
+    env:
+      REMOTE_PATH: "/208989_umzug___ruck_zuck/wordpress/um-forms"
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
@@ -48,7 +47,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./express/*"
-          remote_path: "$REMOTE_PATH/express"
+          remote_path: ${{ REMOTE_PATH }}/express
 
       - name: Sync full form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
