@@ -18,7 +18,7 @@ export default function Contact() {
 
       <OrderSwitchField
         path="costsAssumption"
-        label="Kostenübernahme von Arbeitsamt, ARGE etc?"
+        label="Kostenübernahme durch Arbeitsamt, ARGE etc?"
       />
       <OrderSwitchField path="isDateFix" label="Steht der Umzugstermin fest?" />
       {isDateFix ? (

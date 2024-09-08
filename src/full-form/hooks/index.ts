@@ -9,7 +9,7 @@ export function useServiceColli(id: string) {
   const order = useSelector<AppState, Order>((s) => s.app.current);
 
   const dispatch = useDispatch<AppDispatch>();
-  const colli = order.services.find((s) => s.id === id)?.colli || "";
+  const colli = order.services.find((s) => s.id === id)?.colli ?? "";
 
   const onColliChange = useCallback(
     (colli: string) => {
