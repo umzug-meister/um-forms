@@ -9,6 +9,7 @@ jobs:
   web-deploy:
     name: Deploy
     env:
+      VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
       REMOTE_PATH: "/208989_umzug___ruck_zuck/wordpress/um-forms"
     runs-on: ubuntu-latest
     steps:
@@ -25,18 +26,12 @@ jobs:
 
       - name: Build express-form
         run: npm run build
-        env:
-          VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
 
       - name: Build full-form
         run: npm run build-full
-        env:
-          VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
 
       - name: Build fur-form
         run: npm run build-fur
-        env:
-          VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
 
       - name: Sync express form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
