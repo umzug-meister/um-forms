@@ -47,7 +47,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./express/*"
-          remote_path: ${{ REMOTE_PATH }}/express
+          remote_path: $REMOTE_PATH/express
 
       - name: Sync full form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
