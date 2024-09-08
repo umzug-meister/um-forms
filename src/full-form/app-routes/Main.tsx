@@ -11,10 +11,11 @@ import { ButtonProps } from "@mui/material/Button";
 import { useEffect, useRef, useState } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
+import { ErrorSnackbar } from "../../shared/ErrorSnackbar";
 import { AppButton } from "../../shared/components/AppButton";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
-import { ErrorSnackbar } from "../../shared/ErrorSnackbar";
 import { useValidate } from "../../shared/hooks/useValidate";
+import { useSetSrc } from "../hooks";
 
 const routes = [
   { label: "Kontakt", route: "/" },
@@ -25,6 +26,8 @@ const routes = [
 ];
 
 export default function Main() {
+  useSetSrc();
+
   const alertMessage = useRef("");
 
   const [openSnackbar, setOpenSnackbar] = useState(false);

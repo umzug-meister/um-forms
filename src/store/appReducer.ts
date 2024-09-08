@@ -331,7 +331,10 @@ const appSlice = createSlice({
         (Number(state.current.timeBased.basis) || 0) + halteverbotszonen;
       const next = state.current;
 
-      set(next, ["src"], action.payload.src);
+      if (!next.src) {
+        // might be already set from search params, e.g. obi
+        set(next, ["src"], action.payload.src);
+      }
       set(next, ["sum"], orderSum);
       set(next, ["prices", "halteverbotszonen"], halteverbotszonen);
 
