@@ -17,7 +17,12 @@ interface Props {
   secondary: string;
 }
 
-export function OfferCard({ transporter, workers, primary, secondary }: Props) {
+export function OfferCard({
+  transporter,
+  workers,
+  primary,
+  secondary,
+}: Readonly<Props>) {
   const navigate = useNavigate();
   const selectedPriceID = useSelectedId();
   const imageSrc = useMemo(
@@ -26,6 +31,9 @@ export function OfferCard({ transporter, workers, primary, secondary }: Props) {
   );
 
   const offers = useOffers(transporter, workers);
+
+  if (!offers.length) return null;
+
   const { hourPrice, ridingCosts } = offers[0];
   const showButton = offers.some((o) => o.id == selectedPriceID);
 
