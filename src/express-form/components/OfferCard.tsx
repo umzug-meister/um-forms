@@ -110,7 +110,7 @@ export function OfferCard({
   );
 }
 
-function OfferLine(offer: AppPrice) {
+function OfferLine(offer: Readonly<AppPrice>) {
   const { sum, includedHours, id } = offer;
 
   const dispatch = useDispatch<AppDispatch>();

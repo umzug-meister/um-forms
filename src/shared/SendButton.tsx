@@ -52,7 +52,7 @@ export function SendButton({
 
   return (
     <AppButton
-      disabled={!dataPrivacyAccepted}
+      disabled={!dataPrivacyAccepted || uploading}
       onClick={onUploadRequest}
       endIcon={
         uploading ? (
