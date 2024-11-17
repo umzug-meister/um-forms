@@ -326,7 +326,6 @@ const appSlice = createSlice({
       }
 
       const halteverbotszonen = nmb * Number(hvzPriceOption);
-      console.log("halteverbotszonen", halteverbotszonen);
 
       const orderSum =
         (Number(state.current.timeBased.basis) || 0) + halteverbotszonen;

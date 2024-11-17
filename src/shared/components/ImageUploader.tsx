@@ -27,7 +27,7 @@ function createFolderPath(dateAsString: string | undefined) {
 }
 
 export default function ImageUploader() {
-  const poolId = useOption("poolId");
+  const poolId = import.meta.env.VITE_AWS_POOL_ID;
 
   const { bucketImages, date, date_to } = useSelector<AppState, Order>(
     (s) => s.app.current

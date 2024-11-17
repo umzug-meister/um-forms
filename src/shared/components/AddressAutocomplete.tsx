@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function AddressAutocomplete({ path }: Readonly<Props>) {
-  const gapiKey = useOption("gapikey");
+  const gapiKey = import.meta.env.VITE_GOOGLE_API_KEY;
 
   const dispatch = useDispatch<AppDispatch>();
 
@@ -23,7 +23,7 @@ export function AddressAutocomplete({ path }: Readonly<Props>) {
   const options: google.maps.places.AutocompleteOptions = useMemo(
     () => ({
       fields: ["address_components"],
-      componentRestrictions: { country: ["de", "at", "ch"] },
+      componentRestrictions: { country: ["de", "at"] },
     }),
     []
   );
