@@ -43,7 +43,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./express/*"
-          remote_path: ${{ env.FTP_UPLOAD_PATH }}/express
+          remote_path: ${{ vars.FTP_UPLOAD_PATH }}/express
 
       - name: Sync full form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -54,7 +54,7 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./form/*"
-          remote_path: ${{ env.FTP_UPLOAD_PATH }}/form
+          remote_path: ${{ vars.FTP_UPLOAD_PATH }}/form
 
       - name: Sync fur form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
@@ -65,4 +65,4 @@ jobs:
           sftp_only: true
           port: 22
           local_path: "./fur/*"
-          remote_path: ${{ env.REMOTE_PATH }}/fur
+          remote_path: ${{ vars.FTP_UPLOAD_PATH }}/fur
