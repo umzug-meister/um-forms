@@ -13,3 +13,6 @@ on:
 jobs:
   call_code_review:
     uses: umzug-meister/workflows/.github/workflows/ai-review.yml@main
+    permissions:
+      contents: read
+      pull-requests: write
