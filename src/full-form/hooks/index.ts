@@ -36,7 +36,6 @@ export function useSetSrc() {
     } else {
       src = Cookies.get("src");
     }
-    console.log(src);
     dispatch(updateOrderProps({ path: ["src"], value: src }));
   }, [searchParams]);
 }
