@@ -12,4 +12,4 @@ on:
 
 jobs:
   call_code_review:
-    uses: umzug-meister/workflows/blob/main/.github/workflows/ai-review.yml@main
+    uses: umzug-meister/workflows/.github/workflows/ai-review.yml@main
