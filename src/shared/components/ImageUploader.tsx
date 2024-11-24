@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { BucketObject, Order } from "um-types";
 import { ColFlexBox } from "./ColFlexBox";
 import { GridContainer } from "./GridContainer";
-import { useOption } from "../hooks";
 import { AppState } from "../../store";
 import { addImageData, removeImageData } from "../../store/appReducer";
 

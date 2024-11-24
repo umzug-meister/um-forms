@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
 import { Address } from "um-types";
-import { useOption } from "../hooks";
 import { GridContainer } from "./GridContainer";
 import { GridItem } from "./GridItem";
 import OrderField from "./OrderField";

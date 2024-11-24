@@ -7,12 +7,12 @@ function initBaseURL() {
   }
 }
 
-export const appRequest = (type: "get" | "delete" | "put" | "post") => {
+export const appRequest = <T>(type: "get" | "delete" | "put" | "post") => {
   initBaseURL();
 
   switch (type) {
     case "get":
-      return (url: string) => axios.get(url).then((res) => res.data);
+      return (url: string) => axios.get(url).then((res) => res.data as T);
 
     case "delete":
       return (url: string) => axios.delete(url);
