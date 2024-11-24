@@ -8,13 +8,13 @@ import {
   useAppFurniture,
   useCategories,
   useFurnitureValue,
-  useOption,
   useOrderValue,
 } from "../hooks";
 import { AppDispatch } from "../../store";
 import { setFurniture } from "../../store/appReducer";
 import { AppInfo } from "../../full-form/components/AppInfo";
 import { NumberInput } from "../../full-form/components/NumberInput";
+import { useOption } from "../hooks/useOption";
 
 export default function FurnitureCalculator() {
   const categories = useCategories();

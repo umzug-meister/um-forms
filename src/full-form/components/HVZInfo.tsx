@@ -1,4 +1,4 @@
-import { useOption } from "../../shared/hooks";
+import { useOption } from "../../shared/hooks/useOption";
 import { AppInfo } from "./AppInfo";
 
 type Props = {
@@ -15,6 +15,7 @@ export function HVZInfo({ show }: Readonly<Props>) {
   if (!show) {
     return null;
   }
+
   return (
     <AppInfo
       text={

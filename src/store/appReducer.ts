@@ -21,15 +21,24 @@ import { formatISO } from "date-fns";
 
 interface AppSlice {
   current: Order;
-  options: AppOptions;
+  options: FormsOptions;
   furniture: Furniture[];
   services: Service[];
   categories: Category[];
   selectedPriceID: string | undefined;
 }
 
-export interface AppOptions {
-  [name: string]: any;
+/**
+ * @description Options Avavilable in Forms
+ */
+//TODO export to um core
+export interface FormsOptions {
+  hvzPrice: string;
+  boxCbm: string;
+  kleiderboxCbm: string;
+  successUrl: string;
+  dataPrivacyUrl: string;
+  boxCalculatorUrl: string;
 }
 
 export const loadAllCategories = createAsyncThunk("loadAllCategories", () => {
@@ -176,10 +185,6 @@ export const loadAllFurniture = createAsyncThunk("loadAllFurniture", () => {
   return appRequest("get")(Urls.items());
 });
 
-export const loadAllOptions = createAsyncThunk("loadAllOptions", () => {
-  return appRequest("get")(Urls.options());
-});
-
 export const loadAllServices = createAsyncThunk("loadAllServices", () => {
   return appRequest("get")(Urls.services());
 });
@@ -210,7 +215,7 @@ const initialOrder = {
 const initialState: AppSlice = {
   selectedPriceID: undefined,
   current: initialOrder,
-  options: {},
+  options: {} as FormsOptions,
   furniture: [],
   categories: [],
   services: new Array<Service>(),
@@ -372,12 +377,16 @@ const appSlice = createSlice({
       state.current = initialOrder;
       state.selectedPriceID = undefined;
     },
+    setOptionValue(
+      state,
+      action: PayloadAction<{ path: keyof FormsOptions; value: any }>
+    ) {
+      const { path, value } = action.payload;
+      state.options[path] = value;
+    },
   },
   extraReducers(builder) {
     builder
-      .addCase(loadAllOptions.fulfilled, (state, action) => {
-        state.options = action.payload;
-      })
       .addCase(loadAllServices.fulfilled, (state, action) => {
         state.services = action.payload;
       })
@@ -393,6 +402,7 @@ const appSlice = createSlice({
 const appReducer = appSlice.reducer;
 
 export const {
+  setOptionValue,
   setServiceColli,
   updateOrderProps,
   setSelectedPriceId,
