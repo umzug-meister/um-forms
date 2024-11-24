@@ -19,6 +19,7 @@ export default function AppLoader({
   const [init, setInit] = useState(false);
 
   const dispatch = useDispatch<AppDispatch>();
+  // preload options, since they are not used directly
   useOption("boxCbm");
   useOption("kleiderboxCbm");
 
