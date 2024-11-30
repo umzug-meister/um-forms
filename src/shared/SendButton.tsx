@@ -6,7 +6,7 @@ import { Order, OrderSrcType } from "um-types";
 import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import { AppButton } from "./components/AppButton";
-import { useOption } from "./hooks";
+import { useOption } from "./hooks/useOption";
 import { validateCustomer } from "./hooks/useValidate";
 
 interface Props {
