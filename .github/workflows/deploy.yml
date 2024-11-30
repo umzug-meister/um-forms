@@ -9,7 +9,7 @@ jobs:
   web-deploy:
     name: Deploy
     env:
-      VITE_BACKEND_URL: ${{ secrets.BACKEND_URL }}
+      VITE_BACKEND_URL: ${{ vars.BACKEND_URL }}
       VITE_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       VITE_AWS_POOL_ID: ${{ secrets.AWS_POOL_ID }}
     runs-on: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
       - name: Sync express form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           sftp_only: true
@@ -48,7 +48,7 @@ jobs:
       - name: Sync full form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           sftp_only: true
@@ -59,7 +59,7 @@ jobs:
       - name: Sync fur form files
         uses: wlixcc/SFTP-Deploy-Action@v1.2.4
         with:
-          server: ${{ secrets.FTP_HOST }}
+          server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           sftp_only: true
