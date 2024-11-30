@@ -7,9 +7,9 @@
     "ex": "vite --host --config vite.ex.config.ts",
     "full": "vite --host --config vite.full.config.ts",
     "fur": "vite --host --config vite.fur.config.ts",
-    "build": "tsc && vite build --config vite.ex.config.ts",
-    "build-full": "tsc && vite build --config vite.full.config.ts",
-    "build-fur": "tsc && vite build --config vite.fur.config.ts",
+    "build-ex": "vite build --config vite.ex.config.ts",
+    "build-full": "vite build --config vite.full.config.ts",
+    "build-fur": "vite build --config vite.fur.config.ts",
     "preview": "vite preview  --config vite.full.config.ts",
     "serve": "npm run build-test && http-server form"
   },
@@ -38,12 +38,10 @@
     "@types/lodash": "^4.14.194",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
-    "@typescript-eslint/eslint-plugin": "^5.57.1",
-    "@typescript-eslint/parser": "^5.57.1",
-    "@vitejs/plugin-react": "^4.2.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "http-server": "^14.1.1",
     "typescript": "^5.3.2",
     "um-types": "^1.1.13",
-    "vite": "^5.0.4"
+    "vite": "^6.0.1"
   }
 }

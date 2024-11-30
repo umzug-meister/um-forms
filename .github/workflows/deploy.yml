@@ -26,7 +26,7 @@ jobs:
         run: npm install
 
       - name: Build express-form
-        run: npm run build
+        run: npm run build-ex
 
       - name: Build full-form
         run: npm run build-full
