@@ -7,6 +7,7 @@
     "ex": "vite --host --config vite.ex.config.ts",
     "full": "vite --host --config vite.full.config.ts",
     "fur": "vite --host --config vite.fur.config.ts",
+    "build": "npm run build-ex && npm run build-full && npm run build-fur",
     "build-ex": "vite build --config vite.ex.config.ts",
     "build-full": "vite build --config vite.full.config.ts",
     "build-fur": "vite build --config vite.fur.config.ts",
