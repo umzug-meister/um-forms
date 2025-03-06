@@ -35,7 +35,7 @@ jobs:
         run: npm run build-fur
 
       - name: Sync express form files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
         with:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
@@ -46,7 +46,7 @@ jobs:
           remote_path: ${{ vars.FTP_UPLOAD_PATH }}/express
 
       - name: Sync full form files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
         with:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
@@ -57,7 +57,7 @@ jobs:
           remote_path: ${{ vars.FTP_UPLOAD_PATH }}/form
 
       - name: Sync fur form files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.4
+        uses: wlixcc/SFTP-Deploy-Action@v1.2.5
         with:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
