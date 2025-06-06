@@ -8,7 +8,7 @@ import {
   useTheme,
 } from "@mui/material";
 import { useId } from "react";
-import { Order } from "um-types";
+import { Order } from "@umzug-meister/um-core";
 import { useOrderValue } from "../../shared/hooks";
 
 type Path = keyof Order;

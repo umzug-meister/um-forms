@@ -1,6 +1,6 @@
 import { useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Category, Furniture, Order } from "um-types";
+import { Category, Furniture, Order } from "@umzug-meister/um-core";
 import { AppDispatch, AppState } from "../../store";
 import { updateOrderProps } from "../../store/appReducer";
 

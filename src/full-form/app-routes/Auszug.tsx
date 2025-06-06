@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Address, Order } from "um-types";
+import { Address, Order } from "@umzug-meister/um-core";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
@@ -11,7 +11,7 @@ import {
   movementObjects,
   parkingDistances,
   squares,
-} from "um-types/constants";
+} from "@umzug-meister/um-core/constants";
 import { AppState } from "../../store";
 import { AppInfo } from "../components/AppInfo";
 import { CustomItemsWidget } from "../components/CustomItemsWidget";

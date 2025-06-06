@@ -1,5 +1,5 @@
 import { useSelector } from "react-redux";
-import { Address, Customer, Order } from "um-types";
+import { Address, Customer, Order } from "@umzug-meister/um-core";
 import { AppState } from "../../store";
 import { ValidationError } from "../classes/ValidationError";
 

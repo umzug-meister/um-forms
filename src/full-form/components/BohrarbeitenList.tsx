@@ -1,7 +1,7 @@
 import { FormLabel, Grid } from "@mui/material";
 import { useState } from "react";
 import { useSelector } from "react-redux";
-import { AppService, Service } from "um-types";
+import { AppService, Service } from "@umzug-meister/um-core";
 import { AppTextField } from "../../shared/components/AppTextField";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import { AppState } from "../../store";

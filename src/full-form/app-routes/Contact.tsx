@@ -1,6 +1,6 @@
 import { Grid } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Order } from "um-types";
+import { Order } from "@umzug-meister/um-core";
 import ContainerBox from "../components/ContainerBox";
 import { CustomerData } from "../../shared/components/CustomerData";
 import { GridContainer } from "../../shared/components/GridContainer";

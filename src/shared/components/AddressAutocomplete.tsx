@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef } from "react";
-import { Address } from "um-types";
+import { Address } from "@umzug-meister/um-core";
 import { GridContainer } from "./GridContainer";
 import { GridItem } from "./GridItem";
 import OrderField from "./OrderField";

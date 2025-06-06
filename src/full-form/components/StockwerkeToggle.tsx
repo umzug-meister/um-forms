@@ -1,6 +1,6 @@
 import { Paper, ToggleButton, ToggleButtonGroup } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import { Address } from "um-types";
+import { Address } from "@umzug-meister/um-core";
 import { useOrderValue } from "../../shared/hooks";
 
 interface Props {

@@ -1,5 +1,5 @@
 import { Grid } from "@mui/material";
-import { Customer } from "um-types";
+import { Customer } from "@umzug-meister/um-core";
 import { ColFlexBox } from "./ColFlexBox";
 import { GridContainer } from "./GridContainer";
 import OrderField from "./OrderField";

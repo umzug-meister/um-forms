@@ -1,6 +1,6 @@
 import { useCallback, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Order, OrderSrcType } from "um-types";
+import { Order, OrderSrcType } from "@umzug-meister/um-core";
 import { AppDispatch, AppState } from "../../store";
 import { setServiceColli, updateOrderProps } from "../../store/appReducer";
 import { useSearchParams } from "react-router-dom";

@@ -4,7 +4,7 @@ import { Box, FormControlLabel, Radio, Typography } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { AppPrice, Service } from "um-types";
+import { AppPrice, Service } from "@umzug-meister/um-core";
 import { scrollToRoot } from "../../main.ex";
 import { AppButton } from "../../shared/components/AppButton";
 import { AppDispatch, AppState } from "../../store";

@@ -10,7 +10,7 @@ import { fromCognitoIdentityPool } from "@aws-sdk/credential-providers";
 
 import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { BucketObject, Order } from "um-types";
+import { BucketObject, Order } from "@umzug-meister/um-core";
 import { ColFlexBox } from "./ColFlexBox";
 import { GridContainer } from "./GridContainer";
 import { AppState } from "../../store";
