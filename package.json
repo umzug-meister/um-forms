@@ -12,6 +12,7 @@
     "build-full": "vite build --config vite.full.config.ts",
     "build-fur": "vite build --config vite.fur.config.ts",
     "preview": "vite preview  --config vite.full.config.ts",
+    "test": "echo todo && exit 0",
     "serve": "npm run build-test && http-server form"
   },
   "dependencies": {
