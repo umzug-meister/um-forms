@@ -9,7 +9,7 @@ import {
   Typography,
 } from "@mui/material";
 import { useSelector } from "react-redux";
-import { AppPacking, Order, Service } from "um-types";
+import { AppPacking, Order, Service } from "@umzug-meister/um-core";
 import { AppTextField } from "../../shared/components/AppTextField";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../components/ContainerBox";

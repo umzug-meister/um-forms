@@ -11,7 +11,7 @@ import {
   OrderService,
   OrderSrcType,
   Service,
-} from "um-types";
+} from "@umzug-meister/um-core";
 import { appRequest } from "../api";
 import { Urls } from "../api/Urls";
 

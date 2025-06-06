@@ -6,10 +6,8 @@ interface Props {
 }
 export function AppInfo({ text }: Readonly<Props>) {
   return (
-    <Alert severity="info" icon={false}>
-      <Typography variant="subtitle1" sx={{ fontWeight: "bolder" }}>
-        {text}
-      </Typography>
+    <Alert severity="warning" icon={false}>
+      <Typography variant="subtitle1">{text}</Typography>
     </Alert>
   );
 }

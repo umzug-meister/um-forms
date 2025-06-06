@@ -1,12 +1,12 @@
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Address, Order } from "um-types";
+import { Address, Order } from "@umzug-meister/um-core";
 import {
   etagen,
   liftTypes,
   movementObjects,
   parkingDistances,
-} from "um-types/constants";
+} from "@umzug-meister/um-core/constants";
 import ContainerBox from "../components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
 import { typoProps } from "../../shared/constants";
@@ -103,13 +103,20 @@ export default function Einzug() {
       <OrderSwitchField<Address>
         path={path}
         nestedPath="montage"
-        label="Möbel-Montage"
+        label="Möbel Aufbau"
       />
       {order.to.montage && (
         <>
           <AppInfo
-            text=" Wir montieren ausschließlich Möbelstücke, die zuvor von uns
-            demontiert wurden."
+            text={
+              <>
+                Wir montieren ausschließlich Möbelstücke, die zuvor von uns
+                abgebaut wurden. Bitte beachten Sie, dass der Aufbau keine&nbsp;
+                <b>Bohrarbeiten</b> oder das Aufhängen von Elementen umfasst.
+                Falls Sie eine <b>Wandmontage</b> wünschen, teilen Sie uns dies
+                gerne im nächsten Schritt mit.
+              </>
+            }
           />
         </>
       )}

@@ -1,6 +1,6 @@
 import { Typography } from "@mui/material";
 import { useSelector } from "react-redux";
-import { Address, Order } from "um-types";
+import { Address, Order } from "@umzug-meister/um-core";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
 import ContainerBox from "../components/ContainerBox";
 import OrderField from "../../shared/components/OrderField";
@@ -11,7 +11,7 @@ import {
   movementObjects,
   parkingDistances,
   squares,
-} from "um-types/constants";
+} from "@umzug-meister/um-core/constants";
 import { AppState } from "../../store";
 import { AppInfo } from "../components/AppInfo";
 import { CustomItemsWidget } from "../components/CustomItemsWidget";
@@ -145,20 +145,20 @@ export default function Auszug() {
       <OrderSwitchField<Address>
         path={path}
         nestedPath="demontage"
-        label="Möbel-Demontage"
+        label="Möbel Abbau"
       />
 
       {order.from.demontage && (
         <ColFlexBox>
           <ColFlexBox gap={1}>
-            <AppInfo text="Eine abschließende Montage der Küche ist zurzeit nicht möglich." />
+            <AppInfo text="Ein abschließender Aufbau der Küche ist zurzeit leider nicht möglich." />
             <OrderField<Address>
               path={path}
               label="Küchenbreite"
               nestedPath={"kitchenWidth"}
               type="number"
               endAdornment={<End>Meter</End>}
-              helperText="Breite der Küchenzeile zum Demontieren"
+              helperText="Breite der Küchenzeile zum Abbauen"
             />
           </ColFlexBox>
 
@@ -168,7 +168,7 @@ export default function Auszug() {
             nestedPath={"bedNumber"}
             type="number"
             endAdornment={<End>Stück</End>}
-            helperText="Anzahl der Betten zum Demontieren"
+            helperText="Anzahl der Betten zum Abbauen"
           />
 
           <OrderField<Address>
@@ -177,7 +177,7 @@ export default function Auszug() {
             nestedPath="wardrobeWidth"
             type="number"
             endAdornment={<End>Meter</End>}
-            helperText="Breite aller Schränke zum Demontieren"
+            helperText="Breite aller Schränke zum Abbauen"
           />
         </ColFlexBox>
       )}

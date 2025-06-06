@@ -3,7 +3,7 @@ import { Box, Divider, Grid, IconButton, TextFieldProps } from "@mui/material";
 
 import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
 import React, { useState } from "react";
-import { CustomItem } from "um-types";
+import { CustomItem } from "@umzug-meister/um-core";
 import { AppButton } from "../../shared/components/AppButton";
 import { AppTextField } from "../../shared/components/AppTextField";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";

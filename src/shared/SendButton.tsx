@@ -2,7 +2,7 @@ import SendIcon from "@mui/icons-material/Send";
 import { CircularProgress } from "@mui/material";
 import { useCallback, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Order, OrderSrcType } from "um-types";
+import { Order, OrderSrcType } from "@umzug-meister/um-core";
 import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import { AppButton } from "./components/AppButton";

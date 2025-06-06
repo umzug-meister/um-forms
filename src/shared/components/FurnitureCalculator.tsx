@@ -1,6 +1,6 @@
 import { Alert, Grid, Typography } from "@mui/material";
 import { useDispatch } from "react-redux";
-import { Category, Furniture } from "um-types";
+import { Category, Furniture } from "@umzug-meister/um-core";
 import { ColFlexBox } from "./ColFlexBox";
 import { GridContainer } from "./GridContainer";
 import { typoProps } from "../constants";
