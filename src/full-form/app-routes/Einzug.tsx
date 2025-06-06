@@ -113,7 +113,7 @@ export default function Einzug() {
                 Wir montieren ausschließlich Möbelstücke, die zuvor von uns
                 abgebaut wurden. Bitte beachten Sie, dass der Aufbau keine&nbsp;
                 <b>Bohrarbeiten</b> oder das Aufhängen von Elementen umfasst.
-                Falls Sie eine <b> Wandmontage</b> wünschen, teilen Sie uns dies
+                Falls Sie eine <b>Wandmontage</b> wünschen, teilen Sie uns dies
                 gerne im nächsten Schritt mit.
               </>
             }
