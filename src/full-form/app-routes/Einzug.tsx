@@ -103,13 +103,20 @@ export default function Einzug() {
       <OrderSwitchField<Address>
         path={path}
         nestedPath="montage"
-        label="Möbel-Montage"
+        label="Möbel Aufbau"
       />
       {order.to.montage && (
         <>
           <AppInfo
-            text=" Wir montieren ausschließlich Möbelstücke, die zuvor von uns
-            demontiert wurden."
+            text={
+              <>
+                Wir montieren ausschließlich Möbelstücke, die zuvor von uns
+                abgebaut wurden. Bitte beachten Sie, dass der Aufbau keine
+                <b> Bohrarbeiten</b> oder das Aufhängen von Elementen umfasst.
+                Falls Sie eine <b> Wandmontage</b> wünschen, teilen Sie uns dies
+                gerne im nächsten Schritt mit.
+              </>
+            }
           />
         </>
       )}

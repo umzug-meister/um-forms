@@ -145,20 +145,20 @@ export default function Auszug() {
       <OrderSwitchField<Address>
         path={path}
         nestedPath="demontage"
-        label="Möbel-Demontage"
+        label="Möbel Abbau"
       />
 
       {order.from.demontage && (
         <ColFlexBox>
           <ColFlexBox gap={1}>
-            <AppInfo text="Eine abschließende Montage der Küche ist zurzeit nicht möglich." />
+            <AppInfo text="Ein abschließender Aufbau der Küche ist zurzeit leider nicht möglich." />
             <OrderField<Address>
               path={path}
               label="Küchenbreite"
               nestedPath={"kitchenWidth"}
               type="number"
               endAdornment={<End>Meter</End>}
-              helperText="Breite der Küchenzeile zum Demontieren"
+              helperText="Breite der Küchenzeile zum Abbauen"
             />
           </ColFlexBox>
 
@@ -168,7 +168,7 @@ export default function Auszug() {
             nestedPath={"bedNumber"}
             type="number"
             endAdornment={<End>Stück</End>}
-            helperText="Anzahl der Betten zum Demontieren"
+            helperText="Anzahl der Betten zum Abbauen"
           />
 
           <OrderField<Address>
@@ -177,7 +177,7 @@ export default function Auszug() {
             nestedPath="wardrobeWidth"
             type="number"
             endAdornment={<End>Meter</End>}
-            helperText="Breite aller Schränke zum Demontieren"
+            helperText="Breite aller Schränke zum Abbauen"
           />
         </ColFlexBox>
       )}
