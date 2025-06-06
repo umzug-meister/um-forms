@@ -6,8 +6,10 @@ on:
       - "main"
 
 jobs:
-  web-deploy:
-    name: Deploy
+  deploy:
+    name: Deploy UM Forms
+    permissions:
+      packages: read
     env:
       VITE_BACKEND_URL: ${{ vars.BACKEND_URL }}
       VITE_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
@@ -21,6 +23,11 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 22
+
+      - name: Generate NPMRC
+        run: |
+          echo "//npm.pkg.github.com/:_authToken=${{secrets.GITHUB_TOKEN}}" > .npmrc
+          echo "@xxxxx=https://npm.pkg.github.com/" >> .npmrc
 
       - name: Install modules
         run: npm install
