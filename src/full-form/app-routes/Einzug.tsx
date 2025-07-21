@@ -121,8 +121,7 @@ export default function Einzug() {
         </>
       )}
 
-      <OrderSwitchField path="bohrarbeiten" label="Bohrarbeiten" />
-      {order.bohrarbeiten && <BohrarbeitenList />}
+      <BohrarbeitenList />
     </ContainerBox>
   );
 }

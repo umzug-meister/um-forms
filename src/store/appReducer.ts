@@ -137,14 +137,6 @@ export const uploadOrder = createAsyncThunk(
     }
 
     if (
-      !next.bohrarbeiten &&
-      next.services?.length &&
-      next.services.length > 0
-    ) {
-      next.services = next.services.filter((s) => s.tag !== "Bohrarbeiten");
-    }
-
-    if (
       !next.needPackings &&
       next.services?.length &&
       next.services.length > 0
