@@ -118,7 +118,7 @@ function OfferLine(offer: Readonly<AppPrice>) {
   const selectedPriceID = useSelectedId();
 
   const updateId = useCallback(
-    (id: string) => {
+    (id: number) => {
       dispatch(setSelectedPriceId({ id }));
     },
     [dispatch]
@@ -165,7 +165,7 @@ function isOffer(service: Service): service is AppPrice {
 }
 
 function useSelectedId() {
-  const selectedPriceID = useSelector<AppState, string | undefined>(
+  const selectedPriceID = useSelector<AppState, number | undefined>(
     (s) => s.app.selectedPriceID
   );
   return selectedPriceID;

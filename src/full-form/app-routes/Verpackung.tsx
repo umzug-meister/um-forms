@@ -3,10 +3,12 @@ import ShoppingCartCheckoutOutlinedIcon from "@mui/icons-material/ShoppingCartCh
 import {
   Box,
   Card,
+  CardActions,
   CardContent,
   CardHeader,
   Grid,
   Typography,
+  TypographyProps,
 } from "@mui/material";
 import { useSelector } from "react-redux";
 import { AppPacking, Order, Service } from "@umzug-meister/um-core";
@@ -17,6 +19,8 @@ import { GridContainer } from "../../shared/components/GridContainer";
 import { AppState } from "../../store";
 import { OrderSwitchField } from "../components/OrderSwitchField";
 import { useServiceColli } from "../hooks";
+import { theme } from "../../shared/theme";
+import { useMemo } from "react";
 
 export default function Verpackung() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
@@ -36,7 +40,7 @@ export default function Verpackung() {
       />
 
       {order.needPackings && (
-        <GridContainer spacing={4}>
+        <GridContainer alignItems={"stretch"} spacing={4}>
           {packings.map((packing) => (
             <PackingCard key={packing.id} packing={packing} />
           ))}
@@ -59,23 +63,26 @@ function PackingCard({ packing }: Readonly<Props>) {
 
   const isInBasket = Number(colli) > 0;
 
+  const headerTypoProps: TypographyProps = useMemo(
+    () => ({
+      variant: "h5",
+      color: theme.palette.primary.main,
+    }),
+    []
+  );
+
   return (
     <Grid item xs={12}>
-      <Card>
+      <Card elevation={0} sx={{ backgroundColor: theme.palette.grey[100] }}>
         <CardHeader
-          sx={{
-            background: (theme) => theme.palette.primary.light,
-          }}
           title={
             <Box
               display="flex"
               justifyContent="space-between"
               alignItems="center"
             >
-              <Typography color="#fff" variant="h6">
-                {packing.name}
-              </Typography>
-              <Typography color="#fff" variant="h6" align="right">
+              <Typography {...headerTypoProps}>{packing.name}</Typography>
+              <Typography {...headerTypoProps}>
                 {formatter.format(Number(packing.price))}
               </Typography>
             </Box>
@@ -109,6 +116,7 @@ function PackingCard({ packing }: Readonly<Props>) {
             </Box>
           </ColFlexBox>
         </CardContent>
+        <CardActions></CardActions>
       </Card>
     </Grid>
   );
