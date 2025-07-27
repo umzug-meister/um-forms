@@ -7,7 +7,7 @@ import { useSearchParams } from "react-router-dom";
 
 import Cookies from "js-cookie";
 
-export function useServiceColli(id: string) {
+export function useServiceColli(id: number) {
   const order = useSelector<AppState, Order>((s) => s.app.current);
 
   const dispatch = useDispatch<AppDispatch>();

@@ -25,7 +25,7 @@ interface AppSlice {
   furniture: Furniture[];
   services: Service[];
   categories: Category[];
-  selectedPriceID: string | undefined;
+  selectedPriceID: number | undefined;
 }
 
 /**
@@ -233,7 +233,7 @@ const appSlice = createSlice({
   reducers: {
     setSelectedPriceId(
       state,
-      action: PayloadAction<{ id: string | undefined }>
+      action: PayloadAction<{ id: number | undefined }>
     ) {
       state.selectedPriceID = action.payload.id;
       const curPrice = state.services.find(
@@ -292,7 +292,7 @@ const appSlice = createSlice({
 
     setServiceColli(
       state,
-      action: PayloadAction<{ id: string; colli: string }>
+      action: PayloadAction<{ id: number; colli: string }>
     ) {
       const { colli, id } = action.payload;
 
