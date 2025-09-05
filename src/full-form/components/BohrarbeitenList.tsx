@@ -10,15 +10,15 @@ import { useServiceColli } from "../hooks";
 export function BohrarbeitenList() {
   const services = useSelector<AppState, Service[]>((s) => s.app.services);
 
-  const bohrArbeiten: AppService[] = services.filter(
-    (s) => s.tag === "Bohrarbeiten" && s.show
-  ) as AppService[];
+  const bohrArbeiten: AppService[] = (
+    services.filter((s) => s.tag === "Bohrarbeiten" && s.show) as AppService[]
+  ).toSorted((a, b) => (a.sort || 0) - (b.sort || 0));
 
   return (
     <ColFlexBox>
       <Grid alignItems="center" container spacing={2}>
         {bohrArbeiten.map((b) => (
-          <BohrArbeit service={b} key={b.id}></BohrArbeit>
+          <BohrArbeit service={b} key={b.id} />
         ))}
       </Grid>
     </ColFlexBox>
