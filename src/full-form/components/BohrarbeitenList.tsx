@@ -35,15 +35,16 @@ const euroFormatter = new Intl.NumberFormat("de-DE", {
   maximumFractionDigits: 2,
 });
 
-function EuroValue({ value }: { value: number | string | undefined }) {
-  if (typeof value !== "undefined") {
-    return (
-      <Typography color={"primary.light"}>
-        {euroFormatter.format(Number(value))}
-      </Typography>
-    );
-  }
-  return null;
+function EuroValue({
+  value,
+}: Readonly<{ value: number | string | undefined }>) {
+  if (value === undefined) return null;
+
+  return (
+    <Typography color={"primary.light"}>
+      {euroFormatter.format(Number(value))}
+    </Typography>
+  );
 }
 
 function BohrArbeit({ service }: Readonly<Props>) {
