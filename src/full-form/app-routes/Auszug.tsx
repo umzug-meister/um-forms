@@ -20,10 +20,13 @@ import { OrderSwitchField } from "../components/OrderSwitchField";
 import StockwerkeToggle from "../components/StockwerkeToggle";
 import { HVZInfo } from "../components/HVZInfo";
 import { AddressAutocomplete } from "../../shared/components/AddressAutocomplete";
+import { suggestVisitAppointment } from "./auszugUtils";
 
 export default function Auszug() {
   const order = useSelector<AppState, Order>((s) => s.app.current);
   const path = "from";
+
+  const needVisitAppontment = suggestVisitAppointment(order);
 
   return (
     <ContainerBox title="Auszug">
@@ -96,6 +99,16 @@ export default function Auszug() {
         type="number"
         label="Anzahl der Zimmer"
       />
+
+      {needVisitAppontment && (
+        <>
+          <AppInfo text="Wir empfehlen Ihnen einen kostenlosen Besichtigungstermin vor Ort für eine bessere Planung Ihres Umzugs" />
+          <OrderSwitchField
+            path="visitWanted"
+            label="Sollen wir Sie kontaktieren, um einen Besichtigungstermin zu vereinbaren?"
+          />
+        </>
+      )}
 
       <OrderField<Address>
         path={path}
