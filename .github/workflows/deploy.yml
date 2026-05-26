@@ -14,6 +14,7 @@ jobs:
       VITE_BACKEND_URL: ${{ vars.BACKEND_URL }}
       VITE_GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
       VITE_AWS_POOL_ID: ${{ secrets.AWS_POOL_ID }}
+      FTP_PORT: 21
     runs-on: ubuntu-latest
     steps:
       - name: Get latest code
@@ -42,34 +43,31 @@ jobs:
         run: npm run build-fur
 
       - name: Sync express form files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          sftp_only: true
-          port: 22
-          local_path: "./express/*"
-          remote_path: ${{ vars.FTP_UPLOAD_PATH }}/express
+          port: 21
+          local-dir: "./express/*"
+          server-dir: ${{ vars.FTP_UPLOAD_PATH }}/express
 
       - name: Sync full form files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          sftp_only: true
-          port: 22
-          local_path: "./form/*"
-          remote_path: ${{ vars.FTP_UPLOAD_PATH }}/form
+          port: ${{ env.FTP_PORT }}
+          local-dir: "./form/*"
+          server-dir: ${{ vars.FTP_UPLOAD_PATH }}/form
 
       - name: Sync fur form files
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          sftp_only: true
-          port: 22
-          local_path: "./fur/*"
-          remote_path: ${{ vars.FTP_UPLOAD_PATH }}/fur
+          port: ${{ env.FTP_PORT }}
+          local-dir: "./fur/*"
+          server-dir: ${{ vars.FTP_UPLOAD_PATH }}/fur
