@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
-    base: mode === "development" ? "/" : "/um-forms/form/",
+    base: mode === "development" ? "/" : "/konfigurator/form/",
     define: {
       global: {},
     },

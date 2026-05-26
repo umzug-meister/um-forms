@@ -6,7 +6,7 @@ import { defineConfig } from "vite";
 export default defineConfig(({ mode }) => {
   return {
     plugins: [react()],
-    base: mode === "development" ? "/" : "/um-forms/express/",
+    base: mode === "development" ? "/" : "/konfigurator/express/",
     build: {
       rollupOptions: {
         input: {
