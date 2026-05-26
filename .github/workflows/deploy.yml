@@ -49,7 +49,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: 21
-          local-dir: "./express/*"
+          local-dir: "./express/"
           server-dir: ${{ vars.FTP_UPLOAD_PATH }}/express
 
       - name: Sync full form files
@@ -59,7 +59,7 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: ${{ env.FTP_PORT }}
-          local-dir: "./form/*"
+          local-dir: "./form/"
           server-dir: ${{ vars.FTP_UPLOAD_PATH }}/form
 
       - name: Sync fur form files
@@ -69,5 +69,5 @@ jobs:
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
           port: ${{ env.FTP_PORT }}
-          local-dir: "./fur/*"
+          local-dir: "./fur/"
           server-dir: ${{ vars.FTP_UPLOAD_PATH }}/fur
