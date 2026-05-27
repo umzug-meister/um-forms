@@ -5,9 +5,10 @@ import { deDE } from "@mui/x-date-pickers/locales";
 const opts: ThemeOptions = {
   palette: {
     primary: {
-      main: "#199663",
+      main: "#1774BF",
     },
   },
+
   components: {
     MuiFormLabel: {
       styleOverrides: {
@@ -19,10 +20,10 @@ const opts: ThemeOptions = {
     },
   },
   shape: {
-    borderRadius: 2,
+    borderRadius: 5,
   },
   typography: {
-    fontFamily: `"Open Sans", Helvetica, Arial, Lucida, sans-serif`,
+    fontFamily: `"Montserrat","Arial", sans-serif`,
     fontSize: 14,
     fontWeightRegular: 400,
   },
