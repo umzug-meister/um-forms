@@ -14,6 +14,8 @@ import { LazyLoad } from "../../shared/components/LazyLoad";
 import { lazy } from "react";
 import { AppInfo } from "../components/AppInfo";
 import { ColFlexBox } from "../../shared/components/ColFlexBox";
+import { getSrcPrefix } from "../../shared/utils";
+import { OrderSrcType } from "@umzug-meister/um-core";
 
 const FurnitureCalculator = lazy(
   () => import("../../shared/components/FurnitureCalculator")
@@ -99,7 +101,10 @@ export default function Request() {
         alignItems="center"
       >
         <DataPrivacyCheck />
-        <SendButton src="UmzugRuckZuck" />
+        <SendButton
+          src={("Anfrage-" + getSrcPrefix()) as OrderSrcType}
+          successPath="/erfolg"
+        />
       </Box>
     </ContainerBox>
   );

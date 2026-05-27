@@ -1,14 +1,16 @@
 import { Typography } from "@mui/material";
-import { useRef, useState } from "react";
+import { lazy, useRef, useState } from "react";
+import { Route, Routes } from "react-router-dom";
 import { CustomerData } from "../shared/components/CustomerData";
 import { DataPrivacyCheck } from "../shared/components/DataPrivacyCheck";
 import FurnitureCalculator from "../shared/components/FurnitureCalculator";
 import ImageUploader from "../shared/components/ImageUploader";
+import { LazyLoad } from "../shared/components/LazyLoad";
+import SuccessPage from "../shared/components/SuccessPage";
 import { ErrorSnackbar } from "../shared/ErrorSnackbar";
-import { MainApp } from "../shared/MainApp";
 import { SendButton } from "../shared/SendButton";
 
-export default function App() {
+function FurForm() {
   const alertMessage = useRef("");
 
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -24,7 +26,7 @@ export default function App() {
   };
 
   return (
-    <MainApp full>
+    <>
       <FurnitureCalculator />
       <Typography variant="h5">
         Sie können die Möbelliste direkt an uns senden.
@@ -38,6 +40,22 @@ export default function App() {
         onValidation={onValidation}
       />
       <ErrorSnackbar open={openSnackbar} message={alertMessage.current} />
-    </MainApp>
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <Routes>
+      <Route index element={<FurForm />} />
+      <Route
+        path="erfolg"
+        element={
+          <LazyLoad>
+            <SuccessPage />
+          </LazyLoad>
+        }
+      />
+    </Routes>
   );
 }

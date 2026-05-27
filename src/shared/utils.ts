@@ -6,3 +6,7 @@ export function scrollToElement(rootId: string) {
     window.scroll({ top, behavior: "smooth" });
   }
 }
+
+export function getSrcPrefix() {
+  return window.location.host;
+}

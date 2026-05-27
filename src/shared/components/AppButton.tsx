@@ -3,7 +3,7 @@ import React from "react";
 
 export function AppButton(props: React.PropsWithChildren<ButtonProps>) {
   return (
-    <Button size="large" disableElevation {...props}>
+    <Button size="large" {...props}>
       {props.children}
     </Button>
   );

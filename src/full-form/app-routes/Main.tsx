@@ -9,7 +9,7 @@ import {
 
 import { ButtonProps } from "@mui/material/Button";
 import { useEffect, useRef, useState } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import { scrollToRoot } from "../../main.full";
 import { ErrorSnackbar } from "../../shared/ErrorSnackbar";
 import { AppButton } from "../../shared/components/AppButton";
@@ -36,12 +36,17 @@ export default function Main() {
   const theme = useTheme();
   const narrowScreen = useMediaQuery(theme.breakpoints.down("sm"));
 
+  const location = useLocation();
+  const isSuccessPage = location.pathname === "/erfolg";
+
   const { validate } = useValidate();
   const navigate = useNavigate();
 
   useEffect(() => {
-    navigate(routes[activeStep].route);
-  }, [navigate, activeStep]);
+    if (!isSuccessPage) {
+      navigate(routes[activeStep].route);
+    }
+  }, [navigate, activeStep, isSuccessPage]);
 
   const next = (step: number) => {
     try {
@@ -62,7 +67,6 @@ export default function Main() {
   const nextButtonProps: ButtonProps = {
     variant: "contained",
     onClick: () => next(1),
-    disableElevation: true,
     size: "large",
   };
 
@@ -77,23 +81,29 @@ export default function Main() {
 
   return (
     <ColFlexBox gap={4} alignItems="center">
-      <Stepper activeStep={activeStep}>
-        {routes.map((route) => (
-          <Step key={route.label}>
-            <StepLabel>{narrowScreen ? null : route.label}</StepLabel>
-          </Step>
-        ))}
-      </Stepper>
+      {!isSuccessPage && (
+        <Stepper activeStep={activeStep}>
+          {routes.map((route) => (
+            <Step key={route.label}>
+              <StepLabel>{narrowScreen ? null : route.label}</StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+      )}
 
       <Outlet />
 
-      <ColFlexBox sx={{ width: "100%" }}>
-        <Box display="flex" gap={4} justifyContent="center">
-          <AppButton {...backButtonProps}>zurück</AppButton>
-          {lastStep ? null : <AppButton {...nextButtonProps}>weiter</AppButton>}
-        </Box>
-        <ErrorSnackbar open={openSnackbar} message={alertMessage.current} />
-      </ColFlexBox>
+      {!isSuccessPage && (
+        <ColFlexBox sx={{ width: "100%" }}>
+          <Box display="flex" gap={4} justifyContent="center">
+            <AppButton {...backButtonProps}>zurück</AppButton>
+            {lastStep ? null : (
+              <AppButton {...nextButtonProps}>weiter</AppButton>
+            )}
+          </Box>
+          <ErrorSnackbar open={openSnackbar} message={alertMessage.current} />
+        </ColFlexBox>
+      )}
     </ColFlexBox>
   );
 }

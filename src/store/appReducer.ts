@@ -36,7 +36,6 @@ export interface FormsOptions {
   hvzPrice: string;
   boxCbm: string;
   kleiderboxCbm: string;
-  successUrl: string;
   dataPrivacyUrl: string;
   boxCalculatorUrl: string;
 }

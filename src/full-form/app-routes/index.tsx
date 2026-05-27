@@ -8,6 +8,7 @@ const Einzug = lazy(() => import("./Einzug"));
 const Verpackung = lazy(() => import("./Verpackung"));
 const Main = lazy(() => import("./Main"));
 const Request = lazy(() => import("./Request"));
+const Success = lazy(() => import("./Success"));
 
 export function AppRoutes() {
   return (
@@ -57,6 +58,14 @@ export function AppRoutes() {
           element={
             <LazyLoad>
               <Request />
+            </LazyLoad>
+          }
+        />
+        <Route
+          path="erfolg"
+          element={
+            <LazyLoad>
+              <Success />
             </LazyLoad>
           }
         />
