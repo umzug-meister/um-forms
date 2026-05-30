@@ -5,3 +5,7 @@ input[value=""]::-webkit-datetime-edit {
 input:focus::-webkit-datetime-edit {
   color: #000;
 }
+
+.MuiPickersDay-root:hover {
+  color: #000 !important;
+}
