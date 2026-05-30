@@ -1,10 +1,23 @@
 import { Button, ButtonProps } from "@mui/material";
-import React from "react";
+import React, { useMemo } from "react";
 import { theme } from "../theme";
 
 export function AppButton(props: React.PropsWithChildren<ButtonProps>) {
-  const bgColor =
-    props.variant === "outlined" ? "transparent" : theme.palette.primary.main;
+  const buttonColors = useMemo(
+    () => ({
+      bgColor:
+        props.variant === "outlined"
+          ? "transparent"
+          : theme.palette.primary.main,
+      color: props.variant === "outlined" ? theme.palette.primary.main : "#fff",
+      hoverBGColor:
+        props.variant === "outlined"
+          ? theme.palette.grey[100]
+          : theme.palette.primary.dark,
+    }),
+    [props.variant]
+  );
+
   return (
     <Button
       size="large"
@@ -12,7 +25,12 @@ export function AppButton(props: React.PropsWithChildren<ButtonProps>) {
       sx={{
         ...props.sx,
         "&:focus": {
-          backgroundColor: `${bgColor}!important`,
+          color: `${buttonColors.color}!important`,
+          backgroundColor: `${buttonColors.bgColor}!important`,
+        },
+        "&:hover": {
+          color: `${buttonColors.color}!important`,
+          backgroundColor: `${buttonColors.hoverBGColor}!important`,
         },
       }}
     >

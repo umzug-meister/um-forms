@@ -5,6 +5,3 @@ input[value=""]::-webkit-datetime-edit {
 input:focus::-webkit-datetime-edit {
   color: #000;
 }
-
-[type="button"]:focus {
-}
