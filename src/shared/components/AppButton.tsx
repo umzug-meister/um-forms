@@ -5,6 +5,8 @@ import { getButtonColors } from "./wp-style-fixes";
 export function AppButton(props: React.PropsWithChildren<ButtonProps>) {
   const buttonColors = getButtonColors(props.variant || "text");
 
+  console.log(buttonColors);
+
   return (
     <Button
       size="large"

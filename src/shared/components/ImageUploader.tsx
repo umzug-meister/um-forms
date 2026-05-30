@@ -136,7 +136,7 @@ const ImagePreview: React.FC<{ url: string; onRemove: () => void }> = ({
             onClick={onRemove}
             color="error"
             sx={{
-              "& hover": {
+              "&:hover": {
                 color: "error.dark !important",
               },
             }}
