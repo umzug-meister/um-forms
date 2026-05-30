@@ -132,7 +132,15 @@ const ImagePreview: React.FC<{ url: string; onRemove: () => void }> = ({
       <Card elevation={2} sx={{ padding: 1 }}>
         <CardMedia sx={{ height: 200 }} image={url} />
         <CardActions sx={{ justifyContent: "center" }}>
-          <IconButton onClick={onRemove} color="error">
+          <IconButton
+            onClick={onRemove}
+            color="error"
+            sx={{
+              "& hover": {
+                color: "error.dark !important",
+              },
+            }}
+          >
             <DeleteOutlineIcon />
           </IconButton>
         </CardActions>

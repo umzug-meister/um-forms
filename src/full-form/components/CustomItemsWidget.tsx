@@ -1,7 +1,7 @@
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import { Box, Divider, Grid, IconButton, TextFieldProps } from "@mui/material";
 
-import DeleteForeverOutlinedIcon from "@mui/icons-material/DeleteForeverOutlined";
+import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
 import React, { useState } from "react";
 import { CustomItem } from "@umzug-meister/um-core";
 import { AppButton } from "../../shared/components/AppButton";
@@ -128,8 +128,16 @@ function CustomItemWidgetLine({
     <>
       <GridContainer spacing={1} alignItems={"center"}>
         <Grid item xs={2} sm={1}>
-          <IconButton color="error" onClick={onDelete}>
-            <DeleteForeverOutlinedIcon />
+          <IconButton
+            color="error"
+            onClick={onDelete}
+            sx={{
+              "& hover": {
+                color: "error.dark !important",
+              },
+            }}
+          >
+            <DeleteOutlineIcon />
           </IconButton>
         </Grid>
         <Grid item xs={10} sm={5} md={3}>
