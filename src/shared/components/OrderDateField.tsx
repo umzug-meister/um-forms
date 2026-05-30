@@ -8,7 +8,7 @@ import { AppTextField } from "./AppTextField";
 
 import { de } from "date-fns/locale/de";
 import { getButtonColors } from "./wp-style-fixes";
-
+import { useTheme } from "@mui/material";
 interface Props<T> {
   path: Path;
   nestedPath?: NestedPath<T>;
@@ -26,11 +26,12 @@ export function OrderDateField<T>({
   required,
   minDate,
 }: Readonly<Props<T>>) {
+  const theme = useTheme();
   const { value, setValue } = useOrderValue<T>(path, nestedPath);
 
   const min = minDate ? new Date(minDate) : new Date();
 
-  const buttonColors = getButtonColors("outlined");
+  const buttonColors = getButtonColors("outlined", theme);
 
   const buttonSx = {
     "&:focus": {
