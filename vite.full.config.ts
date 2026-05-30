@@ -10,6 +10,7 @@ export default defineConfig(({ mode }) => {
     define: {
       global: {},
     },
+
     build: {
       rollupOptions: {
         input: {
@@ -24,6 +25,7 @@ export default defineConfig(({ mode }) => {
     },
     server: {
       open: "/full.html",
+      port: 5170,
     },
   };
 });

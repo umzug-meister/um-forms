@@ -6,8 +6,6 @@ export function AppButton(props: React.PropsWithChildren<ButtonProps>) {
   const theme = useTheme();
   const buttonColors = getButtonColors(props.variant || "text", theme);
 
-  console.log(buttonColors);
-
   return (
     <Button
       size="large"

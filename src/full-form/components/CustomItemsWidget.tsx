@@ -132,7 +132,7 @@ function CustomItemWidgetLine({
             color="error"
             onClick={onDelete}
             sx={{
-              "& hover": {
+              "&:hover": {
                 color: "error.dark !important",
               },
             }}

@@ -90,6 +90,7 @@ function FurnitureRenderer({
   return (
     <Grid item xs={12} sm={6}>
       <NumberInput
+        category={selectedCategory}
         label={furniture.name}
         step={furniture.step}
         value={value}

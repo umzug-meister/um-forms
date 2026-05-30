@@ -41,7 +41,7 @@ export function useCategories() {
 }
 
 export function useFurnitureValue(
-  furnitureId: string,
+  furnitureId: string | number,
   selectedCategory: string
 ) {
   const items = useSelector<AppState, Furniture[]>(
