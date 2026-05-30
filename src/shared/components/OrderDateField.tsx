@@ -7,6 +7,7 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFnsV3";
 import { AppTextField } from "./AppTextField";
 
 import { de } from "date-fns/locale/de";
+import { getButtonColors } from "./wp-style-fixes";
 
 interface Props<T> {
   path: Path;
@@ -29,6 +30,19 @@ export function OrderDateField<T>({
 
   const min = minDate ? new Date(minDate) : new Date();
 
+  const buttonColors = getButtonColors("outlined");
+
+  const buttonSx = {
+    "&:focus": {
+      color: `${buttonColors.color}!important`,
+      backgroundColor: `${buttonColors.bgColor}!important`,
+    },
+    "&:hover": {
+      color: `${buttonColors.color}!important`,
+      backgroundColor: `${buttonColors.hoverBGColor}!important`,
+    },
+  };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDateFns} adapterLocale={de}>
       <DatePicker
@@ -41,6 +55,15 @@ export function OrderDateField<T>({
         }}
         label={label}
         slotProps={{
+          nextIconButton: {
+            sx: buttonSx,
+          },
+          previousIconButton: {
+            sx: buttonSx,
+          },
+          openPickerButton: {
+            sx: buttonSx,
+          },
           textField: {
             id,
             required,

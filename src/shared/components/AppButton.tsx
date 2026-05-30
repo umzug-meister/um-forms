@@ -1,22 +1,9 @@
 import { Button, ButtonProps } from "@mui/material";
-import React, { useMemo } from "react";
-import { theme } from "../theme";
+import React from "react";
+import { getButtonColors } from "./wp-style-fixes";
 
 export function AppButton(props: React.PropsWithChildren<ButtonProps>) {
-  const buttonColors = useMemo(
-    () => ({
-      bgColor:
-        props.variant === "outlined"
-          ? "transparent"
-          : theme.palette.primary.main,
-      color: props.variant === "outlined" ? theme.palette.primary.main : "#fff",
-      hoverBGColor:
-        props.variant === "outlined"
-          ? theme.palette.grey[100]
-          : theme.palette.primary.dark,
-    }),
-    [props.variant]
-  );
+  const buttonColors = getButtonColors(props.variant || "text");
 
   return (
     <Button
