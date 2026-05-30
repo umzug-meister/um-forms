@@ -62,7 +62,7 @@ export function NumberInput({
         size="small"
         type="number"
         onChange={handleInputChange}
-        inputProps={{ step }}
+        inputProps={{ step, style: { border: "0px" } }}
         InputProps={{
           sx: { fontWeight: "bold" },
           startAdornment: (
