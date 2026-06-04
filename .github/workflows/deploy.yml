@@ -16,7 +16,10 @@ jobs:
       VITE_AWS_POOL_ID: ${{ secrets.AWS_POOL_ID }}
       FTP_PORT: 21
     runs-on: ubuntu-latest
+
     steps:
+      - name: show backend url
+        run: echo "$VITE_BACKEND_URL"
       - name: Get latest code
         uses: actions/checkout@v4
 
