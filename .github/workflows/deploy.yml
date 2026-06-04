@@ -20,6 +20,8 @@ jobs:
     steps:
       - name: show backend url
         run: echo "$VITE_BACKEND_URL"
+      - name: show upload path
+        run: echo ${{ vars.FTP_UPLOAD_PATH }}
       - name: Get latest code
         uses: actions/checkout@v4
 
