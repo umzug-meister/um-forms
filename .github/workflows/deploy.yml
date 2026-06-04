@@ -51,7 +51,8 @@ jobs:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          port: 21
+          port: 22
+          protocol: sftp
           local-dir: "./express/"
           server-dir: ${{ vars.FTP_UPLOAD_PATH }}/express/
 
@@ -61,7 +62,8 @@ jobs:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          port: ${{ env.FTP_PORT }}
+          port: 22
+          protocol: sftp
           local-dir: "./form/"
           server-dir: ${{ vars.FTP_UPLOAD_PATH }}/form/
 
@@ -71,6 +73,7 @@ jobs:
           server: ${{ vars.FTP_HOST }}
           username: ${{ secrets.FTP_USER }}
           password: ${{ secrets.FTP_PASS }}
-          port: ${{ env.FTP_PORT }}
+          port: 22
+          protocol: sftp
           local-dir: "./fur/"
           server-dir: ${{ vars.FTP_UPLOAD_PATH }}/fur/
