@@ -102,7 +102,7 @@ export default function Request() {
       >
         <DataPrivacyCheck />
         <SendButton
-          src={("Anfrage-" + getSrcPrefix()) as OrderSrcType}
+          src={getSrcPrefix() as OrderSrcType}
           successPath="/erfolg"
         />
       </Box>
