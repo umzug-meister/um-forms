@@ -38,10 +38,10 @@ export default function SuccessPage() {
           <br />
           <Typography
             component="a"
-            href="mailto:umzugruckzuck@gmail.com"
+            href="mailto:info@umzugruckzuck24.de"
             color="primary"
           >
-            umzugruckzuck@gmail.com
+            info@umzugruckzuck24.de
           </Typography>
         </Typography>
       </Box>
@@ -53,7 +53,7 @@ export default function SuccessPage() {
       <Typography variant="body1" align="center">
         Mit freundlichen Grüßen,
         <br />
-        Ihr <strong>Umzug - Ruck Zuck Team</strong>
+        Ihr <strong>UmzugRuckzuck24 Team</strong>
       </Typography>
     </ColFlexBox>
   );
