@@ -1,6 +1,6 @@
 import { Alert, Grid, Typography } from "@mui/material";
-import { useDispatch } from "react-redux";
-import { Category, Furniture } from "@umzug-meister/um-core";
+import { useDispatch, useSelector } from "react-redux";
+import { Category, Furniture, Order } from "@umzug-meister/um-core";
 import { ColFlexBox } from "./ColFlexBox";
 import { GridContainer } from "./GridContainer";
 import { typoProps } from "../constants";
@@ -10,7 +10,7 @@ import {
   useFurnitureValue,
   useOrderValue,
 } from "../hooks";
-import { AppDispatch } from "../../store";
+import { AppDispatch, AppState } from "../../store";
 import { setFurniture } from "../../store/appReducer";
 import { AppInfo } from "../../full-form/components/AppInfo";
 import { NumberInput } from "../../full-form/components/NumberInput";
@@ -18,6 +18,14 @@ import { useOption } from "../hooks/useOption";
 
 export default function FurnitureCalculator() {
   const categories = useCategories();
+  const movementObject = useSelector<AppState, string | undefined>(
+    (s) => s.app.current.from?.movementObject
+  );
+
+  const visibleCategories =
+    movementObject === "Büro"
+      ? categories.filter((cat) => cat.slug === "buero")
+      : categories;
 
   return (
     <ColFlexBox gap={4}>
@@ -27,7 +35,7 @@ export default function FurnitureCalculator() {
         <Boxes />
       </ColFlexBox>
 
-      {categories.map((cat) => (
+      {visibleCategories.map((cat) => (
         <CategoryRenderer key={cat.id} category={cat} />
       ))}
 
