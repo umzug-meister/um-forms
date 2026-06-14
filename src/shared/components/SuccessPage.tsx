@@ -53,7 +53,7 @@ export default function SuccessPage() {
       <Typography variant="body1" align="center">
         Mit freundlichen Grüßen,
         <br />
-        Ihr <strong>UmzugRuckzuck24 Team</strong>
+        Ihr <strong>Umzug Ruckzuck Team</strong>
       </Typography>
     </ColFlexBox>
   );
