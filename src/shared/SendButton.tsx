@@ -8,6 +8,7 @@ import { AppDispatch, AppState } from "../store";
 import { calculateOrder, uploadOrder } from "../store/appReducer";
 import { AppButton } from "./components/AppButton";
 import { validateCustomer } from "./hooks/useValidate";
+import { useOption } from "./hooks/useOption";
 
 interface Props {
   src: OrderSrcType;
@@ -34,6 +35,8 @@ export function SendButton({
     (s) => s.app.current
   );
 
+  const successUrl = useOption("successUrl");
+
   const onUploadRequest = useCallback(async () => {
     try {
       if (shouldValidateCustomer) {
@@ -41,7 +44,11 @@ export function SendButton({
       }
       setUploading(true);
       const cb = () => {
-        navigate(successPath);
+        if (successUrl) {
+          window.location.href = successUrl;
+        } else {
+          navigate(successPath);
+        }
       };
       dispatch(calculateOrder({ src }));
       await dispatch(uploadOrder(cb));
@@ -50,7 +57,7 @@ export function SendButton({
     } finally {
       setUploading(false);
     }
-  }, [dispatch, order, successPath, navigate]);
+  }, [dispatch, order, successUrl, successPath, navigate]);
 
   return (
     <AppButton

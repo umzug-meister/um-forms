@@ -38,6 +38,7 @@ export interface FormsOptions {
   kleiderboxCbm: string;
   dataPrivacyUrl: string;
   boxCalculatorUrl: string;
+  successUrl: string;
 }
 
 export const loadAllCategories = createAsyncThunk("loadAllCategories", () => {
